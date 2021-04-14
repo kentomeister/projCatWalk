@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
 import React from 'react';
-import ProductDetails from './components/productDetails/productDetails.jsx';
+import ProductDetails from './components/productOverview/productDetails.jsx';
 
 class App extends React.Component {
   constructor() {
