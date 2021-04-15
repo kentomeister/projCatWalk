@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import ProductDetails from './components/productOverview/productDetails.jsx';
+import QuestionsAnswers from './components/q&a/questionsAnswers.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -12,6 +13,7 @@ class App extends React.Component {
     return (
       <div>
         <ProductDetails />
+        <QuestionsAnswers />
       </div>
     );
   }
