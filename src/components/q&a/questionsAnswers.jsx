@@ -9,7 +9,7 @@ class QuestionsAnswers extends React.Component {
   render() {
     return (
       <div>
-        <h1>Questions And Answers</h1>
+        <h1>Questions And Answers!</h1>
       </div>
     );
   }
