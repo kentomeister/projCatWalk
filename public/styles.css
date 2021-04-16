@@ -55,6 +55,7 @@ table {
 }
 .star {
 	color: #f4f135;
+	transition-timing-function: ease-in;
 }
 .dark {
 	color: black;

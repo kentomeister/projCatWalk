@@ -18,8 +18,8 @@ class App extends React.Component {
       <div>
         <StarRating
           rating="2.5"
-          size="50"
-          handleRatingClick={this.handleRatingClick }
+          size="20"
+          handleRatingClick={this.handleRatingClick}
         />
       </div>
     );
