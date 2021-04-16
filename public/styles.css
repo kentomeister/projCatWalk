@@ -58,7 +58,7 @@ table {
 	transition-timing-function: ease-in;
 }
 .dark {
-	color: black;
+	color: grey;
 }
 .star:hover {
 	view
