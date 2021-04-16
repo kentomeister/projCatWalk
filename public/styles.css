@@ -46,3 +46,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* Tomas' Styles - Ratings & Reviews */
+.ratings-reviews{
+	border: 2px solid black;
+}
