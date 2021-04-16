@@ -1,5 +1,5 @@
 import React from 'react';
-import Review from './review';
+import Reviews from './review';
 
 class ReviewList extends React.Components {
   constructor(props) {
@@ -13,7 +13,7 @@ class ReviewList extends React.Components {
         This is my review list component
         <ul>
           <li>
-            <Review />
+            <Reviews />
           </li>
         </ul>
       </div>
