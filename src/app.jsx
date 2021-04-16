@@ -1,16 +1,26 @@
 /* eslint-disable import/extensions */
 import React from 'react';
+import StarRating from './components/shared/StarRating.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {};
+    this.handleRatingClick = this.handleRatingClick.bind(this);
+  }
+
+  handleRatingClick(rating) {
+   console.log(rating);
   }
 
   render() {
     return (
       <div>
-        <h1>This will be the front end!</h1>
+        <StarRating
+          rating="2.5"
+          size="50"
+          handleRatingClick={this.handleRatingClick }
+        />
       </div>
     );
   }

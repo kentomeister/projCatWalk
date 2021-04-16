@@ -46,3 +46,19 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+/* AZ Components */
+.rating-container {
+	padding-top: 100px;
+	box-sizing: border-box;
+}
+.star {
+	color: #f4f135;
+}
+.dark {
+	color: black;
+}
+.star:hover {
+	view
+}
