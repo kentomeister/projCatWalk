@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import ProductCard from './components/related-items-comparison/ProductCard.jsx';
 
