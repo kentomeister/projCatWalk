@@ -46,3 +46,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+/* AZ Components */
+.rating-container {
+	box-sizing: border-box;
+}
+.star {
+	color: #f4f135;
+	transition-timing-function: ease-in;
+}
+.dark {
+	color: grey;
+}
