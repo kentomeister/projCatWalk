@@ -21,3 +21,5 @@ Run the following command in the terminal:
 - open two terminal windows
     - terminal 1: npm run dev-server
     - terminal 2: npm run dev-client
+
+Navigate to http://localhost: **port specified in .env file** in chrome
