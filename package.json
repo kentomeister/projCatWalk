@@ -4,9 +4,9 @@
   "description": "This is the repo for our Hackreactor FEC project 1.  More info comming soon!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev-client": "webpack --watch --mode=development",
-    "dev-server": "nodemon ./server/server.js"
+    "dev-server": "nodemon ./server/server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

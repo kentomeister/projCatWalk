@@ -10,7 +10,7 @@ class ProductOverview extends React.Component {
   componentDidMount() {
     axios.get('/productOverview/19092')
       .then((res) => this.setState(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => throw New Error(err));
   }
 
   render() {

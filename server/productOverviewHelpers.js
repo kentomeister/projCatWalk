@@ -31,6 +31,7 @@ const parseData = (rawData) => {
 };
 
 module.exports.parseData = parseData;
+module.exports.calcAvgRating = calcAvgRating;
 
 /**
 result = {
