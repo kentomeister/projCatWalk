@@ -7,9 +7,18 @@ import data from './sample-data.js';
 class Reviews extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      helpfulCount: 0
+    };
+    this.helpfulClick = this.helpfulClick.bind(this);
   }
   // we map over all the objects to render the reviews
+
+  helpfulClick() {
+    this.setState(prevState => {
+      return {helpfulCount: prevState.helpfulCount + 1}
+    })
+  }
 
   render() {
     return (
@@ -28,7 +37,7 @@ class Reviews extends React.Component {
             : <div>{}</div>}
         </div>
         <div>
-          <Helpful />
+          <Helpful increment={this.helpfulClick} count={this.state.helpfulCount}/>
         </div>
       </li>
     );
