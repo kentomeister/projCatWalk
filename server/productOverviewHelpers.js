@@ -18,6 +18,7 @@ const calcAvgRating = (ratingsObj) => {
 const parseData = (rawData) => {
   const result = {
     id: rawData[0].id,
+    name: rawData[0].name,
     category: rawData[0].category || null,
     default_price: rawData[0].default_price || null,
     slogan: rawData[0].slogan || null,
