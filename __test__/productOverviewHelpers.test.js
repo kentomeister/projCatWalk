@@ -279,6 +279,7 @@ describe('ProductoverviewHelpers module', () => {
     ]
     const result = productOverviewHelpers.parseData(rawData)
     expect(result).toHaveProperty('id');
+    expect(result).toHaveProperty('name');
     expect(result).toHaveProperty('category');
     expect(result).toHaveProperty('default_price');
     expect(result).toHaveProperty('slogan');
@@ -345,11 +346,11 @@ describe('ProductoverviewHelpers module', () => {
     ]
     const parsedData = productOverviewHelpers.parseData(rawData)
     expect(parsedData.category).toBeNull();
+    expect(parsedData.name).not.toBeNull();
     expect(parsedData.default_price).toBeNull();
     expect(parsedData.slogan).toBeNull();
     expect(parsedData.slogan).toBeNull();
     expect(parsedData.avgRating).toEqual(-1);
     expect(parsedData.styles).toBeNull();
   });
-
 });
