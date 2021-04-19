@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import RatingsReviews from './components/ratings-review/ratings-reviews.jsx';
 

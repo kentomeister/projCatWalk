@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import Helpful from './helpful-counter.jsx';
+import Topbar from './topbar-review.jsx';
 
 class Reviews extends React.Component {
   constructor() {
@@ -12,7 +13,7 @@ class Reviews extends React.Component {
     return (
       <li className="review-cont">
         <div>Ratings & Reviews</div>
-        <div className="top-bar-cont">Top-bar-cont - Stars, user, date</div>
+        <Topbar />
         <div className="review-summary">Review Summary/Title</div>
         <div className="review-body">Review Body</div>
         <div className="recommended-tag">**I recommend this product text**</div>
