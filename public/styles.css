@@ -57,3 +57,41 @@ table {
 .review-cont{
 	border: 2px solid greenyellow;
 }
+.topbar-cont{
+	border: 2px solid green;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+
+}
+.review-stars{
+	border: 2px solid orange;
+	display: inline-flex;
+	justify-content: flex-start;
+	flex-basis: 60%;
+}
+.review-username{
+	border: 2px solid orange;
+	display: inline-flex;
+	flex-basis: 20%;
+	text-align: left;
+}
+.review-date{
+	border: 2px solid orange;
+	display: inline-flex;
+	flex-basis: 20%;
+	text-align: left;
+
+}
+
+/* AZ Components */
+.rating-container {
+	box-sizing: border-box;
+}
+.star {
+	color: #f4f135;
+	transition-timing-function: ease-in;
+}
+.dark {
+	color: grey;
+}
