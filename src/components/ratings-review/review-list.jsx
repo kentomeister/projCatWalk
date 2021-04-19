@@ -14,6 +14,8 @@ class ReviewList extends React.Component {
         This is my review list component
         <ul>
           <Reviews />
+          {/* <Reviews />
+          <Reviews /> */}
         </ul>
       </div>
     );
