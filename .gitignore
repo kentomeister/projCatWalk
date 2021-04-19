@@ -3,4 +3,3 @@ node_modules
 coverage/
 server/public/bundle.js
 .env
-.test.env

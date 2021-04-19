@@ -20,6 +20,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('tiny'));
 }
 
+app.get('/test', (req, res) => {
+  res.status(200).end();
+})
+
 app.get('/productOverview/:productId', (req, res) => {
   const { productId } = req.params;
   Promise.all([
