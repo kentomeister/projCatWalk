@@ -10,7 +10,6 @@ function Helpful(props) {
   return (
     <div className="helpful-counter">
       Helpful? <u onClick={click}>Yes</u>(
-      {/* {data.results[0].helpfulness} */}
       {props.count}
       )
     </div>
