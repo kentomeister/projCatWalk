@@ -1,8 +1,14 @@
+/* eslint-disable import/extensions */
 import React from 'react';
+import data from './sample-data.js';
 
 function Helpful() {
   return (
-    <div>This my Helpful counter component</div>
+    <div className="helpful-counter">
+      Helpful? Yes(
+      {data.results[0].helpfulness}
+      )
+    </div>
   );
 }
 
