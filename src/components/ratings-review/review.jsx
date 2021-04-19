@@ -1,16 +1,17 @@
+/* eslint-disable import/extensions */
 import React from 'react';
-import Helpful from './helpful-counter';
+import Helpful from './helpful-counter.jsx';
 
-class Reviews extends React.Components {
-  constructor(props) {
-    super(props);
+class Reviews extends React.Component {
+  constructor() {
+    super();
     this.state = {};
   }
 
   render() {
     return (
-      <div className="review-cont">
-        <h3>Ratings & Reviews</h3>
+      <li className="review-cont">
+        <div>Ratings & Reviews</div>
         <div className="top-bar-cont">Top-bar-cont - Stars, user, date</div>
         <div className="review-summary">Review Summary/Title</div>
         <div className="review-body">Review Body</div>
@@ -19,7 +20,7 @@ class Reviews extends React.Components {
         <div>
           <Helpful />
         </div>
-      </div>
+      </li>
     );
   }
 }

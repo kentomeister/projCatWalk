@@ -51,3 +51,9 @@ table {
 .ratings-reviews{
 	border: 2px solid black;
 }
+.review-list{
+	border: 2px solid blue;
+}
+.review-cont{
+	border: 2px solid greenyellow;
+}

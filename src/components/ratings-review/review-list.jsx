@@ -1,20 +1,19 @@
+/* eslint-disable import/extensions */
 import React from 'react';
-import Reviews from './review';
+import Reviews from './review.jsx';
 
-class ReviewList extends React.Components {
-  constructor(props) {
-    super(props);
+class ReviewList extends React.Component {
+  constructor() {
+    super();
     this.state = {};
   }
 
   render() {
     return (
-      <div>
+      <div className="review-list">
         This is my review list component
         <ul>
-          <li>
-            <Reviews />
-          </li>
+          <Reviews />
         </ul>
       </div>
     );

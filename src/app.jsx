@@ -3,8 +3,8 @@ import React from 'react';
 import RatingsReviews from './components/ratings-review/ratings-reviews.jsx';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
