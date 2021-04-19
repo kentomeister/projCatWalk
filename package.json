@@ -21,10 +21,11 @@
   "homepage": "https://github.com/kentomeister/projCatWalk#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "moment": "^2.29.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
