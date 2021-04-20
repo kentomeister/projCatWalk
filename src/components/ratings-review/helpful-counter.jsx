@@ -3,14 +3,21 @@ import React from 'react';
 import data from './sample-data.js';
 
 function Helpful(props) {
-  var click = function() {
+  const click = function (e) {
     props.increment();
-  }
+    e.target.disabled = true;
+    console.log(e.target.disabled);
+  };
+
+  const { count } = props;
 
   return (
     <div className="helpful-counter">
-      Helpful? <u onClick={click}>Yes</u>(
-      {props.count}
+      Helpful?
+      {' '}
+      <u disabled={false} onClick={click}>Yes</u>
+      (
+      {count}
       )
     </div>
   );
