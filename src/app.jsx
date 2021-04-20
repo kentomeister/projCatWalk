@@ -1,7 +1,4 @@
-/* eslint-disable import/extensions */
 import React from 'react';
-import ProductDetails from './components/productOverview/productDetails.jsx';
-import ProductQuestionManager from './components/q&a/ProductQuestionManager/main.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -12,8 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ProductDetails />
-        <ProductQuestionManager />
+        <h1>This will be the front end!</h1>
       </div>
     );
   }

@@ -1,3 +1,5 @@
-node_modules
 .DS_Store
-config.js
+node_modules
+coverage/
+server/public/bundle.js
+.env
