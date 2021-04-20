@@ -8,36 +8,44 @@ class Reviews extends React.Component {
   constructor() {
     super();
     this.state = {
-      helpfulCount: 0
+      helpfulCount: 0,
     };
     this.helpfulClick = this.helpfulClick.bind(this);
   }
   // we map over all the objects to render the reviews
 
   helpfulClick() {
-    this.setState(prevState => {
-      return {helpfulCount: prevState.helpfulCount + 1}
-    })
+    this.setState((prevState) => (
+      { helpfulCount: prevState.helpfulCount + 1 }
+    ));
   }
 
   render() {
+    const { helpfulCount } = this.state;
     return (
       <li className="review-cont">
         <div>Ratings & Reviews</div>
         <Topbar />
         <div className="review-summary">{data.results[0].summary}</div>
         <div className="review-body">{data.results[0].body}</div>
-        <div className="recommended-tag">
-          **I recommend this product:
-          {data.results[0].recommend.toString()}
-        </div>
         <div>
-          {data.results[0].response
-            ? <div className="seller-response">{data.results[0].response}</div>
+          {data.results[0].recommend
+            ? <div className="recommended-tag">**I recommend this product</div>
             : <div>{}</div>}
         </div>
         <div>
-          <Helpful increment={this.helpfulClick} count={this.state.helpfulCount}/>
+          {data.results[0].response
+            ? (
+              <div className="seller-response">
+                Seller response:
+                {' '}
+                {data.results[0].response}
+              </div>
+            )
+            : <div>{}</div>}
+        </div>
+        <div>
+          <Helpful increment={this.helpfulClick} count={helpfulCount} />
         </div>
       </li>
     );
