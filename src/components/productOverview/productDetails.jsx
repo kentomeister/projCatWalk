@@ -9,7 +9,7 @@ class ProductDetails extends React.Component {
   render() {
     return (
       <div>
-        <h1> I am the product Details page</h1>
+        <h1></h1>
       </div>
     );
   }
