@@ -7,11 +7,9 @@ const api = require('./apiCalls');
 
 const productOverview = require('./productOverviewHelpers.js');
 
-
 const app = express();
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'public')));
-
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -22,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('/test', (req, res) => {
   res.status(200).end();
-})
+});
 
 app.get('/productOverview/:productId', (req, res) => {
   const { productId } = req.params;

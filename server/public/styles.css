@@ -59,3 +59,51 @@ table {
 .dark {
 	color: grey;
 }
+.container {
+	border: 2px dotted grey;
+	width: 95%;
+	margin: auto;
+}
+.container-vert {
+	display: flex;
+	flex-direction: column;
+
+}
+.container-horz {
+	display: flex;
+	width: 100%;
+}
+.product-information {
+	height: 150px;
+	width: 100%;
+	border: 2px solid black;
+	margin: 0px 5px;
+	margin-top: 10px;
+}
+.link {
+	cursor: pointer;
+	text-decoration: underline;
+}
+.image-gallery {
+	border: 2px solid blue;
+	margin: 10px 20px;
+	width: 70%;
+	height: 500px;
+}
+.category-select {
+	border: 2px solid green;
+	margin: 10px 5px;
+	height: 150px;
+	width: 100%;
+}
+.add-to-bag {
+	border: 2px solid red;
+	margin: 0px 5px;
+	height: 170px;
+	width: 100%;
+}
+.product-details {
+	border: 2px solid black;
+	margin: 0px 20px;
+	height: 200px;
+}
