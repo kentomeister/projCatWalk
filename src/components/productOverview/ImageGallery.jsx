@@ -1,11 +1,13 @@
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageGalleryThumbnails from './ImageGalleryThumbnails.jsx';
 
-const ImageGallery = (props) => {
-  const { images } = props;
+const ImageGallery = ({ images }) => {
   if (images === undefined) return '';
   const [currentImage, setCurrentImage] = useState(images[0].url);
+  useEffect(() => { setCurrentImage(images[0].url); }, [images]);
+
+  const handleImageThumbnailclick = (imageUrl) => setCurrentImage(imageUrl);
   return (
 
     <div
@@ -15,6 +17,7 @@ const ImageGallery = (props) => {
       <ImageGalleryThumbnails
         images={images}
         currentImage={currentImage}
+        handleImageThumbnailclick={handleImageThumbnailclick}
       />
     </div>
   );

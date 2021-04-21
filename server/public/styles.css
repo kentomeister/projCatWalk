@@ -91,6 +91,8 @@ table {
 	background-repeat: no-repeat;
   background-size: cover;
 	background-origin: border-box;
+	/* background-attachment: fixed; */
+  background-position: center;
 }
 .style-select {
 	border: 2px solid green;
@@ -140,6 +142,7 @@ table {
 	width: 100px;
 	height: 100px;
 	background-size: cover;
+	background-position: center;
 	cursor: pointer;
 	margin: 10px 0;
 }
