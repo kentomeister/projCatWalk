@@ -95,7 +95,7 @@ table {
 .style-select {
 	border: 2px solid green;
 	margin: 10px 5px;
-	height: 250px;
+	height: 300px;
 	width: 100%;
 }
 .add-to-bag {
@@ -125,6 +125,7 @@ table {
 	flex-wrap: wrap;
 	width: 350px;
 	margin: auto;
+
 }
 
 .selected {
