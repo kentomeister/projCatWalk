@@ -1,9 +1,10 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { IoIosExpand } from 'react-icons/io';
 import ImageGalleryThumbnails from './ImageGalleryThumbnails.jsx';
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, handleImageContainerExpandClick }) => {
   if (images === undefined) return '';
   const [imageIndex, setImageIndex] = useState(0);
   const [currentImageUrl, setCurrentImageUrl] = useState(images[imageIndex].url);
@@ -22,6 +23,13 @@ const ImageGallery = ({ images }) => {
       className="image-gallery"
       style={{ backgroundImage: `url(${currentImageUrl})` }}
     >
+      <IoIosExpand
+        size="35"
+        color="white"
+        cursor="pointer"
+        className="image-gallery-expand"
+        onClick={handleImageContainerExpandClick}
+      />
       {
         showLeftArrow
         && <AiOutlineArrowLeft

@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
+
 import ImageThumbnail from './ImageThumbnail.jsx';
 
 const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclick }) => {
@@ -21,6 +22,7 @@ const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclic
   const showDownArrow = startPointer < images.length - 4;
   return (
     <div className="image-gallery-thumbnail-container">
+
       {
         (showUpArrow
           && <AiOutlineArrowUp

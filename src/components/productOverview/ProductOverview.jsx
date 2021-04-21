@@ -20,13 +20,15 @@ class ProductOverview extends React.Component {
       description: '',
       slogan: '',
       styles: [],
-      selectedStyle: {}
+      selectedStyle: {},
+      isImageGalleryExpand: false,
     };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
+    this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/productOverview/19093')
+    axios.get('/productOverview/19091')
       .then(({ data }) => this.setState(
         {
           ...data,
@@ -42,13 +44,20 @@ class ProductOverview extends React.Component {
     this.setState({ selectedStyle });
   }
 
+  handleImageContainerExpandClick() {
+    this.setState({
+      isImageGalleryExpand: !this.state.isImageGalleryExpand
+    });
+  }
+
   render() {
     const {
       slogan,
       description,
       styles,
       selectedStyle,
-      default_price
+      default_price,
+      isImageGalleryExpand
     } = this.state;
     return (
       <div className="container">
@@ -56,21 +65,27 @@ class ProductOverview extends React.Component {
           <div className="container-horz">
             <ImageGallery
               images={selectedStyle.photos}
+              handleImageContainerExpandClick={this.handleImageContainerExpandClick}
             />
-            <div className="container-vert">
-              <ProductInformation
-                productData={this.state}
-                price={selectedStyle.original_price || default_price}
-              />
-              <StyleSelect
-                styles={styles}
-                selectedStyle={selectedStyle}
-                handleStyleSelectClick={this.handleStyleSelectClick}
-              />
-              <div className="add-to-bag">
-                Add to bag
-              </div>
-            </div>
+            {
+              !isImageGalleryExpand
+              && (
+                <div className="container-vert infos">
+                  <ProductInformation
+                    productData={this.state}
+                    price={selectedStyle.original_price || default_price}
+                  />
+                  <StyleSelect
+                    styles={styles}
+                    selectedStyle={selectedStyle}
+                    handleStyleSelectClick={this.handleStyleSelectClick}
+                  />
+                  <div className="add-to-bag">
+                    Add to bag
+                  </div>
+                </div>
+              )
+            }
           </div>
           <ProductDetails
             slogan={slogan}

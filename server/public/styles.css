@@ -68,6 +68,7 @@ table {
 	display: flex;
 	flex-direction: column;
 	margin: 0;
+
 }
 .container-horz {
 	display: flex;
@@ -79,19 +80,12 @@ table {
 	margin: 0px 5px;
 	margin-top: 10px;
 }
+.infos {
+	width: 40%;
+}
 .link {
 	cursor: pointer;
 	text-decoration: underline;
-}
-.image-gallery {
-	border: 2px solid blue;
-	margin: 10px 20px;
-	width: 800px;
-	height: 800px;
-	background-repeat: no-repeat;
-  background-size: cover;
-	background-origin: border-box;
-  background-position: center;
 }
 .style-select {
 	border: 2px solid green;
@@ -131,6 +125,16 @@ table {
 .selected {
 	border: 5px solid red;
 }
+.image-gallery {
+	border: 2px solid blue;
+	margin: 10px 20px;
+	width: 100%;
+	height: 800px;
+	background-repeat: no-repeat;
+  background-size: cover;
+	background-origin: border-box;
+  background-position: center top;
+}
 .image-gallery-thumbnail-container {
 	width: 100px;
 	height: 600px;
@@ -141,18 +145,24 @@ table {
 	width: 100px;
 	height: 100px;
 	background-size: cover;
-	background-position: center;
+	background-position: center ;
 	cursor: pointer;
 	margin: 10px 0;
 	box-sizing: border-box;
 }
 .image-gallery-left-arrow {
 	position: absolute;
-	top: 400px;
+	top: 40%;
 	left: 345px;
 }
 .image-gallery-right-arrow {
-	position: absolute;
-	top: 400px;
-	left: 950px;
+	position: relative;
+	top: -35%;
+	left: 95%;
+}
+.image-gallery-expand {
+	position: relative;
+	top: 20px;
+	left: 94%;
+	border: 1px solid black;
 }
