@@ -37,13 +37,9 @@ class ProductOverview extends React.Component {
   }
 
   handleStyleSelectClick(selectedStyleId) {
-
     const { styles } = this.state;
     const [selectedStyle] = _.filter(styles, { style_id: Number(selectedStyleId) });
-    this.setState({
-      ...this.state,
-      selectedStyle,
-    });
+    this.setState({ selectedStyle });
   }
 
   render() {
