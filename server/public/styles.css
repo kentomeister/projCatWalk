@@ -91,7 +91,6 @@ table {
 	background-repeat: no-repeat;
   background-size: cover;
 	background-origin: border-box;
-	/* background-attachment: fixed; */
   background-position: center;
 }
 .style-select {
@@ -135,9 +134,8 @@ table {
 .image-gallery-thumbnail-container {
 	width: 100px;
 	height: 600px;
-	margin-left: 20px;
+	margin-left: 10px;
 	margin-top: 80px;
-
 }
 .image-thumbnail {
 	width: 100px;
@@ -147,4 +145,14 @@ table {
 	cursor: pointer;
 	margin: 10px 0;
 	box-sizing: border-box;
+}
+.image-gallery-left-arrow {
+	position: absolute;
+	top: 400px;
+	left: 345px;
+}
+.image-gallery-right-arrow {
+	position: absolute;
+	top: 400px;
+	left: 950px;
 }

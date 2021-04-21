@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/Ai';
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
 import ImageThumbnail from './ImageThumbnail.jsx';
 
 const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclick }) => {
