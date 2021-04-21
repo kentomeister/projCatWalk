@@ -26,7 +26,7 @@ class ProductOverview extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/productOverview/19092')
+    axios.get('/productOverview/19091')
       .then(({ data }) => this.setState(
         {
           ...data,
@@ -43,7 +43,13 @@ class ProductOverview extends React.Component {
   }
 
   render() {
-    const { slogan, description, styles, selectedStyle, default_price } = this.state;
+    const {
+      slogan,
+      description,
+      styles,
+      selectedStyle,
+      default_price
+    } = this.state;
     return (
       <div className="container">
         <div className="container-vert">

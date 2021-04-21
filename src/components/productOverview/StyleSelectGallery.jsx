@@ -11,8 +11,7 @@ const StyleSelectGallery = ({ styles, selectedStyle, handleStyleSelectClick }) =
           thumbnailUrl={style.photos[0].thumbnail_url}
           syleId={style.style_id}
           handleStyleSelectClick={handleStyleSelectClick}
-
-          selected={(style.style_id) === (selectedStyle.style_id)}
+          selected={style.style_id === selectedStyle.style_id}
         />
       ))}
   </div>
