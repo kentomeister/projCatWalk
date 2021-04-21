@@ -137,6 +137,7 @@ table {
 	height: 600px;
 	margin-left: 20px;
 	margin-top: 80px;
+
 }
 .image-thumbnail {
 	width: 100px;
@@ -145,4 +146,5 @@ table {
 	background-position: center;
 	cursor: pointer;
 	margin: 10px 0;
+	box-sizing: border-box;
 }
