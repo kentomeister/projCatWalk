@@ -22,6 +22,7 @@ class ProductOverview extends React.Component {
       styles: [],
       selectedStyle: {}
     };
+    this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +34,16 @@ class ProductOverview extends React.Component {
         },
       ))
       .catch((err) => console.log(err));
+  }
+
+  handleStyleSelectClick(selectedStyleId) {
+
+    const { styles } = this.state;
+    const selectedStyle = _.filter(styles, { style_id: Number(selectedStyleId) });
+    this.setState({
+      ...this.state,
+      selectedStyle,
+    });
   }
 
   render() {
@@ -52,6 +63,7 @@ class ProductOverview extends React.Component {
               <StyleSelect
                 styles={styles}
                 selectedStyle={selectedStyle}
+                handleStyleSelectClick={this.handleStyleSelectClick}
               />
               <div className="add-to-bag">
                 Add to bag

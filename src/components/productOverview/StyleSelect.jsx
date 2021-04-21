@@ -1,7 +1,7 @@
 import React from 'react';
 import StyleSelectGallery from './StyleSelectGallery.jsx';
 
-const StyleSelect = ({ styles, selectedStyle }) => {
+const StyleSelect = ({ styles, selectedStyle, handleStyleSelectClick }) => {
   return(
     <div className="style-select">
       <h1>
@@ -11,6 +11,7 @@ const StyleSelect = ({ styles, selectedStyle }) => {
       <StyleSelectGallery
         styles={styles}
         selectedStyle={selectedStyle}
+        handleStyleSelectClick={handleStyleSelectClick}
       />
     </div>
   )
