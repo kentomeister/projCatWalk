@@ -12,9 +12,10 @@ const ImageGallery = (props) => {
       className="image-gallery"
       style={{ backgroundImage: `url(${currentImage})` }}
     >
-     <ImageGalleryThumbnails
-       images={images}
-     />
+      <ImageGalleryThumbnails
+        images={images}
+        currentImage={currentImage}
+      />
     </div>
   );
 };
