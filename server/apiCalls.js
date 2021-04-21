@@ -20,18 +20,11 @@ const getProductReviews = (productId) => axios.get(`/reviews?product_id=${produc
   headers: { Authorization: process.env.GITHUB_TOKEN },
 });
 
-const getRelatedProductId = (id, callback) => {
-  return axios.get(`/${id}/related`,
+const getRelatedProductId = (id) => {
+  return axios.get(`/products/${id}/related`,
   {
     baseURL: process.env.API_URL,
     headers: {Authorization: process.env.GITHUB_TOKEN}
-  }
-  )
-  .then(data => {
-    callback(null, data);
-  })
-  .catch(err => {
-    callback(err, null);
   });
 };
 
