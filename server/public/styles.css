@@ -72,10 +72,9 @@ table {
 	align-items: center;
 }
 
-
 .action-btn{
 	min-width:160px;
-	min-height: 40px;
+	min-height: 45px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
