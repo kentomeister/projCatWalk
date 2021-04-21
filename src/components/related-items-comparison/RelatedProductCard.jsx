@@ -1,10 +1,9 @@
 
+// require('dotenv').config();
 import React, {Component} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ProductInformation from './ProductInformation.jsx';
 import axios from 'axios';
-//require('dotenv').config();
-
 
 
 class RelatedProductCard extends React.Component {
@@ -13,6 +12,7 @@ class RelatedProductCard extends React.Component {
     super(props);
     this.state = {
       products: [],
+      relatedProductId: [],
       view: false
     };
 
@@ -20,12 +20,29 @@ class RelatedProductCard extends React.Component {
 
   }
 
+  getData() {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/19090/related', {headers: {Authorization: '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'}})
+    .then(res => {
+      console.log(res.data);
+      this.setState({
+        relatedProductId: res.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
-  clickHandler(option, e) {
+  clickHandler(option) {
   this.setState({
     view: true
   });
 this.props.changeView(true);
+    }
+
+
+    componentDidMount() {
+      this.getData();
     }
 
 

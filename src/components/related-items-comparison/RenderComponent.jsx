@@ -20,8 +20,6 @@ changeView (option) {
 }
 
 
-
-
 render () {
 
   return (
