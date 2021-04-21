@@ -95,7 +95,7 @@ table {
 .style-select {
 	border: 2px solid green;
 	margin: 10px 5px;
-	height: 150px;
+	height: 250px;
 	width: 100%;
 }
 .add-to-bag {
@@ -118,6 +118,13 @@ table {
 	border-radius: 100%;
 	cursor: pointer;
 	float: left;
+	box-sizing: border-box;
+	margin: 5px;
+}
+.style-gallery {
+	flex-wrap: wrap;
+	width: 350px;
+	margin: auto;
 }
 
 .selected {

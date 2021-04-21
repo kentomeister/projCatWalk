@@ -32,7 +32,7 @@ class ProductOverview extends React.Component {
           selectedStyle: data.styles[0],
         },
       ))
-      .catch((err) => null);
+      .catch((err) => console.log(err));
   }
 
   render() {
