@@ -69,7 +69,7 @@ class ProductOverview extends React.Component {
       selectedStyle,
       default_price,
       isImageGalleryExpand,
-      loading
+      loading,
     } = this.state;
     return (
       <div className="container">

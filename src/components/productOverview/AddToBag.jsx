@@ -18,9 +18,21 @@ const getSkuSizes = (skuObj) => {
   });
   return sizes;
 };
+
+const getSizeStock = (skuObj, sku) => skuObj[sku].quantity;
+
+const createSizeOptions = (quantity) => {
+  const quantityOption = quantity > 16 ? 15 : quantity;
+  return [...new Array(quantityOption)].map((entry, i) => ({ name: i + 1, value: i + 1 }));
+};
+
 const AddToBag = ({ skus, handleAddToBagSubmit }) => {
   const sizes = getSkuSizes(skus);
   const [selectedSizeSku, setSelectedSizeSku] = useState(null);
+  const [isQuantitySelected, setIsQuantitySelected] = useState(false);
+  const selectedSizeStock = selectedSizeSku ? getSizeStock(skus, selectedSizeSku) : 0;
+  const sizeOptions = createSizeOptions(selectedSizeStock);
+
   return (
     <div className="add-to-bag">
       <form onSubmit={(e) => handleAddToBagSubmit(e)}>
@@ -28,18 +40,20 @@ const AddToBag = ({ skus, handleAddToBagSubmit }) => {
           name="sizeSelect"
           label="Select A Size"
           options={sizes}
-          handleSizeSelect={(sku) => setSelectedSizeSku(sku)}
+          handleSelect={(sku) => setSelectedSizeSku(sku)}
         />
         <Select
           name="quantity"
           label=""
-          options={[1, 2, 3, 4, 5]}
+          options={sizeOptions}
           disabled={!selectedSizeSku}
+          handleSelect={() => setIsQuantitySelected(true)}
         />
         <br />
         <button
           className="btn"
           type="submit"
+          disabled={!isQuantitySelected}
         >
           Add To Bag
           <FaPlus />

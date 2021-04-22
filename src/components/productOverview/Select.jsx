@@ -2,13 +2,13 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const Select = ({ label, name, options, disabled, handleSizeSelect }) => (
+const Select = ({ label, name, options, disabled, handleSelect }) => (
   <div className="select">
     <select
       name={name}
       id={`${name}-select`}
       disabled={disabled}
-      onChange={(e) => handleSizeSelect(e.target.value)}
+      onChange={(e) => handleSelect(e.target.value)}
     >
       <option value="">
         --
