@@ -76,21 +76,22 @@ table {
 .product-information {
 	height: 150px;
 	width: 100%;
-	border: 2px solid black;
+	border: 2px solid yellow;
 	margin: 0px 5px;
 	margin-top: 10px;
 }
 .infos {
 	width: 40%;
+	margin-right: 20px;
 }
 .link {
 	cursor: pointer;
 	text-decoration: underline;
 }
 .style-select {
-	border: 2px solid green;
+	border: 2px solid orange;
 	margin: 10px 5px;
-	height: 300px;
+	height: 200px;
 	width: 100%;
 }
 .add-to-bag {
@@ -119,8 +120,7 @@ table {
 .style-gallery {
 	flex-wrap: wrap;
 	width: 350px;
-	margin: auto;
-
+	/* margin: auto; */
 }
 .selected {
 	border: 5px solid red;
@@ -165,4 +165,13 @@ table {
 	top: 20px;
 	left: 94%;
 	border: 1px solid black;
+}
+.select {
+	display: inline;
+}
+.btn {
+	display: inline-block;
+	background-color: white;
+	cursor: pointer;
+	padding: 5px 20px;
 }

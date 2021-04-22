@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
@@ -7,6 +8,7 @@ import ProductInformation from './ProductInformation.jsx';
 import ProductDetails from './ProductDetails.jsx';
 import StyleSelect from './StyleSelect.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import AddToBag from './AddToBag.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -22,20 +24,23 @@ class ProductOverview extends React.Component {
       styles: [],
       selectedStyle: {},
       isImageGalleryExpand: false,
+      loading: true,
     };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
     this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
+    this.handleAddToBagSubmit = this.handleAddToBagSubmit.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/productOverview/19091')
+    axios.get('/productOverview/19093')
       .then(({ data }) => this.setState(
         {
           ...data,
           selectedStyle: data.styles[0],
+          loading: false,
         },
       ))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }
 
   handleStyleSelectClick(selectedStyleId) {
@@ -46,8 +51,14 @@ class ProductOverview extends React.Component {
 
   handleImageContainerExpandClick() {
     this.setState({
-      isImageGalleryExpand: !this.state.isImageGalleryExpand
+      isImageGalleryExpand: !this.state.isImageGalleryExpand,
     });
+  }
+
+  handleAddToBagSubmit(e) {
+    e.preventDefault();
+    console.log(e.target.sizeSelect.value);
+    console.log(e.target.quantity.value);
   }
 
   render() {
@@ -57,7 +68,8 @@ class ProductOverview extends React.Component {
       styles,
       selectedStyle,
       default_price,
-      isImageGalleryExpand
+      isImageGalleryExpand,
+      loading
     } = this.state;
     return (
       <div className="container">
@@ -80,9 +92,16 @@ class ProductOverview extends React.Component {
                     selectedStyle={selectedStyle}
                     handleStyleSelectClick={this.handleStyleSelectClick}
                   />
-                  <div className="add-to-bag">
-                    Add to bag
-                  </div>
+                  {
+                    !loading
+                    && (
+                      <AddToBag
+                        handleAddToBagSubmit={this.handleAddToBagSubmit}
+                        skus={selectedStyle.skus}
+                      />
+                    )
+                  }
+
                 </div>
               )
             }

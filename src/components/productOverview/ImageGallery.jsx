@@ -32,13 +32,15 @@ const ImageGallery = ({ images, handleImageContainerExpandClick }) => {
       />
       {
         showLeftArrow
-        && <AiOutlineArrowLeft
-          color="white"
-          size="40"
-          className="image-gallery-left-arrow"
-          cursor="pointer"
-          onClick={handleLeftArrowClick}
-        />
+          ? (
+            <AiOutlineArrowLeft
+              color="white"
+              size="40"
+              className="image-gallery-left-arrow"
+              cursor="pointer"
+              onClick={handleLeftArrowClick}
+            />
+          ) : null
       }
       <ImageGalleryThumbnails
         images={images}
@@ -47,13 +49,15 @@ const ImageGallery = ({ images, handleImageContainerExpandClick }) => {
       />
       {
         showRightArrow
-        && <AiOutlineArrowRight
-          color="white"
-          size="40"
-          className="image-gallery-right-arrow"
-          cursor="pointer"
-          onClick={handleRightArrowClick}
-        />
+          ? (
+            <AiOutlineArrowRight
+              color="white"
+              size="40"
+              className="image-gallery-right-arrow"
+              cursor="pointer"
+              onClick={handleRightArrowClick}
+            />
+          ) : null
       }
     </div>
   );
