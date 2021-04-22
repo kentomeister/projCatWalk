@@ -38,4 +38,18 @@ app.get('/productOverview/:productId', (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+
+app.get('/relatedProductId/:id', (req, res) => {
+  const id = req.params.id;
+  api.getRelatedProductId(id)
+  .then(products => {
+    res.json(products.data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(404);
+  });
+});
+
+
 module.exports = app;
