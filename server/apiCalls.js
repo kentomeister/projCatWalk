@@ -30,6 +30,13 @@ const addToCart = (skuId) => axios({
   },
 });
 
+const getRelatedProductId = (id) => axios.get(`/products/${id}/related`,
+  {
+    baseURL: process.env.API_URL,
+    headers: { Authorization: process.env.GITHUB_TOKEN },
+  });
+
+module.exports.getRelatedProductId = getRelatedProductId;
 module.exports.getProductInfo = getProductInfo;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviewMeta = getProductReviewMeta;

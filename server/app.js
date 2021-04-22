@@ -44,3 +44,17 @@ app.post('/productOverview/cart', (req, res) => {
 });
 
 module.exports = app;
+
+app.get('/relatedProductId/:id', (req, res) => {
+  const { id } = req.params;
+  api.getRelatedProductId(id)
+    .then((products) => {
+      res.json(products.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
+
+module.exports = app;
