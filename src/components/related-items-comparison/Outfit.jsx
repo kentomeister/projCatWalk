@@ -5,10 +5,11 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 const Outfit = ({ product }) => {
   let products = [];
   products = products.concat(product);
-  console.log(products);
+
   const [current, setCurrent] = useState(0);
 
   const removeItem = (id) => {
+    console.log(id, "ID");
     products.forEach((item, index) => {
       if (id === item.id) {
         products.splice(index, 1);
@@ -26,13 +27,13 @@ const Outfit = ({ product }) => {
 
         <div className="box">
 
-          {products.map((product) => {
+          {products.slice(0, 4).map((product) => {
 
             return (
-
+              <div>
+             <button onClick = {() => removeItem(product.id)}className="action-btn">X</button>
               <div className="card" >
 
-                <button onClick = {removeItem}className="action-btn">X</button>
                 <img alt="" src={product.styles[0].photos[0].thumbnail_url} />
 
                 <div className="detail-box">
@@ -45,7 +46,7 @@ const Outfit = ({ product }) => {
                 </div>
 
               </div>
-
+              </div>
             )
 
           })}
