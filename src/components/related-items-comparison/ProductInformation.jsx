@@ -1,9 +1,9 @@
 import React from 'react';
 
 const ProductInformation = ({product}) => {
-  console.log(product, 'Hi! You clicked me!!!!');
 
   return (
+    <div className="a">
     <div className="product_info">
       <h2>{product.slogan}!</h2>
       <div>Description:
@@ -13,6 +13,7 @@ const ProductInformation = ({product}) => {
       <div>Price: {product.default_price}</div>
       <div>Star Rating</div>
       <img src= {product.styles[0].photos[0].url}  alt=""/>
+    </div>
     </div>
   )
 }

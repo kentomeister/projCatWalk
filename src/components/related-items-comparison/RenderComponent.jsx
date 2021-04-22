@@ -2,7 +2,7 @@ import React from 'react';
 import RelatedProductCard from './RelatedProductCard.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import axios from 'axios';
-const data = require('./exampleData.jsx');
+import {data} from './exampleData.jsx';
 
 class RenderComponent extends React.Component {
   constructor() {
@@ -11,7 +11,8 @@ class RenderComponent extends React.Component {
       showFullInformation: false,
       relatedProducts: [],
       relatedProductIds: [],
-      productInformation: []
+      productInformation: [],
+      call: false
     };
 
     this.changeView = this.changeView.bind(this);
@@ -20,7 +21,7 @@ class RenderComponent extends React.Component {
 
   getData() {
     let arrayOfProducts = [];
-    axios.get('/products/19090')
+    axios.get('/relatedProductId/19097')
       .then(res => {
         this.setState({
           relatedProductId: res.data
@@ -30,16 +31,13 @@ class RenderComponent extends React.Component {
         productIds.map(productId => {
           axios.get(`/productOverview/${productId}`)
             .then(resData => {
-              arrayOfProducts = arrayOfProducts.concat(resData.data);
-              // console.log(arrayOfProducts);
+
+              this.state.relatedProducts = this.state.relatedProducts.concat(resData.data);
+              this.setState({
+                call: true
+              })
             });
         });
-      })
-      .then(() => {
-        this.setState({
-          products: arrayOfProducts
-        });
-
       })
       .catch(err => {
         console.log(err);
@@ -47,38 +45,30 @@ class RenderComponent extends React.Component {
   }
 
   changeView(bool, option) {
-    data.example.forEach(product => {
-      if (product.id === option) {
-        this.setState({
-          showFullInformation: bool,
-          productInformation: product
-        });
 
-      }
-    });
-  }
+       data.forEach(products => {
+         products.forEach(product => {
+          if (option === product.id) {
+            this.setState({
+              showFullInformation: bool,
+              productInformation: product
+            });
 
+           }
+         });
+       });
 
-  componentDidMount() {
-    this.getData();
-  }
-
-
+    }
 
   render() {
-
-    // console.log(this.state.relatedProductId);
-    // console.log(data.example);
-
       return (
         <div>
-
           {this.state.showFullInformation ? <ProductInformation
            product = {this.state.productInformation}/>
-          : <RelatedProductCard
-          products = {data.example}
-          changeView={this.changeView}
-          />}
+           : <RelatedProductCard
+           products = {data}
+           changeView={this.changeView}
+           />}
 
         </div>
       );

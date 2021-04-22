@@ -39,15 +39,15 @@ app.get('/productOverview/:productId', (req, res) => {
 });
 
 
-app.get('/:id', (req, res) => {
+app.get('/relatedProductId/:id', (req, res) => {
   const id = req.params.id;
-  api.getRelatedProductId(id, (err, response) => {
-    if(err) {
-      console.log(err);
-      res.sendStatus(404);
-    } else {
-      res.json(response);
-    }
+  api.getRelatedProductId(id)
+  .then(products => {
+    res.json(products.data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(404);
   });
 });
 

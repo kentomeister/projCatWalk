@@ -1,66 +1,117 @@
-
-// require('dotenv').config();
 import React from 'react';
 import ProductInformation from './ProductInformation.jsx';
 import axios from 'axios';
-
+import Outfit from './Outfit.jsx'
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 class RelatedProductCard extends React.Component {
-  //const [product, setProduct] = useState([]);
   constructor(props) {
     super(props);
     this.state = {
       products: [],
       relatedProductId: [],
-      view: false
+      view: false,
+      current: 0,
+      outfit: []
     };
 
     this.clickHandler = this.clickHandler.bind(this);
-
+    this.prev = this.prev.bind(this);
+    this.next = this.next.bind(this);
+    this.getProduct = this.getProduct.bind(this);
   }
 
-
-
   clickHandler(id) {
+    console.log(id);
     this.props.changeView(true, id);
   }
 
+  next() {
+    if (this.state.current === this.props.products.length - 1) {
+      this.setState({
+        current: 0
+      });
+    } else {
+      this.setState({
+        current: this.state.current + 1
+      });
+    }
+  }
+
+  prev() {
+    if (this.state.current === 0) {
+      this.setState({
+        current: this.props.products.length - 1
+      });
+    } else {
+      this.setState({
+        current: this.state.current - 1
+      });
+    }
+  }
+
+  getProduct (product) {
+    this.state.outfit.push(product);
+    this.setState({
+      view: true,
+    });
+
+    console.log(product);
+  }
 
   render() {
 
     return (
-      <div>
-        <ul id="autoWidth" className="cs-hidden">
-          {this.props.products.map(product => {
-            return <li className="item-d" onClick={() => this.clickHandler(product.id)}>
+      <div >
+        <FaArrowAltCircleLeft className="left-arrow" onClick={this.prev} />
+        <FaArrowAltCircleRight className="right-arrow" onClick={this.next} />
 
-              <div className="card">
-                <a href="#" className="action-btn">Add to outfit</a>
-                <div className="slide-img">
-                  <img alt="" src={product.styles[0].photos[0].thumbnail_url} />
-                  <div className="overlay">
-                  </div>
-                </div>
+        {this.props.products.map((product, index) => {
 
-                <div className="detail-box">
+          return (
+            <div className={index === this.state.current ? 'slide active' : 'slide'}
+              key={index}>
+              <div className="box">
+                {index === this.state.current && (
 
-                  <div className="type">
-                    <div className="detail">Category:  {product.category}</div>
-                    <div className="detail">Name: {product.name}</div>
-                    <div className="price detail"> Price: {product.default_price} </div>
-                    <div className="detail">Review: </div>
-                  </div>
+                  product.map(item => {
+                    return (
+                      <div>
 
-                </div>
+                        <button onClick={() => this.getProduct(item)} className="action-btn">Add to outfit</button>
+                      <div className="card" onClick={() => {this.clickHandler(item.id)}}>
+
+                        <img alt="" src={item.styles[0].photos[0].thumbnail_url} />
+
+                        <div className="detail-box">
+                          <div className="type">
+                            <div className="detail">Category:  {item.category}</div>
+                            <div className="detail">Name: {item.name}</div>
+                            <div className="price detail"> Price: {item.default_price} </div>
+                            <div className="detail">Review: </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      </div>
+                    )
+
+                  })
+
+                )}
 
               </div>
-            </li>
-          })}
 
-        </ul>
+            </div>
+
+          )
+
+        })}
+
+        {this.state.view ?  <Outfit product = {this.state.outfit}/> :
+        <Outfit product = {[]}/> }
 
       </div>
-
 
     )
   }
@@ -71,3 +122,4 @@ class RelatedProductCard extends React.Component {
 
 
 export default RelatedProductCard;
+
