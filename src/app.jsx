@@ -2,8 +2,6 @@
 import React from 'react';
 import ProductOverview from './components/productOverview/ProductOverview.jsx';
 
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -15,7 +13,6 @@ class App extends React.Component {
       <div>
         <h1>This will be the front end!</h1>
         <ProductOverview />
-
       </div>
     );
   }
