@@ -2,7 +2,13 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const Select = ({ label, name, options, disabled, handleSelect }) => (
+const Select = ({
+  label,
+  name,
+  options,
+  disabled,
+  handleSelect,
+}) => (
   <div className="select">
     <select
       name={name}
@@ -10,11 +16,14 @@ const Select = ({ label, name, options, disabled, handleSelect }) => (
       disabled={disabled}
       onChange={(e) => handleSelect(e.target.value)}
     >
-      <option value="">
-        --
-        {label}
-        --
-      </option>
+      {label
+        && (
+          <option value="">
+            --
+            {label}
+            --
+          </option>
+        )}
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.name}
@@ -25,14 +34,16 @@ const Select = ({ label, name, options, disabled, handleSelect }) => (
 );
 
 Select.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
+  handleSelect: PropTypes.func.isRequired,
 };
 
 Select.defaultProps = {
   disabled: false,
+  label: '',
 };
 
 export default Select;

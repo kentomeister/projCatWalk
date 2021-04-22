@@ -24,6 +24,7 @@ class ProductOverview extends React.Component {
       styles: [],
       selectedStyle: {},
       isImageGalleryExpand: false,
+      bag: [],
       loading: true,
     };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);

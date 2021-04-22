@@ -3,12 +3,6 @@ import { FaPlus } from 'react-icons/fa';
 import { AiOutlineStar } from 'react-icons/ai';
 import Select from './Select.jsx';
 
-const testOptions = [
-  { name: 'option1', value: 'someValue1' },
-  { name: 'option2', value: 'someValue2' },
-  { name: 'option3', value: 'someValue3' },
-];
-
 const getSkuSizes = (skuObj) => {
   const skus = Object.keys(skuObj);
   const sizes = [];
@@ -38,13 +32,12 @@ const AddToBag = ({ skus, handleAddToBagSubmit }) => {
       <form onSubmit={(e) => handleAddToBagSubmit(e)}>
         <Select
           name="sizeSelect"
-          label="Select A Size"
+          label="Select Size"
           options={sizes}
           handleSelect={(sku) => setSelectedSizeSku(sku)}
         />
         <Select
           name="quantity"
-          label=""
           options={sizeOptions}
           disabled={!selectedSizeSku}
           handleSelect={() => setIsQuantitySelected(true)}
@@ -58,14 +51,15 @@ const AddToBag = ({ skus, handleAddToBagSubmit }) => {
           Add To Bag
           <FaPlus />
         </button>
+        <button
+          className="btn"
+          type="button"
+        >
+          <AiOutlineStar />
+        </button>
       </form>
-      <button
-        className="btn"
-        type="button"
-      >
-        <AiOutlineStar />
-      </button>
+
     </div>
   );
-}
+};
 export default AddToBag;
