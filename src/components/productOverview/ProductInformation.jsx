@@ -2,7 +2,31 @@
 import React from 'react';
 import StarRating from '../shared/StarRating.jsx';
 
-const ProductInformation = ({ productData }) => {
+const priceDisplay = (price, salePrice, defaultPrice) => {
+  if (salePrice) {
+    return (
+      <>
+        <span className="strike-through">
+          $
+          {price}
+        </span>
+        {' '}
+        <span className="sale-price">
+          $
+          {salePrice}
+        </span>
+      </>
+    );
+  }
+  return (
+    <span>
+      $
+      {price || defaultPrice}
+    </span>
+  );
+};
+
+const ProductInformation = ({ productData, price, salePrice }) => {
   const {
     name,
     category,
@@ -16,7 +40,7 @@ const ProductInformation = ({ productData }) => {
         <StarRating
           rating={avgRating}
           isClickable={false}
-          handleRatingClick={() => {}}
+          handleRatingClick={() => { }}
           size="15"
         />
       </span>
@@ -34,8 +58,7 @@ const ProductInformation = ({ productData }) => {
         {category}
       </h4>
       <h4>
-        $
-        {default_price}
+        {priceDisplay(price, salePrice, default_price)}
       </h4>
     </div>
   );

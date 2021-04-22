@@ -25,7 +25,6 @@ class ProductOverview extends React.Component {
       styles: [],
       selectedStyle: {},
       isImageGalleryExpand: false,
-      bag: [],
       loading: true,
     };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
@@ -34,7 +33,7 @@ class ProductOverview extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/productOverview/19093')
+    axios.get('/productOverview/19091')
       .then(({ data }) => this.setState(
         {
           ...data,
@@ -90,6 +89,7 @@ class ProductOverview extends React.Component {
                   <ProductInformation
                     productData={this.state}
                     price={selectedStyle.original_price || default_price}
+                    salePrice={selectedStyle.sale_price}
                   />
                   <StyleSelect
                     styles={styles}

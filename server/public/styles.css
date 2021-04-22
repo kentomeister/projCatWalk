@@ -80,6 +80,13 @@ table {
 	margin: 0px 5px;
 	margin-top: 10px;
 }
+.strike-through {
+	text-decoration: line-through;
+}
+.sale-price {
+	font-weight: bold;
+	color: red;
+}
 .infos {
 	width: 40%;
 	margin-right: 20px;
