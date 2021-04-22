@@ -191,12 +191,12 @@ table {
 }
 .image-gallery-left-arrow {
 	position: absolute;
-	top: 26%;
+	top: 400px;
 	left: 345px;
 }
 .image-gallery-right-arrow {
 	position: relative;
-	top: -35%;
+	top: -43%;
 	left: 95%;
 }
 .image-gallery-expand {
