@@ -20,7 +20,18 @@ const getProductReviews = (productId) => axios.get(`/reviews?product_id=${produc
   headers: { Authorization: process.env.GITHUB_TOKEN },
 });
 
+const addToCart = (skuId) => axios({
+  method: 'post',
+  baseURL: process.env.API_URL,
+  url: '/cart',
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  data: {
+    sku_id: skuId,
+  },
+});
+
 module.exports.getProductInfo = getProductInfo;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviewMeta = getProductReviewMeta;
 module.exports.getProductReviews = getProductReviews;
+module.exports.addToCart = addToCart;

@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable camelcase */
 /* eslint-disable import/extensions */
 import React from 'react';
@@ -58,8 +59,10 @@ class ProductOverview extends React.Component {
 
   handleAddToBagSubmit(e) {
     e.preventDefault();
-    console.log(e.target.sizeSelect.value);
-    console.log(e.target.quantity.value);
+    Promise.all([...new Array(Number(e.target.quantity.value))].map((apiCall) => axios.post('/productOverview/cart', {
+      sku: e.target.skuSelect.value,
+    })))
+      .then((res) => console.log(res) );
   }
 
   render() {

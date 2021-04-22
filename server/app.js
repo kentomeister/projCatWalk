@@ -36,4 +36,11 @@ app.get('/productOverview/:productId', (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+app.post('/productOverview/cart', (req, res) => {
+  const { sku } = req.body;
+  api.addToCart(sku)
+    .then((response) => res.send('Added To cart'))
+    .catch((err) => res.status(500).send(err));
+});
+
 module.exports = app;

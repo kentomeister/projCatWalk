@@ -31,13 +31,14 @@ const AddToBag = ({ skus, handleAddToBagSubmit }) => {
     <div className="add-to-bag">
       <form onSubmit={(e) => handleAddToBagSubmit(e)}>
         <Select
-          name="sizeSelect"
+          name="skuSelect"
           label="Select Size"
           options={sizes}
           handleSelect={(sku) => setSelectedSizeSku(sku)}
         />
         <Select
           name="quantity"
+          label="-"
           options={sizeOptions}
           disabled={!selectedSizeSku}
           handleSelect={() => setIsQuantitySelected(true)}

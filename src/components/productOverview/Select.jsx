@@ -19,9 +19,7 @@ const Select = ({
       {label
         && (
           <option value="">
-            --
             {label}
-            --
           </option>
         )}
       {options.map((option) => (
