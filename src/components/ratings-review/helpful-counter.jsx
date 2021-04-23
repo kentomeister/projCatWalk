@@ -1,13 +1,10 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import data from './sample-data.js';
 
 function Helpful(props) {
-  const click = function (e) {
-    props.increment();
-    e.target.disabled = true;
-    console.log(e.target.disabled);
-  };
+  const click = () => (
+    props.increment()
+  );
 
   const { count } = props;
 
@@ -15,7 +12,7 @@ function Helpful(props) {
     <div className="helpful-counter">
       Helpful?
       {' '}
-      <u disabled={false} onClick={click}>Yes</u>
+      <u className="helpful-yes" onClick={click}>Yes</u>
       (
       {count}
       )
