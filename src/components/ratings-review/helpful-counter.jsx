@@ -1,8 +1,22 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 
-function Helpful() {
+function Helpful(props) {
+  const click = () => (
+    props.increment()
+  );
+
+  const { count } = props;
+
   return (
-    <div>This my Helpful counter component</div>
+    <div className="helpful-counter">
+      Helpful?
+      {' '}
+      <u className="helpful-yes" onClick={click}>Yes</u>
+      (
+      {count}
+      )
+    </div>
   );
 }
 

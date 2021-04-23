@@ -75,4 +75,11 @@ app.get('/relatedProductId/:id', (req, res) => {
     });
 });
 
+app.get('/reviews/:productId', (req, res) => {
+  const { productId } = req.params;
+  api.getProductReviews(productId)
+    .then((results) => res.send(results.data).end())
+    .catch((err) => res.status(500).send(err));
+});
+
 module.exports = app;

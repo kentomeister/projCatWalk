@@ -1,11 +1,10 @@
 /* eslint-disable import/extensions */
 import React from 'react';
+import RatingsReviews from './components/ratings-review/ratings-reviews.jsx';
 import ProductQuestionManager from './components/q&a/ProductQuestionManager/main.jsx'
 import ProductOverview from './components/productOverview/ProductOverview.jsx';
 import Alert from './components/shared/Alert.jsx';
 import RenderComponent from './components/related-items-comparison/RelatedItem.jsx';
-
-
 
 class App extends React.Component {
   constructor() {
@@ -42,16 +41,20 @@ class App extends React.Component {
     return (
       <div>
         <h1>This will be the front end!</h1>
-      <div className="container">
-        {
-          alert
-            && <Alert message={message} type={type} />
-        }
-        <ProductOverview
-          setAlert={this.setAlert}
-          productId={productId}
-        />
-      <ProductQuestionManager productId={19093} />
+        <div>
+          <div><RatingsReviews /></div>
+        </div>
+        <div className="container">
+          {
+            alert
+              && <Alert message={message} type={type} />
+          }
+          <ProductOverview
+            setAlert={this.setAlert}
+            productId={productId}
+          />
+        <ProductQuestionManager productId={19093} />
+        </div>
       </div>
     );
   }
