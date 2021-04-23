@@ -2,6 +2,9 @@
 import React from 'react';
 import ProductOverview from './components/productOverview/ProductOverview.jsx';
 import Alert from './components/shared/Alert.jsx';
+import RenderComponent from './components/related-items-comparison/RelatedItem.jsx';
+
+
 
 class App extends React.Component {
   constructor() {

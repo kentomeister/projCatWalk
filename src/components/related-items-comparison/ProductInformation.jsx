@@ -3,7 +3,7 @@ import React from 'react';
 const ProductInformation = ({product}) => {
 
   return (
-    <div className="a">
+
     <div className="product_info">
       <h2>{product.slogan}!</h2>
       <div>Description:
@@ -14,7 +14,7 @@ const ProductInformation = ({product}) => {
       <div>Star Rating</div>
       <img src= {product.styles[0].photos[0].url}  alt=""/>
     </div>
-    </div>
+
   )
 }
 

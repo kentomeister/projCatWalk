@@ -49,6 +49,14 @@ table {
 
 
 /* /////////////////////////////////////////////// */
+.box{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: #d5ecc2;
+}
 
 .card{
 	min-width:300px;
@@ -58,23 +66,15 @@ table {
 	justify-content: center;
 	justify-content: space-evenly;
 	align-items: center;
-	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
 	border-radius: 10px;
-	overflow: hidden;
+	background-color: yellowgreen;
 }
 
-
-#autoWidth{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	justify-content: space-evenly;
-	align-items: center;
-}
 
 .action-btn{
-	min-width:160px;
-	min-height: 45px;
+	min-width:120px;
+	min-height: 40px;
+	margin-left: 60%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -226,17 +226,23 @@ table {
 	background-color: greenyellow;
 }
 
+
 .product_info{
+	border: solid 10px;
 	margin-left: 20%;
-	min-width: 500px;
-	min-height: 900px;
-	max-width: 700px;
+	min-width: 300px;
+	min-height: 200px;
+	max-width: 600px;
+	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	background-color: #d8e3e7;
 	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+	font-size: large;
+
+
 }
 
 h2{
@@ -246,4 +252,80 @@ h2{
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+.left-arrow{
+	position: absolute;
+	top: 50%;
+	left: 32px;
+	font-size: 3rem;
+	color: black;
+	z-index: 10;
+	cursor: pointer;
+	user-select: none;
+}
+
+.right-arrow{
+	position: absolute;
+	top: 50%;
+	right: 32px;
+	font-size: 3rem;
+	color: black;
+	z-index: 10;
+	cursor: pointer;
+	user-select: none;
+}
+
+.outfit{
+	min-width:120px;
+	min-height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color:#252525;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-family: calibri;
+	border-radius: 20px;
+}
+
+
+table, th, td {
+  border: 1px solid black;
+
+}
+
+table {
+	width: 50%;
+}
+
+th {
+	text-align: center;
+	height: 30px;
+	vertical-align: middle;
+	background-color: aquamarine;
+	font-weight: bold;
+	font-size: larger;
+}
+
+td {
+	vertical-align: baseline;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+.star-btn {
+	margin-left: 20%;
+	min-width: 70px;
+	min-height: 30px;
+	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+}
+
+.btns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
