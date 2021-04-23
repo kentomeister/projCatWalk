@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewList from './review-list.jsx';
+import RatingsSummary from './ratings-summary.jsx';
 
 class RatingsReviews extends React.Component {
   constructor() {
@@ -22,12 +23,11 @@ class RatingsReviews extends React.Component {
     return (
       <div>
         <div className="ratings-reviews">
-          This my whole ratings review component - Tomas
-          <div>Ratings Breakdown</div>
-          <div>Sort button</div>
-          <ReviewList reviews={productReviews} />
-          <div>Product Breakdown</div>
-          <div>Write a review</div>
+          <div className="widget-title">RATINGS & REVIEWS</div>
+          <div className="ratings-reviews-cont">
+            <RatingsSummary reviews={productReviews} />
+            <ReviewList reviews={productReviews} />
+          </div>
         </div>
       </div>
     );
