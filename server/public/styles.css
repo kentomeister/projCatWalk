@@ -91,6 +91,140 @@ table {
 	font-weight: 700;
 	margin-bottom: 5px;
 }
+.container {
+	border: 2px dotted grey;
+	width: 80%;
+	margin: auto;
+}
+.container-vert {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+
+}
+.container-horz {
+	display: flex;
+}
+.product-information {
+	height: 150px;
+	width: 100%;
+	border: 2px solid yellow;
+	margin: 0px 5px;
+	margin-top: 10px;
+}
+.strike-through {
+	text-decoration: line-through;
+}
+.sale-price {
+	font-weight: bold;
+	color: red;
+}
+.infos {
+	width: 40%;
+	margin-right: 20px;
+}
+.link {
+	cursor: pointer;
+	text-decoration: underline;
+}
+.style-select {
+	border: 2px solid orange;
+	margin: 10px 5px;
+	height: 300px;
+	width: 100%;
+}
+.add-to-bag {
+	border: 2px solid red;
+	margin: 0px 5px;
+	height: 170px;
+	width: 100%;
+}
+.product-details {
+	border: 2px solid black;
+	margin: 0px 20px;
+	height: 200px;
+}
+.style-thumbnail {
+	width: 75px;
+	height: 75px;
+	background-repeat: no-repeat;
+  background-size: cover;
+	background-position: center;
+	border-radius: 100%;
+	cursor: pointer;
+	float: left;
+	box-sizing: border-box;
+	margin: 5px;
+}
+.style-gallery {
+	flex-wrap: wrap;
+	width: 350px;
+	/* margin: auto; */
+}
+.selected {
+	border: 5px solid red;
+}
+.image-gallery {
+	border: 2px solid blue;
+	margin: 10px 20px;
+	width: 100%;
+	height: 800px;
+	background-repeat: no-repeat;
+  background-size: cover;
+	background-origin: border-box;
+  background-position: center top;
+}
+.image-gallery-thumbnail-container {
+	width: 100px;
+	height: 600px;
+	margin-left: 10px;
+	margin-top: 80px;
+}
+.image-thumbnail {
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	background-position: center ;
+	cursor: pointer;
+	margin: 10px 0;
+	box-sizing: border-box;
+}
+.image-gallery-left-arrow {
+	position: absolute;
+	top: 400px;
+	left: 345px;
+}
+.image-gallery-right-arrow {
+	position: relative;
+	top: -43%;
+	left: 95%;
+}
+.image-gallery-expand {
+	position: relative;
+	top: 20px;
+	left: 94%;
+	border: 1px solid black;
+}
+.select {
+	display: inline;
+}
+.btn {
+	display: inline-block;
+	background-color: white;
+	cursor: pointer;
+	padding: 5px 20px;
+}
+.alert {
+	height: 50px;
+	text-align: center;
+	padding-top: 20px;
+}
+.danger {
+	background-color: red;
+}
+.success {
+	background-color: greenyellow;
+}
 
 
 .product_info{
