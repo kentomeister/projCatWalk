@@ -40,7 +40,25 @@ const submitQuestion = (body) => axios({
 
 module.exports.submitQuestion = submitQuestion;
 module.exports.getProductQA = getProductQA;
+const addToCart = (skuId) => axios({
+  method: 'post',
+  baseURL: process.env.API_URL,
+  url: '/cart',
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  data: {
+    sku_id: skuId,
+  },
+});
+
+const getRelatedProductId = (id) => axios.get(`/products/${id}/related`,
+  {
+    baseURL: process.env.API_URL,
+    headers: { Authorization: process.env.GITHUB_TOKEN },
+  });
+
+module.exports.getRelatedProductId = getRelatedProductId;
 module.exports.getProductInfo = getProductInfo;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviewMeta = getProductReviewMeta;
 module.exports.getProductReviews = getProductReviews;
+module.exports.addToCart = addToCart;
