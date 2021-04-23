@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/extensions */
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { FaPlus } from 'react-icons/fa';
 import { AiOutlineStar } from 'react-icons/ai';
 import Select from './Select.jsx';
@@ -13,18 +16,26 @@ const getSkuSizes = (skuObj) => {
   return sizes;
 };
 
-const getSizeStock = (skuObj, sku) => skuObj[sku].quantity;
+const getAvailableStock = (skuObj, sku) => {
+  let availableSkus = Object.keys(skuObj);
+  if (availableSkus.indexOf(sku) !== -1) {
+    return skuObj[sku].quantity;
+  }
+  return 0;
+};
 
 const createSizeOptions = (quantity) => {
   const quantityOption = quantity > 16 ? 15 : quantity;
   return [...new Array(quantityOption)].map((entry, i) => ({ name: i + 1, value: i + 1 }));
 };
 
-const AddToBag = ({ skus, handleAddToBagSubmit }) => {
-  const sizes = getSkuSizes(skus);
+const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
+  const sizes = getSkuSizes(selectedStyle.skus);
   const [selectedSizeSku, setSelectedSizeSku] = useState(null);
   const [isQuantitySelected, setIsQuantitySelected] = useState(false);
-  const selectedSizeStock = selectedSizeSku ? getSizeStock(skus, selectedSizeSku) : 0;
+  useEffect(() => { setSelectedSizeSku(null); }, [selectedStyle]);
+
+  const selectedSizeStock = selectedSizeSku ? getAvailableStock(selectedStyle.skus, selectedSizeSku) : 0;
   const sizeOptions = createSizeOptions(selectedSizeStock);
 
   return (
@@ -59,8 +70,13 @@ const AddToBag = ({ skus, handleAddToBagSubmit }) => {
           <AiOutlineStar />
         </button>
       </form>
-
     </div>
   );
+};
+
+AddToBag.propTypes = {
+  skus: PropTypes.object.isRequired,
+  selectedStyle: PropTypes.object.isRequired,
+  handleAddToBagSubmit: PropTypes.func.isRequired,
 };
 export default AddToBag;
