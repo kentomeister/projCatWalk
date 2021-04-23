@@ -34,7 +34,7 @@ const StarRating = ({
   const [hover, setHover] = useState(null);
 
   return (
-    <div className="rating-container">
+    <span className="rating-container">
       {starArr.map((star, i) => {
         const ratingValue = i + 1;
         if (star === 1) {
@@ -73,7 +73,7 @@ const StarRating = ({
           />
         );
       })}
-    </div>
+    </span>
   );
 };
 
