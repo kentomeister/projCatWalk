@@ -12,15 +12,16 @@ class RelatedItem extends React.Component {
       relatedProducts: [],
       relatedProductIds: [],
       productInformation: [],
-      call: false
+
     };
 
     this.changeView = this.changeView.bind(this);
     this.getData = this.getData.bind(this);
   }
 
+
   getData() {
-    let arrayOfProducts = [];
+    const arrayOfProducts = [];
     axios.get('/relatedProductId/19097')
       .then(res => {
         this.setState({
@@ -31,13 +32,16 @@ class RelatedItem extends React.Component {
         productIds.map(productId => {
           axios.get(`/productOverview/${productId}`)
             .then(resData => {
+              if (arrayOfProducts.length === 4) {
+                this.state.relatedProducts.push(arrayOfProducts);
+                arrayOfProducts.splice(0, 4);
+              } else {
+                arrayOfProducts.push(resData.data);
+              }
 
-              this.state.relatedProducts = this.state.relatedProducts.concat(resData.data);
-              this.setState({
-                call: true
-              })
             });
         });
+        return arrayOfProducts;
       })
       .catch(err => {
         console.log(err);
@@ -60,7 +64,13 @@ class RelatedItem extends React.Component {
 
     }
 
+
+    componentDidMount() {
+      this.getData();
+    }
+
   render() {
+
       return (
         <div>
           {this.state.showFullInformation ? <ProductInformation

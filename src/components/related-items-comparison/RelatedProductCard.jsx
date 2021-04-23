@@ -2,8 +2,6 @@ import React from 'react';
 import ProductInformation from './ProductInformation.jsx';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
-import Modal from './Modal.jsx';
-
 import ReactModal from 'react-modal';
 
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaStar } from 'react-icons/fa';
@@ -12,10 +10,8 @@ class RelatedProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
       relatedProductId: [],
       view: false,
-      remove: false,
       current: 0,
       outfit: [],
       showModal: false
@@ -25,7 +21,6 @@ class RelatedProductCard extends React.Component {
     this.prev = this.prev.bind(this);
     this.next = this.next.bind(this);
     this.getProduct = this.getProduct.bind(this);
-    this.remove = this.remove.bind(this);
     this.handleModalView = this.handleModalView.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -40,15 +35,6 @@ class RelatedProductCard extends React.Component {
     this.setState({ showModal: false });
   }
 
-
-
-
-  remove() {
-    this.setState({
-      remove: true
-    });
-  }
-
   handleModalView() {
     this.setState({
       showModal: true
@@ -56,7 +42,7 @@ class RelatedProductCard extends React.Component {
   }
 
   clickHandler(id) {
-    console.log(id);
+
     this.props.changeView(true, id);
   }
 
@@ -85,6 +71,7 @@ class RelatedProductCard extends React.Component {
   }
 
   getProduct(product) {
+
     this.state.outfit.push(product);
     this.setState({
       view: true,
@@ -93,6 +80,10 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
+
+    if(this.props.products.length === 0) {
+      return null;
+    }
 
     return (
       <div >
@@ -111,19 +102,23 @@ class RelatedProductCard extends React.Component {
                     return (
                       <div>
 
+                       <div className="btn">
+                        <button onClick={() => this.handleOpenModal()} className="star-btn"><FaStar /></button>
                         <button onClick={() => this.getProduct(item)} className="action-btn">Add to outfit</button>
-                        <button onClick={this.handleOpenModal} className="star-btn"><FaStar /></button>
+                       </div>
+
+
                         <div className="card" onClick={() => { this.clickHandler(item.id) }}>
 
-                          <img alt="" src={item.styles[0].photos[0].thumbnail_url} />
+                          <img alt="Sorry! Image not available at this time" src={item.styles[0].photos[0].thumbnail_url} />
 
                           <div className="detail-box">
-                            <div className="type">
+
                               <div className="detail">Category:  {item.category}</div>
                               <div className="detail">Name: {item.name}</div>
                               <div className="price detail"> Price: {item.default_price} </div>
                               <div className="detail">Review: </div>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -141,8 +136,8 @@ class RelatedProductCard extends React.Component {
 
         })}
 
-        {this.state.view || this.state.remove ? <Outfit product={this.state.outfit}
-          remove={this.remove}
+        {this.state.outfit.length > 0 ? <Outfit product={this.state.outfit}
+
         /> :
           <Outfit product={[]} />}
 
@@ -176,19 +171,20 @@ class RelatedProductCard extends React.Component {
         >
 
           <button onClick={this.handleCloseModal}>Close</button>
+          <h2>Comparing</h2>
           <table>
             <thead>
               <tr>
-                <th>Current Product Name</th>
-                <th>Characteristic</th>
-                <th>Compared Product Name</th>
+                <th>{this.props.products[1][3].name}</th>
+                <th></th>
+                <th>{this.props.products[0][3].name}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Some stuff here</td>
-                <td>Some stuff here</td>
-                <td>Some stuff here</td>
+                <td>{this.props.products[1][3].price}</td>
+                <td>Characteristic</td>
+                <td>{this.props.products[0][3].price}</td>
               </tr>
             </tbody>
           </table>

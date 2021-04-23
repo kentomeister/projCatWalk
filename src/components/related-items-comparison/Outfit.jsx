@@ -3,17 +3,18 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 
 const Outfit = ({ product }) => {
+
+  const [remove, setRemove] = useState(false);
   let products = [];
   products = products.concat(product);
 
-  const [current, setCurrent] = useState(0);
-
   const removeItem = (id) => {
-    console.log(id, "ID");
-    products.forEach((item, index) => {
+    products.map((item, index) => {
       if (id === item.id) {
         products.splice(index, 1);
+        setRemove(true);
       }
+
     });
 
   };
