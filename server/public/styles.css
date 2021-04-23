@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -47,11 +48,188 @@ table {
 	border-spacing: 0;
 }
 
+/* Tomas' Styles - Ratings & Reviews */
+.ratings-reviews{
+	border: 2px solid black;
+}
+.ratings-reviews-cont{
+	display: flex;
+}
+.review-list{
+	border: 2px doted black;
+	width: 60%;
+	display: inline-block;
+}
+.review-cont{
+	border-bottom: 2px solid black;
+	padding-bottom: 10px;
+}
+.topbar-cont{
+	/* border: 2px solid green; */
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+.review-stars{
+	/* border: 2px solid orange; */
+	display: inline-flex;
+	justify-content: flex-start;
+	flex-basis: 50%;
+}
+.review-username{
+	/* border: 2px solid orange; */
+	display: inline-flex;
+	flex-basis: 20%;
+	text-align: left;
+}
+.review-date{
+	/* border: 2px solid orange; */
+	display: inline-flex;
+	flex-basis: 20%;
+	text-align: left;
+}
+.review-summary{
+	/* border: 2px solid green; */
+	padding: 5px;
+	margin-bottom: 10px;
+	font-weight: 700;
+	font-size: 1.5rem;
+	overflow-wrap: break-word;
+
+}
+.review-body{
+	/* border: 2px solid green; */
+	padding: 5px;
+	margin-bottom: 5px;
+	font-weight: 400;
+	font-size: 0.90rem;
+	overflow-wrap: break-word;
+}
+.recommended-tag{
+	/* border: 2px solid green; */
+	padding: 5px;
+	display: inline-block;
+	margin-bottom: 5px;
+	font-weight: 400;
+	font-size: 0.90rem;
+}
+.seller-response{
+	/* border: 2px dotted green; */
+	padding: 5px;
+	margin-bottom: 5px;
+	font-weight: 400;
+	font-size: 0.90rem;
+	overflow-wrap: break-word;
+}
+.helpful-counter{
+	/* border: 2px solid green; */
+	padding: 5px;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+.helpful-yes:hover {
+	cursor: pointer;
+}
+.ratings-breakdown-col {
+	border: 2px dotted darkgray;
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	height: auto;
+	margin-right: 50px;
+}
+.ratings-avg{
+	width: 100%;
+	height: 90px;
+	border: 1px dotted grey;
+	display: flex;
+}
+.ratings-breakdown{
+	width: 100%;
+	height: 200px;
+	border: 1px dotted grey;
+}
+.product-breakdown{
+	width: 100%;
+	height: 200px;
+	border: 1px dotted grey;
+}
+.average{
+	font-size: 3.5em;
+	font-weight: 500;
+	display: inline-flex;
+
+}
+.stars-breakdown{
+	display: inline-flex;
+}
+.cont{
+	display: flex;
+}
+.text-rating{
+	width: 20%;
+}
+.star-ratings-bar{
+	color: rgb(85, 85, 85);
+	margin-bottom: 5px;
+	height: 20;
+	width: 80%;
+	border: 1px solid #4b4b4b;
+	display: inline-block;
+}
+.write-review-form{
+	position: fixed;
+	width: 350px;
+	height: 350px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #f5f5f5;
+	padding: 50px;
+	z-index: 1000;
+	background-color: #ffffff;
+}
+.write-review-background{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(48, 46, 46, 0.509);
+	z-index: 1000;
+}
+.btn-close-x{
+	font-size: 25px;
+	position: relative;
+	float: right;
+	display: block;
+}
+.btn-close-x:hover{
+	font-weight: 700;
+	cursor: pointer;
+}
+.review-sum-box{
+	width: 300px;
+	height: 25px;
+}
+.review-body-box{
+	width: 300px;
+	height: 120px;
+}
+.review-nickname-box{
+	width: 200px;
+	height: 25px;
+}
+.sort-btn{
+	display: inline-block;
+}
+
+
 .q-a-header{
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 padding-bottom: 5px;
 }
-
 .q-a-div{
   border-style: solid;
   border-width: 2px;
@@ -110,6 +288,10 @@ padding-bottom: 5px;
         0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset,
         0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8483f4d608be4551fd526c003682a5cf7df55105
 }
 .question-line{
   display: flex;
@@ -231,7 +413,7 @@ padding-bottom: 20px;
 	justify-content: center;
 	justify-content: space-evenly;
 	align-items: center;
-	background-color: #d5ecc2;
+
 }
 
 .card{
@@ -242,8 +424,9 @@ padding-bottom: 20px;
 	justify-content: center;
 	justify-content: space-evenly;
 	align-items: center;
-	border-radius: 10px;
-	background-color: yellowgreen;
+	border-radius: 10px;;
+	border-style: solid black;
+
 }
 
 
@@ -263,12 +446,11 @@ padding-bottom: 20px;
 }
 
 .detail {
-	color: blue;
 	font-weight: 700;
 	margin-bottom: 5px;
 }
 .container {
-	border: 2px dotted grey;
+	/* border: 2px dotted grey; */
 	width: 80%;
 	margin: auto;
 }
@@ -284,7 +466,7 @@ padding-bottom: 20px;
 .product-information {
 	height: 150px;
 	width: 100%;
-	border: 2px solid yellow;
+	/* border: 2px solid yellow; */
 	margin: 0px 5px;
 	margin-top: 10px;
 }
@@ -304,19 +486,19 @@ padding-bottom: 20px;
 	text-decoration: underline;
 }
 .style-select {
-	border: 2px solid orange;
+	/* border: 2px solid orange; */
 	margin: 10px 5px;
 	height: 300px;
 	width: 100%;
 }
 .add-to-bag {
-	border: 2px solid red;
+	/* border: 2px solid red; */
 	margin: 0px 5px;
 	height: 170px;
 	width: 100%;
 }
 .product-details {
-	border: 2px solid black;
+	/* border: 2px solid black; */
 	margin: 0px 20px;
 	height: 200px;
 }
@@ -341,7 +523,7 @@ padding-bottom: 20px;
 	border: 5px solid red;
 }
 .image-gallery {
-	border: 2px solid blue;
+	/* border: 2px solid blue; */
 	margin: 10px 20px;
 	width: 100%;
 	height: 800px;
@@ -379,7 +561,7 @@ padding-bottom: 20px;
 	position: relative;
 	top: 20px;
 	left: 94%;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 .select {
 	display: inline;
@@ -417,8 +599,6 @@ padding-bottom: 20px;
 	background-color: #d8e3e7;
 	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
 	font-size: large;
-
-
 }
 
 h2{
@@ -508,7 +688,6 @@ th, td {
 .two-buttons:hover{
   background-color: rgb(211,211,211);
   color: black;
-
 }
 .add-question-modal{
   position: fixed;
@@ -616,4 +795,7 @@ th, td {
 
 
 
-
+.footer {
+  height: 200px;
+  margin-top: 50px;
+}
