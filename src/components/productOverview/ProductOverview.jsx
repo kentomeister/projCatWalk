@@ -101,7 +101,6 @@ class ProductOverview extends React.Component {
                     && (
                       <AddToBag
                         handleAddToBagSubmit={this.handleAddToBagSubmit}
-                        skus={selectedStyle.skus}
                         selectedStyle={selectedStyle}
                       />
                     )

@@ -17,7 +17,7 @@ const getSkuSizes = (skuObj) => {
 };
 
 const getAvailableStock = (skuObj, sku) => {
-  let availableSkus = Object.keys(skuObj);
+  const availableSkus = Object.keys(skuObj);
   if (availableSkus.indexOf(sku) !== -1) {
     return skuObj[sku].quantity;
   }
