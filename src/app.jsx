@@ -40,11 +40,8 @@ class App extends React.Component {
   render() {
     const { alert: { message, type }, productId } = this.state;
     return (
-<<<<<<< HEAD
       <div>
         <h1>This will be the front end!</h1>
-      <ProductQuestionManager productId={19093} />
-=======
       <div className="container">
         {
           alert
@@ -54,7 +51,7 @@ class App extends React.Component {
           setAlert={this.setAlert}
           productId={productId}
         />
->>>>>>> ce7c1bb110e77feeac67cdaaa00b4d163885af09
+      <ProductQuestionManager productId={19093} />
       </div>
     );
   }
