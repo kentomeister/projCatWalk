@@ -3,6 +3,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import ProductInformation from './ProductInformation.jsx';
@@ -33,6 +34,7 @@ class ProductOverview extends React.Component {
   }
 
   componentDidMount() {
+    const { setAlert } = this.props;
     axios.get('/productOverview/19091')
       .then(({ data }) => this.setState(
         {
@@ -41,7 +43,7 @@ class ProductOverview extends React.Component {
           loading: false,
         },
       ))
-      .catch((err) => console.error(err));
+      .catch(() => setAlert('There was an error adding items to your card', 'danger'));
   }
 
   handleStyleSelectClick(selectedStyleId) {
@@ -128,5 +130,9 @@ class ProductOverview extends React.Component {
     );
   }
 }
+
+ProductOverview.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
 
 export default ProductOverview;
