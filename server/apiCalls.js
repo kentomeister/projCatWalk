@@ -34,8 +34,8 @@ const submitQuestion = (body) => axios({
     body: body.body,
     name: body.name,
     email: body.email,
-    product_id: body.product_id,
-  }
+    product_id: Number(body.product_id),
+  },
 });
 
 module.exports.submitQuestion = submitQuestion;

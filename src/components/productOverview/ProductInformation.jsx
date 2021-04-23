@@ -44,10 +44,15 @@ const ProductInformation = ({ productData, price, salePrice }) => {
           size="15"
         />
       </span>
+      {' '}
       <span className="link">
-        Read the
-        {numReviews}
-        Reviews
+        <a href="#reviews">
+          Read the
+          {' '}
+          {numReviews}
+          {' '}
+          Reviews
+        </a>
       </span>
       <h3>
         Name:

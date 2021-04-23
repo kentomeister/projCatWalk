@@ -5,15 +5,16 @@ import ReviewList from './review-list.jsx';
 import RatingsSummary from './ratings-summary.jsx';
 
 class RatingsReviews extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       productReviews: [],
     };
   }
 
   componentDidMount() {
-    axios.get('/reviews/19092')
+    const { productId } = this.props;
+    axios.get(`/reviews/${productId}`)
       .then((res) => this.setState({ productReviews: res.data.results }))
       .catch((err) => console.log('err: ', err));
   }
@@ -21,7 +22,7 @@ class RatingsReviews extends React.Component {
   render() {
     const { productReviews } = this.state;
     return (
-      <div>
+      <div id="reviews">
         <div className="ratings-reviews">
           <div className="widget-title">RATINGS & REVIEWS</div>
           <div className="ratings-reviews-cont">
