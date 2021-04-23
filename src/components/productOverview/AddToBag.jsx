@@ -35,7 +35,9 @@ const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
   const [isQuantitySelected, setIsQuantitySelected] = useState(false);
   useEffect(() => { setSelectedSizeSku(null); }, [selectedStyle]);
 
-  const selectedSizeStock = selectedSizeSku ? getAvailableStock(selectedStyle.skus, selectedSizeSku) : 0;
+  const selectedSizeStock = selectedSizeSku
+    ? getAvailableStock(selectedStyle.skus, selectedSizeSku) : 0;
+
   const sizeOptions = createSizeOptions(selectedSizeStock);
 
   return (
