@@ -34,8 +34,8 @@ class ProductOverview extends React.Component {
   }
 
   componentDidMount() {
-    const { setAlert } = this.props;
-    axios.get('/productOverview/19091')
+    const { setAlert, productId } = this.props;
+    axios.get(`/productOverview/${productId}`)
       .then(({ data }) => this.setState(
         {
           ...data,
@@ -133,6 +133,7 @@ class ProductOverview extends React.Component {
 
 ProductOverview.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  productId: PropTypes.string.isRequired,
 };
 
 export default ProductOverview;

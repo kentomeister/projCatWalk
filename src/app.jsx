@@ -7,6 +7,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      productId: '19093',
       alert: {
         message: '',
         type: '',
@@ -33,7 +34,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { alert: { message, type } } = this.state;
+    const { alert: { message, type }, productId } = this.state;
     return (
       <div className="container">
         {
@@ -42,6 +43,7 @@ class App extends React.Component {
         }
         <ProductOverview
           setAlert={this.setAlert}
+          productId={productId}
         />
       </div>
     );
