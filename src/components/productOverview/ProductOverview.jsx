@@ -61,7 +61,7 @@ class ProductOverview extends React.Component {
     Promise.all([...new Array(Number(e.target.quantity.value))].map((apiCall) => axios.post('/productOverview/cart', {
       sku: e.target.skuSelect.value,
     })))
-      .then((res) => console.log(res) );
+      .then((res) => console.log(res));
   }
 
   render() {
@@ -110,10 +110,15 @@ class ProductOverview extends React.Component {
               )
             }
           </div>
-          <ProductDetails
-            slogan={slogan}
-            description={description}
-          />
+          {
+            (slogan && description)
+            && (
+              <ProductDetails
+                slogan={slogan}
+                description={description}
+              />
+            )
+          }
         </div>
       </div>
     );
