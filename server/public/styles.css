@@ -110,7 +110,6 @@ padding-bottom: 5px;
         0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset,
         0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
 
-<<<<<<< HEAD
 }
 .question-line{
   display: flex;
@@ -223,8 +222,9 @@ padding-bottom: 20px;
        0 10px 15px 0 rgba(126, 126, 126, 0.12),
        0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset,
        0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
-=======
+}
 /* /////////////////////////////////////////////// */
+
 .box{
 	display: flex;
 	flex-direction: row;
@@ -504,7 +504,6 @@ th, td {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
->>>>>>> ce7c1bb110e77feeac67cdaaa00b4d163885af09
 }
 .two-buttons:hover{
   background-color: rgb(211,211,211);
