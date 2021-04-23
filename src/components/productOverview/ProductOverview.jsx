@@ -58,10 +58,14 @@ class ProductOverview extends React.Component {
 
   handleAddToBagSubmit(e) {
     e.preventDefault();
-    Promise.all([...new Array(Number(e.target.quantity.value))].map((apiCall) => axios.post('/productOverview/cart', {
-      sku: e.target.skuSelect.value,
+    const { setAlert } = this.props;
+    const quantity = e.target.quantity.value;
+    const sku = e.target.skuSelect.value;
+    Promise.all([...new Array(Number(quantity))].map((apiCall) => axios.post('/productOverview/cart', {
+      sku,
     })))
-      .then((res) => console.log(res));
+      .then(() => setAlert(`You've added ${quantity} items to your cart`, 'success'))
+      .catch(() => setAlert('There was an error adding items to your card', 'danger'));
   }
 
   render() {
@@ -75,7 +79,7 @@ class ProductOverview extends React.Component {
       loading,
     } = this.state;
     return (
-      <div className="container">
+      <div>
         <div className="container-vert">
           <div className="container-horz">
             <ImageGallery
