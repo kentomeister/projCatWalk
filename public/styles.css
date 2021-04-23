@@ -124,15 +124,14 @@ table {
 	display: inline-block;
 	margin-bottom: 5px;
 }
+.helpful-yes:hover {
+	cursor: pointer;
+}
+.ratings-breakdown-cont {
+	border: 2px dotted darkgray;
 
-/* AZ Components */
-.rating-container {
-	box-sizing: border-box;
 }
-.star {
-	color: #f4f135;
-	transition-timing-function: ease-in;
-}
-.dark {
-	color: grey;
+.star-ratings-bar{
+	color: white;
+	margin-bottom: 5px;
 }
