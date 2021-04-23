@@ -48,9 +48,6 @@ class ReviewList extends React.Component {
       ' nickname: ', this.state.nickname
     )
   }
-  handleRecommendation() {
-
-  }
 
   render() {
     const { reviews } = this.props;
