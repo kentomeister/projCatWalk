@@ -7,7 +7,7 @@ export default function QuestionsSearch({ onChange }) {
   };
 
   return (
-    <input type="text" placeholder="Find A Question" onChange={handleChange} />
+    <input className="search-bar" type="text" placeholder="Have a question? Search for answers…" onChange={handleChange} />
   );
 }
 QuestionsSearch.propTypes = {

@@ -37,5 +37,23 @@ app.get('/productOverview/:productId', (req, res) => {
     .then((parsedData) => res.send(parsedData).end())
     .catch((err) => res.status(500).send(err));
 });
+app.get('/qa/:productId', (req, res) => {
+  const {productId } = req.params;
+  api.getProductQA(productId)
+  .then((results) => res.send(results.data).end())
+  .catch((err) => res.status(500).send(err));
+});
+
+app.post('/qa/:productId', (req, res) => {
+  // console.log("this is the req obj", req.body)
+  // const { productId } = req.body.product_id;
+  const { body } = req;
+  api.getProductQA(body.product_id)
+  .then(() => api.submitQuestion(body)
+  .then((results) => res.send(results.data).end())
+  .catch((err) => res.status(500).send(err)))
+})
+
+
 
 module.exports = app;
