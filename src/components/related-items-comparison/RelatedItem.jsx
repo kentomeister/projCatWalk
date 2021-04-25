@@ -72,7 +72,7 @@ class RelatedItem extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="main">
         {this.state.showFullInformation ? <ProductInformation
           product={this.state.productInformation} />
           : <RelatedProductCard
