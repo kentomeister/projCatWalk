@@ -7,11 +7,17 @@ const Header = ({ itemsInCart }) => (
     <IoStorefrontOutline
       color="white"
       size="100"
+      style={{ paddingLeft: '10px' }}
     />
-    <div className="cart-Container">
+    <span
+      style={{ float: 'none', paddingTop: '30px', fontSize: '2rem' }}
+    >
+      Kentomeister Inc.
+    </span>
+    <div className="cart-container">
       <IoCartOutline
         color="white"
-        size="50"
+        size="75"
       />
       <span id="num-items-cart">{itemsInCart}</span>
     </div>
