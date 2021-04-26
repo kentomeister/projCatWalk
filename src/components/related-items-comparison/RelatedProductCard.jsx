@@ -3,6 +3,7 @@ import ProductInformation from './ProductInformation.jsx';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
 import ReactModal from 'react-modal';
+import StarRating from '../shared/StarRating.jsx';
 
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaStar } from 'react-icons/fa';
 
@@ -71,25 +72,28 @@ class RelatedProductCard extends React.Component {
   }
 
   getProduct(product) {
-
-    this.state.outfit.push(product);
+    if (product.length > 1) {
+      this.setState({
+        outfit: product
+      });
+    } else {
+    this.state.outfit = this.state.outfit.concat(product);
     this.setState({
       view: true,
     });
-
+  }
   }
 
   render() {
 
-    if(this.props.products.length === 0) {
+    if (this.props.products.length === 0) {
       return null;
     }
 
     return (
-      <div >
+      <div className="related-product">
         <FaArrowAltCircleLeft className="left-arrow" onClick={this.prev} />
         <FaArrowAltCircleRight className="right-arrow" onClick={this.next} />
-
         {this.props.products.map((product, index) => {
 
           return (
@@ -102,22 +106,29 @@ class RelatedProductCard extends React.Component {
                     return (
                       <div>
 
-                       <div className="btn">
-                        <button onClick={() => this.handleOpenModal()} className="star-btn"><FaStar /></button>
-                        <button onClick={() => this.getProduct(item)} className="action-btn">Add to outfit</button>
-                       </div>
+                        <div className="btn">
+                          <button onClick={() => this.handleOpenModal()} className="star-btn"><FaStar /></button>
+                          <button onClick={() => this.getProduct([item])} className="action-btn">Add to outfit</button>
+                        </div>
 
 
-                        <div className="card" onClick={() => { this.clickHandler(item.id) }}>
+                        <div className="card q-a-div" onClick={() => { this.clickHandler(item.id) }}>
 
                           <img alt="Sorry! Image not available at this time" src={item.styles[0].photos[0].thumbnail_url} />
 
                           <div className="detail-box">
 
-                              <div className="detail">Category:  {item.category}</div>
-                              <div className="detail">Name: {item.name}</div>
-                              <div className="price detail"> Price: {item.default_price} </div>
-                              <div className="detail">Review: </div>
+                            <div className="detail">Category:  {item.category}</div>
+                            <div className="detail">Name: {item.name}</div>
+                            <div className="price detail"> Price: {item.default_price} </div>
+                            <div className="detail">Review:
+                            <StarRating
+                                rating={item.avgRating.toString()}
+                                isClickable={false}
+                                handleRatingClick={() => { }}
+                                size="15"
+                              />
+                            </div>
 
                           </div>
                         </div>
@@ -136,10 +147,18 @@ class RelatedProductCard extends React.Component {
 
         })}
 
+
+<hr/>
+<div className="outfit-section">
         {this.state.outfit.length > 0 ? <Outfit product={this.state.outfit}
+        getProduct = {this.getProduct}
 
         /> :
-          <Outfit product={[]} />}
+
+          <h2 className="outfit">Your Outfit</h2>
+          }
+
+         </div>
 
         <ReactModal isOpen={this.state.showModal}
 
@@ -147,9 +166,9 @@ class RelatedProductCard extends React.Component {
             overlay: {
               position: 'fixed',
               top: 200,
-              left: 200,
-              right: 200,
-              bottom: 200,
+              left: 250,
+              right: 250,
+              bottom: 300,
               backgroundColor: 'rgba(255, 255, 255, 0.75)'
             },
             content: {
@@ -176,15 +195,32 @@ class RelatedProductCard extends React.Component {
             <thead>
               <tr>
                 <th>{this.props.products[1][3].name}</th>
-                <th></th>
+                <th>Sale Price</th>
                 <th>{this.props.products[0][3].name}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{this.props.products[1][3].price}</td>
-                <td>Characteristic</td>
-                <td>{this.props.products[0][3].price}</td>
+                <td>${this.props.products[1][3].default_price}</td>
+                <td></td>
+                <td>${this.props.products[0][3].default_price}</td>
+              </tr>
+              <tr>
+                <td> <StarRating
+                  rating={this.props.products[1][3].avgRating.toString()}
+                  isClickable={false}
+                  handleRatingClick={() => { }}
+                  size="15"
+                />
+                </td>
+                <td></td>
+                <td> <StarRating
+                  rating={this.props.products[0][2].avgRating.toString()}
+                  isClickable={false}
+                  handleRatingClick={() => { }}
+                  size="15"
+                />
+                </td>
               </tr>
             </tbody>
           </table>
