@@ -60,12 +60,13 @@ class ProductOverview extends React.Component {
 
   handleAddToBagSubmit(e) {
     e.preventDefault();
-    const { setAlert } = this.props;
+    const { setAlert, updateCart } = this.props;
     const quantity = e.target.quantity.value;
     const sku = e.target.skuSelect.value;
     Promise.all([...new Array(Number(quantity))].map((apiCall) => axios.post('/productOverview/cart', {
       sku,
     })))
+      .then(() => updateCart())
       .then(() => setAlert(`You've added ${quantity} items to your cart`, 'success'))
       .catch(() => setAlert('There was an error adding items to your card', 'danger'));
   }
@@ -134,6 +135,7 @@ class ProductOverview extends React.Component {
 ProductOverview.propTypes = {
   setAlert: PropTypes.func.isRequired,
   productId: PropTypes.string.isRequired,
+  updateCart: PropTypes.func.isRequired,
 };
 
 export default ProductOverview;

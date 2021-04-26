@@ -35,11 +35,12 @@ app.get('/productOverview/:productId', (req, res) => {
     .then((parsedData) => res.send(parsedData).end())
     .catch((err) => res.status(500).send(err));
 });
+
 app.get('/qa/:productId', (req, res) => {
-  const {productId } = req.params;
+  const { productId } = req.params;
   api.getProductQA(productId)
-  .then((results) => res.send(results.data).end())
-  .catch((err) => res.status(500).send(err));
+    .then((results) => res.send(results.data).end())
+    .catch((err) => res.status(500).send(err));
 });
 
 app.post('/qa/:productId', (req, res) => {
@@ -47,12 +48,10 @@ app.post('/qa/:productId', (req, res) => {
   // const { productId } = req.body.product_id;
   const { body } = req;
   api.getProductQA(body.product_id)
-  .then(() => api.submitQuestion(body)
-  .then((results) => res.send(results.data).end())
-  .catch((err) => res.status(500).send(err)))
-})
-
-
+    .then(() => api.submitQuestion(body)
+      .then((results) => res.send(results.data).end())
+      .catch((err) => res.status(500).send(err)));
+});
 
 app.post('/productOverview/cart', (req, res) => {
   const { sku } = req.body;
@@ -60,8 +59,6 @@ app.post('/productOverview/cart', (req, res) => {
     .then(() => res.send('Added To cart'))
     .catch((err) => res.status(500).send(err));
 });
-
-module.exports = app;
 
 app.get('/relatedProductId/:id', (req, res) => {
   const { id } = req.params;
@@ -79,6 +76,12 @@ app.get('/reviews/:productId', (req, res) => {
   const { productId } = req.params;
   api.getProductReviews(productId)
     .then((results) => res.send(results.data).end())
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get('/cart', (req, res) => {
+  api.getCart()
+    .then(({ data: cart }) => res.send(cart))
     .catch((err) => res.status(500).send(err));
 });
 
