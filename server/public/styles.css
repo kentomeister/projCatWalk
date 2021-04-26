@@ -826,8 +826,23 @@ th, td {
   margin-top: 5px;
 }
 
-
-
+#num-items-cart {
+	position: relative;
+	left: -50px;
+	top: -39px;
+	color: black;
+	font-weight: bold;
+	margin: 20px 0;
+}
+.cart-container {
+	margin-top: 10px;
+	cursor: help;
+}
+.header {
+	background-color: grey;
+	display: flex;
+	justify-content: space-between;
+}
 .footer {
   height: 200px;
   margin-top: 50px;
