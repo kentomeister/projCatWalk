@@ -827,7 +827,11 @@ th, td {
 }
 
 
-
+.header {
+	background-color: grey;
+	display: flex;
+	justify-content: space-between;
+}
 .footer {
   height: 200px;
   margin-top: 50px;
