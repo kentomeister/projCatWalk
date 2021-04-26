@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import StarRating from '../shared/StarRating.jsx';
 
+const Outfit = ({ product, getProduct }) => {
 
-const Outfit = ({ product }) => {
   let products = [];
   products = products.concat(product);
-  console.log(products);
-  const [current, setCurrent] = useState(0);
 
   const removeItem = (id) => {
-    products.forEach((item, index) => {
+    products.map((item, index) => {
       if (id === item.id) {
         products.splice(index, 1);
+        getProduct(products);
       }
+
     });
 
   };
 
-  if (products.length > 0) {
 
     return (
       <div>
@@ -26,26 +26,33 @@ const Outfit = ({ product }) => {
 
         <div className="box">
 
-          {products.map((product) => {
+          {products.slice(0, 4).map((product) => {
 
             return (
+              <div>
+                <button onClick={() => removeItem(product.id)} className="delete-btn">X</button>
+                <div className="card q-a-div" >
 
-              <div className="card" >
+                  <img alt="" src={product.styles[0].photos[0].thumbnail_url} />
 
-                <button onClick = {removeItem}className="action-btn">X</button>
-                <img alt="" src={product.styles[0].photos[0].thumbnail_url} />
-
-                <div className="detail-box">
-                  <div className="type">
-                    <div className="detail">Category:  {product.category}</div>
-                    <div className="detail">Name: {product.name}</div>
-                    <div className="price detail"> Price: {product.default_price} </div>
-                    <div className="detail">Review: </div>
+                  <div className="detail-box">
+                    <div className="type">
+                      <div className="detail">Category:  {product.category}</div>
+                      <div className="detail">Name: {product.name}</div>
+                      <div className="price detail"> Price: {product.default_price} </div>
+                      <div className="detail">Review:
+                    <StarRating
+                          rating={product.avgRating.toString()}
+                          isClickable={false}
+                          handleRatingClick={() => { }}
+                          size="15"
+                        />
+                      </div>
+                    </div>
                   </div>
+
                 </div>
-
               </div>
-
             )
 
           })}
@@ -53,9 +60,6 @@ const Outfit = ({ product }) => {
       </div>
 
     )
-  } else {
-    return <h2 className="outfit">Your Outfit</h2>
-  }
 
 
 }
