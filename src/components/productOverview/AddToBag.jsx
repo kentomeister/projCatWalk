@@ -77,7 +77,6 @@ const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
 };
 
 AddToBag.propTypes = {
-  skus: PropTypes.object.isRequired,
   selectedStyle: PropTypes.object.isRequired,
   handleAddToBagSubmit: PropTypes.func.isRequired,
 };

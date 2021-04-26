@@ -573,13 +573,13 @@ background-color: floralwhite;
 	box-sizing: border-box;
 }
 .image-gallery-left-arrow {
-	position: absolute;
+	position: relative;
 	top: 400px;
-	left: 345px;
+	left: 100px;
 }
 .image-gallery-right-arrow {
 	position: relative;
-	top: -43%;
+	top: -40%;
 	left: 95%;
 }
 .image-gallery-expand {

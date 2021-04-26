@@ -43,7 +43,7 @@ class ProductOverview extends React.Component {
           loading: false,
         },
       ))
-      .catch(() => setAlert('There was an error adding items to your card', 'danger'));
+      .catch(() => setAlert('There was an error loading from the API', 'danger'));
   }
 
   handleStyleSelectClick(selectedStyleId) {
