@@ -42,7 +42,6 @@ class Reviews extends React.Component {
     } = this.props.review;
     return (
       <li className="review-cont">
-        <div>Ratings & Reviews</div>
         <Topbar stars={rating} name={reviewer_name} date={date} />
         <div className="review-summary">{summary}</div>
         <div className="review-body">{body}</div>
