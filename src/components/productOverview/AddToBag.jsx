@@ -67,12 +67,12 @@ const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
             Add To Bag
             <FaPlus />
           </button>
-          <button
+          {/* <button
             className="btn"
             type="button"
           >
             <AiOutlineStar />
-          </button>
+          </button> */}
         </div>
       </form>
     </div>
