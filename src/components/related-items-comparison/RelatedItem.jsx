@@ -1,8 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import RelatedProductCard from './RelatedProductCard.jsx';
 import ProductInformation from './ProductInformation.jsx';
-import axios from 'axios';
-import {data} from './exampleData.jsx';
+import { data } from './exampleData.jsx';
 
 class RelatedItem extends React.Component {
   constructor() {
@@ -50,38 +50,38 @@ class RelatedItem extends React.Component {
 
   changeView(bool, option) {
 
-       data.forEach(products => {
-         products.forEach(product => {
-          if (option === product.id) {
-            this.setState({
-              showFullInformation: bool,
-              productInformation: product
-            });
+    data.forEach(products => {
+      products.forEach(product => {
+        if (option === product.id) {
+          this.setState({
+            showFullInformation: bool,
+            productInformation: product
+          });
 
-           }
-         });
-       });
+        }
+      });
+    });
 
-    }
+  }
 
 
-    componentDidMount() {
-      this.getData();
-    }
+  componentDidMount() {
+    this.getData();
+  }
 
   render() {
 
-      return (
-        <div>
-          {this.state.showFullInformation ? <ProductInformation
-           product = {this.state.productInformation}/>
-           : <RelatedProductCard
-           products = {data}
-           changeView={this.changeView}
-           />}
+    return (
+      <div>
+        {this.state.showFullInformation ? <ProductInformation
+          product={this.state.productInformation} />
+          : <RelatedProductCard
+            products={data}
+            changeView={this.changeView}
+          />}
 
-        </div>
-      );
+      </div>
+    );
 
   }
 
