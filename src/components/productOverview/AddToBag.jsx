@@ -57,20 +57,23 @@ const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
           handleSelect={() => setIsQuantitySelected(true)}
         />
         <br />
-        <button
-          className="btn"
-          type="submit"
-          disabled={!isQuantitySelected}
-        >
-          Add To Bag
-          <FaPlus />
-        </button>
-        <button
-          className="btn"
-          type="button"
-        >
-          <AiOutlineStar />
-        </button>
+        <div className="container-horz">
+          <button
+            className="btn"
+            type="submit"
+            disabled={!isQuantitySelected}
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            Add To Bag
+            <FaPlus />
+          </button>
+          <button
+            className="btn"
+            type="button"
+          >
+            <AiOutlineStar />
+          </button>
+        </div>
       </form>
     </div>
   );

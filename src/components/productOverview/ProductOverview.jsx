@@ -11,6 +11,7 @@ import ProductDetails from './ProductDetails.jsx';
 import StyleSelect from './StyleSelect.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToBag from './AddToBag.jsx';
+import ShareOnSocials from './ShareOnSocials.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -98,6 +99,7 @@ class ProductOverview extends React.Component {
                     price={selectedStyle.original_price || default_price}
                     salePrice={selectedStyle.sale_price}
                   />
+                  <ShareOnSocials />
                   <StyleSelect
                     styles={styles}
                     selectedStyle={selectedStyle}
