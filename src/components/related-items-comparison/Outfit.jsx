@@ -1,64 +1,97 @@
-import React, { useState } from 'react';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaPlusCircle } from 'react-icons/fa';
+import StarRating from '../shared/StarRating.jsx';
 
 
-const Outfit = ({ product }) => {
+class Outfit extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const [remove, setRemove] = useState(false);
-  let products = [];
-  products = products.concat(product);
+    this.state = {
+      products: [],
+      render: false
+    };
 
-  const removeItem = (id) => {
-    products.map((item, index) => {
+    this.removeItem = this.removeItem.bind(this);
+
+  }
+
+  componentDidMount() {
+    this.setState({
+      products: this.props.product,
+      render: true
+    });
+  }
+
+
+  removeItem(id) {
+    let p = this.state.products;
+    p.map((item, index) => {
       if (id === item.id) {
-        products.splice(index, 1);
-        setRemove(true);
+        p.splice(index, 1);
+        this.setState({
+          products: p
+        });
       }
 
     });
 
-  };
-
-  if (products.length > 0) {
-
-    return (
-      <div>
-
-        <h2 className="outfit">Your Outfit</h2>
-
-        <div className="box">
-
-          {products.slice(0, 4).map((product) => {
-
-            return (
-              <div>
-             <button onClick = {() => removeItem(product.id)}className="action-btn">X</button>
-              <div className="card" >
-
-                <img alt="" src={product.styles[0].photos[0].thumbnail_url} />
-
-                <div className="detail-box">
-                  <div className="type">
-                    <div className="detail">Category:  {product.category}</div>
-                    <div className="detail">Name: {product.name}</div>
-                    <div className="price detail"> Price: {product.default_price} </div>
-                    <div className="detail">Review: </div>
-                  </div>
-                </div>
-
-              </div>
-              </div>
-            )
-
-          })}
-        </div>
-      </div>
-
-    )
-  } else {
-    return <h2 className="outfit">Your Outfit</h2>
   }
 
+
+  render() {
+
+    if (this.render) {
+      return (
+        <div>
+
+          <h2 className="outfit">Your Outfit</h2>
+
+          <div className="box">
+            <div className="add-card q-a-div" onClick = {() => this.props.getProduct()}>
+             <FaPlusCircle className="fa-btn-circle" /> Add to Outfit </div>
+
+            {this.state.products.slice(0, 4).map((product, index) => {
+
+              return (
+                <div key={index}>
+                  <button onClick={() => this.removeItem(product.id)} className="delete-btn">X</button>
+                  <div className="card q-a-div" >
+
+                    <img alt="" src={product.styles[0].photos[0].thumbnail_url} />
+
+                    <div className="detail-box">
+                      <div className="type">
+                        <div className="detail">Category:  {product.category}</div>
+                        <div className="detail">Name: {product.name}</div>
+                        <div className="price detail"> Price: {product.default_price} </div>
+                        <div className="detail">Review:
+                    <StarRating
+                            rating={product.avgRating.toString()}
+                            isClickable={false}
+                            handleRatingClick={() => { }}
+                            size="15"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              )
+
+            })}
+          </div>
+
+        </div>
+
+      )
+    } else {
+      return null;
+    }
+
+
+  }
 
 }
 

@@ -79,13 +79,12 @@ const addAnswer = (body) => axios({
   },
 });
 
-module.exports.addAnswer = addAnswer;
-module.exports.reportAnswer = reportAnswer;
-module.exports.reportQuestion = reportQuestion;
-module.exports.submitAHelpful = submitAHelpful;
-module.exports.qHelpful = qHelpful;
-module.exports.submitQuestion = submitQuestion;
-module.exports.getProductQA = getProductQA;
+const getCart = () => axios.get('/cart', {
+  baseURL: process.env.API_URL,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+});
+
+
 const addToCart = (skuId) => axios({
   method: 'post',
   baseURL: process.env.API_URL,
@@ -102,9 +101,19 @@ const getRelatedProductId = (id) => axios.get(`/products/${id}/related`,
     headers: { Authorization: process.env.GITHUB_TOKEN },
   });
 
+module.exports.addAnswer = addAnswer;
+module.exports.reportAnswer = reportAnswer;
+module.exports.reportQuestion = reportQuestion;
+module.exports.submitAHelpful = submitAHelpful;
+module.exports.qHelpful = qHelpful;
+module.exports.submitQuestion = submitQuestion;
+module.exports.getProductQA = getProductQA;
+module.exports.submitQuestion = submitQuestion;
+module.exports.getProductQA = getProductQA;
 module.exports.getRelatedProductId = getRelatedProductId;
 module.exports.getProductInfo = getProductInfo;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviewMeta = getProductReviewMeta;
 module.exports.getProductReviews = getProductReviews;
+module.exports.getCart = getCart;
 module.exports.addToCart = addToCart;
