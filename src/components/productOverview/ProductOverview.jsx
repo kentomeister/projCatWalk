@@ -11,6 +11,7 @@ import ProductDetails from './ProductDetails.jsx';
 import StyleSelect from './StyleSelect.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToBag from './AddToBag.jsx';
+import ShareOnSocials from './ShareOnSocials.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -27,10 +28,12 @@ class ProductOverview extends React.Component {
       selectedStyle: {},
       isImageGalleryExpand: false,
       loading: true,
+      pinterestImageUrl: '',
     };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
     this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
     this.handleAddToBagSubmit = this.handleAddToBagSubmit.bind(this);
+    this.setPinterestImageUrl = this.setPinterestImageUrl.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +46,7 @@ class ProductOverview extends React.Component {
           loading: false,
         },
       ))
-      .catch(() => setAlert('There was an error adding items to your card', 'danger'));
+      .catch(() => setAlert('There was an error loading from the API', 'danger'));
   }
 
   handleStyleSelectClick(selectedStyleId) {
@@ -71,6 +74,10 @@ class ProductOverview extends React.Component {
       .catch(() => setAlert('There was an error adding items to your card', 'danger'));
   }
 
+  setPinterestImageUrl(url) {
+    this.setState({ pinterestImageUrl: url });
+  }
+
   render() {
     const {
       slogan,
@@ -80,6 +87,8 @@ class ProductOverview extends React.Component {
       default_price,
       isImageGalleryExpand,
       loading,
+      features,
+      pinterestImageUrl,
     } = this.state;
     return (
       <div>
@@ -88,6 +97,7 @@ class ProductOverview extends React.Component {
             <ImageGallery
               images={selectedStyle.photos}
               handleImageContainerExpandClick={this.handleImageContainerExpandClick}
+              setPinterestImageUrl={this.setPinterestImageUrl}
             />
             {
               !isImageGalleryExpand
@@ -97,6 +107,9 @@ class ProductOverview extends React.Component {
                     productData={this.state}
                     price={selectedStyle.original_price || default_price}
                     salePrice={selectedStyle.sale_price}
+                  />
+                  <ShareOnSocials
+                    currentImage={pinterestImageUrl}
                   />
                   <StyleSelect
                     styles={styles}
@@ -117,15 +130,11 @@ class ProductOverview extends React.Component {
               )
             }
           </div>
-          {
-            (slogan && description)
-            && (
-              <ProductDetails
-                slogan={slogan}
-                description={description}
-              />
-            )
-          }
+          <ProductDetails
+            slogan={slogan}
+            description={description}
+            features={features}
+          />
         </div>
       </div>
     );

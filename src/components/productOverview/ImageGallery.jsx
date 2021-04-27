@@ -4,12 +4,19 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { IoIosExpand } from 'react-icons/io';
 import ImageGalleryThumbnails from './ImageGalleryThumbnails.jsx';
 
-const ImageGallery = ({ images, handleImageContainerExpandClick }) => {
+const ImageGallery = ({ images, handleImageContainerExpandClick, setPinterestImageUrl }) => {
   if (images === undefined) return '';
   const [imageIndex, setImageIndex] = useState(0);
   const [currentImageUrl, setCurrentImageUrl] = useState(images[imageIndex].url);
-  useEffect(() => { setCurrentImageUrl(images[0].url); }, [images]);
-  useEffect(() => { setCurrentImageUrl(images[imageIndex].url); }, [imageIndex]);
+  useEffect(() => {
+    setCurrentImageUrl(images[0].url);
+    setPinterestImageUrl(images[0].url);
+  }, [images]);
+
+  useEffect(() => {
+    setCurrentImageUrl(images[imageIndex].url);
+    setPinterestImageUrl(images[imageIndex].url);
+  }, [imageIndex]);
 
   const handleImageThumbnailclick = (imageUrl) => setCurrentImageUrl(imageUrl);
   const handleLeftArrowClick = () => setImageIndex((prevIndex) => prevIndex - 1);
