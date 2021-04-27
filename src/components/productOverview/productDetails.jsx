@@ -21,8 +21,7 @@ const ProductDetails = ({ slogan, description, features }) => (
               {' '}
               {feature.value}
             </li>
-          ))
-          }
+          ))}
         </ul>
       </div>
     )
