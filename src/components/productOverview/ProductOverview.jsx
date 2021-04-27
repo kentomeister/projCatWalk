@@ -81,6 +81,7 @@ class ProductOverview extends React.Component {
       default_price,
       isImageGalleryExpand,
       loading,
+      features,
     } = this.state;
     return (
       <div>
@@ -125,6 +126,7 @@ class ProductOverview extends React.Component {
               <ProductDetails
                 slogan={slogan}
                 description={description}
+                features={features}
               />
             )
           }
