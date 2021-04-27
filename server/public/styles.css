@@ -866,3 +866,23 @@ th, td {
 	transition-timing-function: ease;
 	transition: 0.2s;
 }
+
+h3 {
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+h4 {
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+h5 {
+	font-size: 1rem;
+	margin-bottom: 5px;
+}
+.bold {
+	font-weight: bold;
+}
