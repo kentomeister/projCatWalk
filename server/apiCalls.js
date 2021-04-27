@@ -20,21 +20,62 @@ const getProductReviews = (productId) => axios.get(`/reviews?product_id=${produc
   headers: { Authorization: process.env.GITHUB_TOKEN },
 });
 
-const getProductQA = (productId) => axios.get(`/qa/questions/?product_id=${productId}`, {
+const getProductQA = (productId) => axios.get(`/qa/questions/?product_id=${productId}&page=1&count=10`, {
   baseURL: process.env.API_URL,
   headers: { Authorization: process.env.GITHUB_TOKEN },
 });
 
 const submitQuestion = (body) => axios({
-  url: '/qa/questions',
   method: 'post',
   baseURL: process.env.API_URL,
+  url: '/qa/questions',
   headers: { Authorization: process.env.GITHUB_TOKEN },
   data: {
     body: body.body,
     name: body.name,
     email: body.email,
-    product_id: Number(body.product_id),
+    product_id: body.product_id,
+  },
+});
+
+const qHelpful = (id) => axios({
+  method: 'put',
+  baseURL: process.env.API_URL,
+  url: `/qa/questions/${id}/helpful`,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+});
+
+const submitAHelpful = (id) => axios({
+  method: 'put',
+  baseURL: process.env.API_URL,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  url: `/qa/answers/${id}/helpful`,
+});
+
+const reportQuestion = (id) => axios({
+  method: 'put',
+  baseURL: process.env.API_URL,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  url: `/qa/questions/${id}/report`,
+});
+
+const reportAnswer = (id) => axios({
+  method: 'put',
+  baseURL: process.env.API_URL,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  url: `/qa/answers/${id}/report`,
+});
+const addAnswer = (body) => axios({
+
+  method: 'post',
+  baseURL: process.env.API_URL,
+  url: `/qa/questions/${body.question_id}/answers`,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  data: {
+    body: body.body,
+    name: body.name,
+    email: body.email,
+    photos: body.photos.map((pic) => (pic)),
   },
 });
 
@@ -42,6 +83,7 @@ const getCart = () => axios.get('/cart', {
   baseURL: process.env.API_URL,
   headers: { Authorization: process.env.GITHUB_TOKEN },
 });
+
 
 const addToCart = (skuId) => axios({
   method: 'post',
@@ -59,6 +101,13 @@ const getRelatedProductId = (id) => axios.get(`/products/${id}/related`,
     headers: { Authorization: process.env.GITHUB_TOKEN },
   });
 
+module.exports.addAnswer = addAnswer;
+module.exports.reportAnswer = reportAnswer;
+module.exports.reportQuestion = reportQuestion;
+module.exports.submitAHelpful = submitAHelpful;
+module.exports.qHelpful = qHelpful;
+module.exports.submitQuestion = submitQuestion;
+module.exports.getProductQA = getProductQA;
 module.exports.submitQuestion = submitQuestion;
 module.exports.getProductQA = getProductQA;
 module.exports.getRelatedProductId = getRelatedProductId;
