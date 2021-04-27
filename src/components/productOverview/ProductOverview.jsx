@@ -28,10 +28,12 @@ class ProductOverview extends React.Component {
       selectedStyle: {},
       isImageGalleryExpand: false,
       loading: true,
+      pinterestImageUrl: '',
     };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
     this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
     this.handleAddToBagSubmit = this.handleAddToBagSubmit.bind(this);
+    this.setPinterestImageUrl = this.setPinterestImageUrl.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +74,10 @@ class ProductOverview extends React.Component {
       .catch(() => setAlert('There was an error adding items to your card', 'danger'));
   }
 
+  setPinterestImageUrl(url) {
+    this.setState({ pinterestImageUrl: url });
+  }
+
   render() {
     const {
       slogan,
@@ -82,6 +88,7 @@ class ProductOverview extends React.Component {
       isImageGalleryExpand,
       loading,
       features,
+      pinterestImageUrl,
     } = this.state;
     return (
       <div>
@@ -90,6 +97,7 @@ class ProductOverview extends React.Component {
             <ImageGallery
               images={selectedStyle.photos}
               handleImageContainerExpandClick={this.handleImageContainerExpandClick}
+              setPinterestImageUrl={this.setPinterestImageUrl}
             />
             {
               !isImageGalleryExpand
@@ -100,7 +108,9 @@ class ProductOverview extends React.Component {
                     price={selectedStyle.original_price || default_price}
                     salePrice={selectedStyle.sale_price}
                   />
-                  <ShareOnSocials />
+                  <ShareOnSocials
+                    currentImage={pinterestImageUrl}
+                  />
                   <StyleSelect
                     styles={styles}
                     selectedStyle={selectedStyle}
@@ -120,16 +130,11 @@ class ProductOverview extends React.Component {
               )
             }
           </div>
-          {
-            (slogan && description)
-            && (
-              <ProductDetails
-                slogan={slogan}
-                description={description}
-                features={features}
-              />
-            )
-          }
+          <ProductDetails
+            slogan={slogan}
+            description={description}
+            features={features}
+          />
         </div>
       </div>
     );

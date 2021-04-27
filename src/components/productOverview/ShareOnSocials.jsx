@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import { FaFacebookSquare, FaTwitterSquare, FaPinterestSquare } from 'react-icons/fa';
+import React from 'react';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  PinterestShareButton,
+  PinterestIcon,
+} from 'react-share';
 
-const openNewWindow = (url) => window.open(url, 'newwindow','width=1000, height=700');
-
-const ShareOnSocials = () => (
+const ShareOnSocials = ({ currentImage }) => (
   <div className="share-on-socials">
-    <p>Share this product:</p>
-    <FaFacebookSquare
-      size="50"
-      cursor="pointer"
-      color="#3b5998"
-      onClick={() => openNewWindow('https://www.facebook.com')}
-    />
-    <FaTwitterSquare
-      size="50"
-      cursor="pointer"
-      color="#55acee"
-      onClick={() => openNewWindow('https://twitter.com')}
-    />
-    <FaPinterestSquare
-      size="50"
-      cursor="pointer"
-      color="#E60023"
-      onClick={() => openNewWindow('https://pintrist.com')}
-    />
+
+    <FacebookShareButton
+      quote="Best Clothing Ever!"
+      hashtag="#kentomeisterInc"
+      url="www.google.com"
+    >
+      <FacebookIcon round size="50" />
+    </FacebookShareButton>
+
+    <TwitterShareButton
+      title="Kentomeister Inc in the house!"
+      hashtag="#kentomeisterInc"
+      url="www.google.com"
+    >
+      <TwitterIcon round size="50" />
+    </TwitterShareButton>
+
+    <PinterestShareButton
+      url="www.google.com"
+      media={currentImage}
+    >
+      <PinterestIcon round size="50" />
+    </PinterestShareButton>
   </div>
 );
 

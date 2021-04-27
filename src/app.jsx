@@ -88,13 +88,13 @@ class App extends React.Component {
           productId={productId}
           updateCart={this.getCart}
         />
-        <RelatedItem />
+        {/* <RelatedItem />
         <ProductQuestionManager
           productId={productId}
         />
         <RatingsReviews
           productId={productId}
-        />
+        /> */}
         <div className="footer">
           This is the footer
         </div>

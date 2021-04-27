@@ -632,7 +632,6 @@ select {
 	background-color: greenyellow;
 }
 
-
 .product_info{
 	border: solid 10px;
 	margin-left: 20%;
@@ -868,7 +867,14 @@ th, td {
   margin-top: 50px;
 }
 
-.share-on-socials > svg:hover {
+.share-on-socials {
+	width: 100%;
+	height: auto;
+}
+.share-on-socials > button {
+	size: 1rem;
+}
+.share-on-socials > button:hover {
 	transform: scale(1.2);
 	transition-timing-function: ease;
 	transition: 0.2s;
