@@ -51,6 +51,8 @@ class App extends React.Component {
         <RelatedItem />
         <ProductQuestionManager
           productId={productId}
+          setAlert={this.setAlert}
+
         />
         <RatingsReviews
           productId={productId}

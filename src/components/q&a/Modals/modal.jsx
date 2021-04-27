@@ -1,52 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDom from 'react-dom';
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { useProductQuestionState } from "../ProductQuestionManager/useProductQuestionState.jsx"
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useProductQuestionState } from '../ProductQuestionManager/useProductQuestionState.jsx';
 
-export default function Modal({ open, children, onClose, productId }) {
-
+export default function Modal({
+  open, children, onClose, productId,
+}) {
   if (!open) return null;
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = async (data) => {
-    var qObj = {
+  const onSubmit = (data) => {
+    onClose();
+    const qObj = {
       body: data.body,
       name: data.name,
-      email: data.name,
-      product_id: productId
-    }
-        axios.post(`/qa/${productId}`, qObj)
-        .then((res) => useProductQuestionState(productId))
-        .catch((err) => {
-          if(err){
-             console.log(err)
-          }
-        })
-    alert('sucess!')
-
-};
+      email: data.email,
+      product_id: parseInt(productId, 10),
+    };
+    axios.post(`/qa/${productId}`, qObj)
+      .then((data) => console.log(data.data))
+      .catch((err) => {
+        if (err) {
+          throw err;
+        }
+      });
+  };
 
   return ReactDom.createPortal(
     <>
-      <div className="overlay-styes"/>
+      <div className="overlay-styes" />
       <div className="add-question-modal">
         <div className="form-headings-all">
           <h1 className="form-headings"> Ask Your Question</h1>
           <h2 className="form-headings">About [Product Name]</h2>
         </div>
-        <span className="close" onClick={onClose}></span>
+        <span className="close" onClick={onClose} />
 
         <form
-        className="addQuestionForm"
-        onSubmit={handleSubmit(onSubmit)}
+          className="addQuestionForm"
+          onSubmit={handleSubmit(onSubmit)}
         >
 
           <label
             className="form-label"
-            type="text">
-            Your Question*
+            type="text"
+          >
+            Your Question about
+            {' '}
+            {productId}
+            *
           </label>
 
           <input
@@ -54,24 +58,25 @@ export default function Modal({ open, children, onClose, productId }) {
             className="addQInputs"
             type="text"
             placeholder="Enter your question..."
-            aria-invalid={errors.name ? "true" : "false"}
-            {...register("body", {
+            aria-invalid={errors.name ? 'true' : 'false'}
+            {...register('body', {
               required: true,
               maxLength: 1000,
-              message: "error message"
+              message: 'error message',
             })}
           />
 
-              {errors.body && errors.body.type === "required" && (
-              <span className="error" role="alert">You must enter a question</span>
-              )}
-             {errors.body && errors.body.type  === "maxLength" && (
-              <span className="error" role="alert">Max length exceeded</span>
-             )}
+          {errors.body && errors.body.type === 'required' && (
+          <span className="error" role="alert">You must enter a question</span>
+          )}
+          {errors.body && errors.body.type === 'maxLength' && (
+          <span className="error" role="alert">Max length exceeded</span>
+          )}
 
           <label
             className="form-label"
-            type="text">
+            type="text"
+          >
             Your  Nickname*
           </label>
 
@@ -80,28 +85,30 @@ export default function Modal({ open, children, onClose, productId }) {
             name="name"
             className="addQInputs"
             placeholder="Example: jackson11!"
-            {...register("name", {
+            {...register('name', {
               required: true,
               maxLength: 60,
-              message: "error message"
+              message: 'error message',
             })}
           />
 
-              {errors.name && errors.name.type === "required" && (
-              <span className="error" role="alert">You must enter a name</span>
-              )}
-             {errors.name && errors.name.type  === "maxLength" && (
-              <span className="error" role="alert">Max length exceeded</span>
-             )}
+          {errors.name && errors.name.type === 'required' && (
+          <span className="error" role="alert">You must enter a name</span>
+          )}
+          {errors.name && errors.name.type === 'maxLength' && (
+          <span className="error" role="alert">Max length exceeded</span>
+          )}
 
-           <div
-            className="privacy">
+          <div
+            className="privacy"
+          >
             For privacy reasons, do not use your full name or email address
-           </div>
+          </div>
 
           <label
             className="form-label"
-            type="text">
+            type="text"
+          >
             Your Email*
           </label>
 
@@ -110,39 +117,38 @@ export default function Modal({ open, children, onClose, productId }) {
             type="text"
             placeholder="Example: joe@schmoe.com"
             name="email"
-            {...register("email", {
+            {...register('email', {
               required: true,
               maxLength: 60,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "invalid email address"
-              }
+                message: 'invalid email address',
+              },
             })}
           />
 
-             {errors.email && errors.email.type === "required" && (
-              <span className="error" role="alert">You must enter an email address</span>
-              )}
-             {errors.email && errors.email.type  === "maxLength" && (
-              <span className="error" role="alert">Max length exceeded</span>
-             )}
-             {errors.email && errors.email.type  === "pattern" && (
-              <span className="error" role="alert">This is not a valid email</span>
-             )}
+          {errors.email && errors.email.type === 'required' && (
+          <span className="error" role="alert">You must enter an email address</span>
+          )}
+          {errors.email && errors.email.type === 'maxLength' && (
+          <span className="error" role="alert">Max length exceeded</span>
+          )}
+          {errors.email && errors.email.type === 'pattern' && (
+          <span className="error" role="alert">This is not a valid email</span>
+          )}
 
           <div
-            className="privacy">
+            className="privacy"
+          >
             For authentication reasons, you will not be emailed
           </div>
 
-
           <input className="two-buttons" type="submit" />
 
-        {children}
+          {children}
         </form>
       </div>
     </>,
     document.getElementById('portal'),
   );
 }
-
