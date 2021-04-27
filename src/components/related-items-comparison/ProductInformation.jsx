@@ -1,22 +1,32 @@
 import React from 'react';
+import { FaWindowClose } from 'react-icons/fa';
+import StarRating from '../shared/StarRating.jsx';
 
-const ProductInformation = ({product}) => {
+const ProductInformation = ({ product, changeView }) => (
 
-  return (
-
-    <div className="product_info">
-      <h2>{product.slogan}!</h2>
-      <div>Description:
-        <p>{product.description}</p></div>
-      <div>Category: {product.category}</div>
-      <div>Name: {product.name}</div>
-      <div>Price: {product.default_price}</div>
-      <div>Star Rating</div>
-      <img src= {product.styles[0].photos[0].url}  alt=""/>
+  <div className="product_info">
+    <FaWindowClose onClick={() => changeView(false, product.id)} className="fa-btn" />
+    <h2>{product.slogan}!</h2>
+    <div className="info">
+    <div className="info">Description:
+        {product.description}</div>
+      <div className="info">Category: {product.category}</div>
+      <div className="info">Name: {product.name}</div>
+      <div className="info">Price: {product.default_price}</div>
+      <div>Review:
+      <StarRating
+          rating={product.avgRating.toString()}
+          isClickable={false}
+          handleRatingClick={() => { }}
+          size="15"
+        />
+      </div>
     </div>
+    <img src={product.styles[0].photos[0].url} alt="" />
+  </div>
 
-  )
-}
+)
+
 
 
 
