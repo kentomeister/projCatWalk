@@ -55,13 +55,13 @@ const ProductInformation = ({ productData, price, salePrice }) => {
         </a>
       </span>
       <h3>
-        Name:
         {name}
       </h3>
-      <h4>
-        Category:
+      <h5>
+        <span className="bold">Category: </span>
+        {' '}
         {category}
-      </h4>
+      </h5>
       <h4>
         {priceDisplay(price, salePrice, default_price)}
       </h4>

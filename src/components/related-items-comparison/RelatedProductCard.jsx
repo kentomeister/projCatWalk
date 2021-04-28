@@ -1,29 +1,29 @@
 import React from 'react';
-import ProductInformation from './ProductInformation.jsx';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
 import ReactModal from 'react-modal';
-
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaStar } from 'react-icons/fa';
+import StarRating from '../shared/StarRating.jsx';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaStar, FaWindowClose, FaPlusCircle} from 'react-icons/fa';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProductId: [],
-      view: false,
+      index: 0,
       current: 0,
       outfit: [],
-      showModal: false
+      showModal: false,
+      products: [],
+      add: false
     };
 
-    this.clickHandler = this.clickHandler.bind(this);
     this.prev = this.prev.bind(this);
     this.next = this.next.bind(this);
-    this.getProduct = this.getProduct.bind(this);
     this.handleModalView = this.handleModalView.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleOpenDetailView = this.handleOpenDetailView.bind(this);
+    this.getProduct = this.getProduct.bind(this);
   }
 
 
@@ -41,7 +41,7 @@ class RelatedProductCard extends React.Component {
     });
   }
 
-  clickHandler(id) {
+  handleOpenDetailView(id) {
 
     this.props.changeView(true, id);
   }
@@ -71,26 +71,40 @@ class RelatedProductCard extends React.Component {
   }
 
   getProduct(product) {
-
-    this.state.outfit.push(product);
+    if (product) {
+      this.state.outfit.push(product);
+      this.setState({
+        add: true
+      });
+    } else {
+    let i = this.state.index;
+    this.state.outfit.push(this.state.products[i][i]);
     this.setState({
-      view: true,
+      index: i + 1
     });
+  }
+  }
 
+  componentDidMount () {
+    this.setState({
+      products: this.props.products
+    });
   }
 
   render() {
 
-    if(this.props.products.length === 0) {
+    if (this.state.products.length === 0) {
       return null;
     }
 
     return (
-      <div >
-        <FaArrowAltCircleLeft className="left-arrow" onClick={this.prev} />
-        <FaArrowAltCircleRight className="right-arrow" onClick={this.next} />
+      <div className="related-product">
+        {this.state.current > 0 && (<FaArrowAltCircleLeft className="left-arrow" onClick={this.prev} />)}
+        {this.state.products.length - 1 !== this.state.current && (
+          <FaArrowAltCircleRight className="right-arrow" onClick={this.next} />
+        )}
 
-        {this.props.products.map((product, index) => {
+        {this.state.products.map((product, index) => {
 
           return (
             <div className={index === this.state.current ? 'slide active' : 'slide'}
@@ -98,26 +112,33 @@ class RelatedProductCard extends React.Component {
               <div className="box">
                 {index === this.state.current && (
 
-                  product.map(item => {
+                  product.map((item, index) => {
                     return (
-                      <div>
+                      <div key={index}>
 
-                       <div className="btn">
-                        <button onClick={() => this.handleOpenModal()} className="star-btn"><FaStar /></button>
-                        <button onClick={() => this.getProduct(item)} className="action-btn">Add to outfit</button>
-                       </div>
+                        <div className="btn">
+                          <button onClick={() => this.handleOpenModal()} className="star-btn"><FaStar /></button>
+                          <button onClick={() => this.getProduct(item)} className="action-btn">Add to outfit</button>
+                        </div>
 
 
-                        <div className="card" onClick={() => { this.clickHandler(item.id) }}>
+                        <div className="card q-a-div" onClick={() => { this.handleOpenDetailView(item.id) }}>
 
                           <img alt="Sorry! Image not available at this time" src={item.styles[0].photos[0].thumbnail_url} />
 
                           <div className="detail-box">
 
-                              <div className="detail">Category:  {item.category}</div>
-                              <div className="detail">Name: {item.name}</div>
-                              <div className="price detail"> Price: {item.default_price} </div>
-                              <div className="detail">Review: </div>
+                            <div className="detail">Category:  {item.category}</div>
+                            <div className="detail">Name: {item.name}</div>
+                            <div className="price detail"> Price: {item.default_price} </div>
+                            <div className="detail">Review:
+                            <StarRating
+                                rating={item.avgRating.toString()}
+                                isClickable={false}
+                                handleRatingClick={() => { }}
+                                size="15"
+                              />
+                            </div>
 
                           </div>
                         </div>
@@ -136,10 +157,21 @@ class RelatedProductCard extends React.Component {
 
         })}
 
-        {this.state.outfit.length > 0 ? <Outfit product={this.state.outfit}
 
-        /> :
-          <Outfit product={[]} />}
+        <hr />
+        <div className="outfit-section">
+          {this.state.outfit.length > 0 ? <Outfit product={this.state.outfit}
+          changeView = {this.props.changeView}
+          getProduct = {this.getProduct}
+          />
+            : <div>
+              <h2 className="outfit">Your Outfit</h2>
+
+              <div className="add-card q-a-div" onClick={()=> this.getProduct()}>  <FaPlusCircle className="fa-btn-circle" /> Add to Outfit</div>
+            </div>
+          }
+
+        </div>
 
         <ReactModal isOpen={this.state.showModal}
 
@@ -147,9 +179,9 @@ class RelatedProductCard extends React.Component {
             overlay: {
               position: 'fixed',
               top: 200,
-              left: 200,
-              right: 200,
-              bottom: 200,
+              left: 300,
+              right: 300,
+              bottom: 300,
               backgroundColor: 'rgba(255, 255, 255, 0.75)'
             },
             content: {
@@ -169,22 +201,38 @@ class RelatedProductCard extends React.Component {
             }
           }}
         >
-
-          <button onClick={this.handleCloseModal}>Close</button>
+          <FaWindowClose onClick={this.handleCloseModal} className="fa-btn" />
           <h2>Comparing</h2>
           <table>
             <thead>
               <tr>
-                <th>{this.props.products[1][3].name}</th>
-                <th></th>
-                <th>{this.props.products[0][3].name}</th>
+                <th>{this.state.products[1][3].name}</th>
+                <th>Sale Price</th>
+                <th>{this.state.products[0][3].name}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{this.props.products[1][3].price}</td>
-                <td>Characteristic</td>
-                <td>{this.props.products[0][3].price}</td>
+                <td>${this.state.products[1][3].default_price}</td>
+                <td></td>
+                <td>${this.state.products[0][3].default_price}</td>
+              </tr>
+              <tr>
+                <td> <StarRating
+                  rating={this.state.products[1][3].avgRating.toString()}
+                  isClickable={false}
+                  handleRatingClick={() => { }}
+                  size="15"
+                />
+                </td>
+                <td></td>
+                <td> <StarRating
+                  rating={this.state.products[0][2].avgRating.toString()}
+                  isClickable={false}
+                  handleRatingClick={() => { }}
+                  size="15"
+                />
+                </td>
               </tr>
             </tbody>
           </table>
