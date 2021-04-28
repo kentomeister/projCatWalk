@@ -94,7 +94,7 @@ class ProductOverview extends React.Component {
     } = this.state;
     return (
 
-      <div data-widget-name="Product Overview">
+      <div>
         <div className="container-vert">
           <div className="container-horz">
             <ImageGallery

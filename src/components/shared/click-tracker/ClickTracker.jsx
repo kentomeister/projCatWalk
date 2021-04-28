@@ -1,15 +1,19 @@
 import React from 'react';
-
-export const ClickTrackerContext = React.createContext();
+import axios from 'axios';
 
 class ClickTracker extends React.Component {
   handleClick(e) {
+    const { children: child } = this.props;
     const clickTrackPayload = {
       element: this.getElementClicked(e.target),
-      widget: this.getWidgetClicked(e.target),
+      widget: child.type.displayName,
       time: new Date(),
     };
-    console.log(clickTrackPayload);
+    axios({
+      method: 'post',
+      url: '/click',
+      data: clickTrackPayload,
+    });
   }
 
   getElementClicked(element) {
@@ -19,21 +23,11 @@ class ClickTracker extends React.Component {
     return this.getElementClicked(element.parentElement);
   }
 
-  getWidgetClicked(element) {
-    const widgetName = element.dataset.widgetName;
-    if (widgetName) return widgetName;
-    return this.getWidgetClicked(element.parentElement);
-  }
-
   render() {
     return (
-      <>
-        <ClickTrackerContext.Provider>
-          <div onClick={this.handleClick.bind(this)}>
-            {this.props.children}
-          </div>
-        </ClickTrackerContext.Provider>
-      </>
+      <div onClick={this.handleClick.bind(this)}>
+        {this.props.children}
+      </div>
     );
   }
 }

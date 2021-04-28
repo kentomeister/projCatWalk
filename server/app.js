@@ -86,15 +86,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
         console.log(err);
       }
     });
-})
-
-
-//   api.getProductQA(body.product_id)
-//     .then(() => api.submitQuestion(body)
-//       .then((results) => res.send(results.data).end())
-//       .catch((err) => res.status(500).send(err)));
-// });
-
+});
 
 app.post('/productOverview/cart', (req, res) => {
   const { sku } = req.body;
@@ -125,6 +117,13 @@ app.get('/reviews/:productId', (req, res) => {
 app.get('/cart', (req, res) => {
   api.getCart()
     .then(({ data: cart }) => res.send(cart))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.post('/click', (req, res) => {
+  const { body: payload } = req;
+  api.trackClick(payload)
+    .then(() => res.status(200).end())
     .catch((err) => res.status(500).send(err));
 });
 

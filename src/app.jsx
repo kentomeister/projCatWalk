@@ -95,16 +95,19 @@ class App extends React.Component {
         <ClickTracker>
           <RelatedItem />
         </ClickTracker>
-        <ProductQuestionManager
-          productId={productId}
-          setAlert={this.setAlert}
-
-        />
-        <RatingsReviews
-          productId={productId}
-        />
+        <ClickTracker>
+          <ProductQuestionManager
+            productId={productId}
+            setAlert={this.setAlert}
+          />
+        </ClickTracker>
+        <ClickTracker>
+          <RatingsReviews
+            productId={productId}
+          />
+        </ClickTracker>
         <div className="footer">
-          This is the footer
+
         </div>
       </div>
     );
