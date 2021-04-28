@@ -79,6 +79,12 @@ table {
 	justify-content: flex-start;
 	flex-basis: 50%;
 }
+.star {
+	color: yellowgreen;
+}
+.dark {
+	color: black;
+}
 .review-username{
 	display: inline-flex;
 	flex-basis: 20%;
