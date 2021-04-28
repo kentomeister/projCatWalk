@@ -13,6 +13,8 @@ import ImageGallery from './ImageGallery.jsx';
 import AddToBag from './AddToBag.jsx';
 import ShareOnSocials from './ShareOnSocials.jsx';
 
+import { ClickTrackerContext } from '../shared/click-tracker/ClickTracker.jsx';
+
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
@@ -91,7 +93,8 @@ class ProductOverview extends React.Component {
       pinterestImageUrl,
     } = this.state;
     return (
-      <div>
+
+      <div data-widget-name="Product Overview">
         <div className="container-vert">
           <div className="container-horz">
             <ImageGallery
