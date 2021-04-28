@@ -9,11 +9,13 @@ import Alert from './components/shared/Alert.jsx';
 import RelatedItem from './components/related-items-comparison/RelatedItem.jsx';
 import Header from './components/header/Header.jsx';
 
+import ClickTracker from './components/shared/click-tracker/ClickTracker.jsx';
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productId: '19091',
+      productId: '19092',
       alert: {
         message: '',
         type: '',
@@ -83,22 +85,29 @@ class App extends React.Component {
           alert
           && <Alert message={message} type={type} />
         }
-        <ProductOverview
-          setAlert={this.setAlert}
-          productId={productId}
-          updateCart={this.getCart}
-        />
-        <RelatedItem />
-        <ProductQuestionManager
-          productId={productId}
-          setAlert={this.setAlert}
-
-        />
-        <RatingsReviews
-          productId={productId}
-        />
+        <ClickTracker>
+          <ProductOverview
+            setAlert={this.setAlert}
+            productId={productId}
+            updateCart={this.getCart}
+          />
+        </ClickTracker>
+        <ClickTracker>
+          <RelatedItem />
+        </ClickTracker>
+        <ClickTracker>
+          <ProductQuestionManager
+            productId={productId}
+            setAlert={this.setAlert}
+          />
+        </ClickTracker>
+        <ClickTracker>
+          <RatingsReviews
+            productId={productId}
+          />
+        </ClickTracker>
         <div className="footer">
-          This is the footer
+
         </div>
       </div>
     );

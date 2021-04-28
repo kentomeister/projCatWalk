@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import moment from 'moment';
-import starRating from '../shared/starRating.jsx';
+import StarRating from '../shared/StarRating.jsx';
 
 function Topbar(props) {
   const { stars, name, date } = props;
   const formattedDate = moment(date).format('LL');
-  const starsRating = starRating({
+  const starsRating = StarRating({
     rating: stars.toString(), size: '15', isClickable: false, handleRatingClick: () => 'starrating',
   });
   return (

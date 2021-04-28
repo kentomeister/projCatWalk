@@ -84,7 +84,6 @@ const getCart = () => axios.get('/cart', {
   headers: { Authorization: process.env.GITHUB_TOKEN },
 });
 
-
 const addToCart = (skuId) => axios({
   method: 'post',
   baseURL: process.env.API_URL,
@@ -100,6 +99,14 @@ const getRelatedProductId = (id) => axios.get(`/products/${id}/related`,
     baseURL: process.env.API_URL,
     headers: { Authorization: process.env.GITHUB_TOKEN },
   });
+
+const trackClick = (payload) => axios({
+  method: 'post',
+  baseURL: process.env.API_URL,
+  url: '/interactions',
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  data: payload,
+});
 
 module.exports.addAnswer = addAnswer;
 module.exports.reportAnswer = reportAnswer;
@@ -117,3 +124,4 @@ module.exports.getProductReviewMeta = getProductReviewMeta;
 module.exports.getProductReviews = getProductReviews;
 module.exports.getCart = getCart;
 module.exports.addToCart = addToCart;
+module.exports.trackClick = trackClick;
