@@ -2,6 +2,7 @@
 import React from 'react';
 import Reviews from './review.jsx';
 import WriteReview from './write-review.jsx';
+import SortReviews from './sort-reviews.jsx';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -26,38 +27,49 @@ class ReviewList extends React.Component {
     ));
     console.log(this.state.index);
   }
+
   handleChangeReviewSum(e) {
     this.setState({
-      reviewSum: e.target.value
-    })
+      reviewSum: e.target.value,
+    });
   }
+
   handleChangeReviewBody(e) {
     this.setState({
-      reviewBody: e.target.value
-    })
+      reviewBody: e.target.value,
+    });
   }
+
   handleChangeNickname(e) {
     this.setState({
-      nickname: e.target.value
-    })
+      nickname: e.target.value,
+    });
   }
+
   handleReviewFormSubmit() {
     console.log(
       'summary: ', this.state.reviewSum,
       ' body: ', this.state.reviewBody,
       ' nickname: ', this.state.nickname
-    )
+    );
   }
 
   render() {
     const { reviews } = this.props;
+    const { sortSelect } = this.props;
     const { index } = this.state;
     return (
       <div className="review-list">
-        This is my review list component
+        <div className="sort-btn">
+          <SortReviews reviews={reviews} sortSelect={sortSelect} />
+          sort drop down menu?
+        </div>
         <ul>
           {reviews.slice(0, index).map((review) => <Reviews review={review} />)}
         </ul>
+
+        {/* Modal below */}
+
         <button type="button" className="loadReviews" onClick={this.handleClickIncrement}>
           Load more reviews
         </button>
