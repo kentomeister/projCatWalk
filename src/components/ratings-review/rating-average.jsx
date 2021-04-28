@@ -1,9 +1,9 @@
 import React from 'react';
-import starRating from '../shared/starRating.jsx';
+import StarRating from '../shared/StarRating.jsx';
 
 function Average(props) {
   const { average } = props;
-  const starAvg = starRating({
+  const starAvg = StarRating({
     rating: average.toString(), size: '16', isClickable: false, handleRatingClick: () => 'starrating',
   });
 
