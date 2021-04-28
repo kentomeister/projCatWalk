@@ -100,7 +100,7 @@ class RatingsReviews extends React.Component {
       this.setState({
         productReviews: productReviews.sort(this.sortByHelpfulness),
       });
-    } else {
+    } else if (selectedSort === null || selectedSort === 'Sort' || selectedSort === 'Relevant') {
       this.setState({
         productReviews: productReviews.sort(this.sortByRelevance),
       });
@@ -109,6 +109,10 @@ class RatingsReviews extends React.Component {
 
   render() {
     const { productReviews } = this.state;
+    console.log(this.state.productReviews);
+    // if (productReviews.length) {
+    //   this.change();
+    // }
 
     return (
       <div id="reviews">

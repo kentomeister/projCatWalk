@@ -86,14 +86,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
         console.log(err);
       }
     });
-})
-
-  api.getProductQA(body.product_id)
-    .then(() => api.submitQuestion(body)
-      .then((results) => res.send(results.data).end())
-      .catch((err) => res.status(500).send(err)));
 });
-
 
 app.post('/productOverview/cart', (req, res) => {
   const { sku } = req.body;
