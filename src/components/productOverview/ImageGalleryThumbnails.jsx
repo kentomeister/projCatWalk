@@ -7,12 +7,14 @@ import ImageThumbnail from './ImageThumbnail.jsx';
 const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclick }) => {
   const [startPointer, setStartPointer] = useState(0);
   const imagesToDisplay = images.slice(startPointer, startPointer + 4);
-  const handleArrowDownClick = () => {
+  const handleArrowDownClick = (e) => {
+    e.stopPropagation();
     if (startPointer < images.length - 4) {
       setStartPointer((prevStartPointer) => prevStartPointer + 1);
     }
   };
-  const handleArrowUpClick = () => {
+  const handleArrowUpClick = (e) => {
+    e.stopPropagation();
     if (startPointer > 0) {
       setStartPointer((prevStartPointer) => prevStartPointer - 1);
     }
@@ -22,7 +24,6 @@ const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclic
   const showDownArrow = startPointer < images.length - 4;
   return (
     <div className="image-gallery-thumbnail-container">
-
       {
         showUpArrow
         && (

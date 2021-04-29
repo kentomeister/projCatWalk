@@ -8,8 +8,13 @@ const Alert = ({ message, type }) => (
 );
 
 Alert.propTypes = {
-  message: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  message: PropTypes.string,
+  type: PropTypes.string,
+};
+
+Alert.defaultProps = {
+  message: '',
+  type: '',
 };
 
 export default Alert;
