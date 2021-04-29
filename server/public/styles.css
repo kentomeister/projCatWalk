@@ -630,6 +630,11 @@ background-color: floralwhite;
 	margin-left: 10px;
 	margin-top: 80px;
 }
+.image-gallery-arrow-icon {
+	width: 100px;
+	height: 78px;
+	padding-left: 10px;
+}
 .image-thumbnail {
 	width: 100px;
 	height: 100px;
@@ -655,6 +660,17 @@ background-color: floralwhite;
 	left: 94%;
 	/* border: 1px solid black; */
 }
+.portal-image {
+	margin: auto;
+	height: 100%;
+	width: 100%;
+}
+.portal-image > img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
 select {
 	display: inline;
 	width: 100%;
@@ -948,3 +964,4 @@ th, td {
 .bold {
 	font-weight: bold;
 }
+

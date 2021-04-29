@@ -23,7 +23,7 @@ const OVERLAY_STYLES = {
 };
 
 const MODAL_CLOSE_ICON_STYLE = {
-  position: 'relative',
+  position: 'fixed',
   top: '60px',
   left: '94%',
 };
@@ -42,7 +42,9 @@ const ImagePortal = ({ open, children, onClose }) => {
             style={MODAL_CLOSE_ICON_STYLE}
             onClick={onClose}
           />
-          {children}
+          <div className="portal-image">
+            {children}
+          </div>
         </div>
       </div>
     </>,

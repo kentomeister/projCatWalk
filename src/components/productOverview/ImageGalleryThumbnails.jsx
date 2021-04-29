@@ -24,17 +24,19 @@ const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclic
   const showDownArrow = startPointer < images.length - 4;
   return (
     <div className="image-gallery-thumbnail-container">
-      {
-        showUpArrow
-        && (
-          <AiOutlineArrowUp
-            size="75"
-            color="white"
-            cursor="pointer"
-            onClick={handleArrowUpClick}
-          />
-        )
-      }
+      <div className="image-gallery-arrow-icon">
+        {
+          showUpArrow
+          && (
+            <AiOutlineArrowUp
+              size="75"
+              color="white"
+              cursor="pointer"
+              onClick={handleArrowUpClick}
+            />
+          )
+        }
+      </div>
       {imagesToDisplay.map((image) => (
         <ImageThumbnail
           imageUrl={image.url}
@@ -43,17 +45,19 @@ const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclic
           handleImageThumbnailclick={handleImageThumbnailclick}
         />
       ))}
-      {
-        showDownArrow
-        && (
-          <AiOutlineArrowDown
-            size="75"
-            color="white"
-            cursor="pointer"
-            onClick={handleArrowDownClick}
-          />
-        )
-      }
+      <div className="image-gallery-arrow-icon">
+        {
+          showDownArrow
+          && (
+            <AiOutlineArrowDown
+              size="75"
+              color="white"
+              cursor="pointer"
+              onClick={handleArrowDownClick}
+            />
+          )
+        }
+      </div>
     </div>
   );
 };
