@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const MODAL_STYLES = {
   position: 'fixed',
   top: '50%',
@@ -22,8 +21,6 @@ const OVERLAY_STYLES = {
   zIndex: 3,
 };
 
-
-
 const Portal = ({ open, children, onClose }) => {
   if (!open) return null;
 
@@ -31,10 +28,7 @@ const Portal = ({ open, children, onClose }) => {
     <>
       <div style={OVERLAY_STYLES}>
         <div style={MODAL_STYLES}>
-
-          <div className="portal-image">
-            {children}
-          </div>
+          {children}
         </div>
       </div>
     </>,
