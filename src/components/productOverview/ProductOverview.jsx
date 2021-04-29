@@ -13,42 +13,13 @@ import ImageGallery from './ImageGallery.jsx';
 import AddToBag from './AddToBag.jsx';
 import ShareOnSocials from './ShareOnSocials.jsx';
 
-import { ClickTrackerContext } from '../shared/click-tracker/ClickTracker.jsx';
-
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: '',
-      avgRating: '0',
-      name: '',
-      category: '',
-      default_price: '',
-      description: '',
-      slogan: '',
-      styles: [],
-      selectedStyle: {},
-      isImageGalleryExpand: false,
-      loading: true,
-      pinterestImageUrl: '',
-    };
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
     this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
     this.handleAddToBagSubmit = this.handleAddToBagSubmit.bind(this);
     this.setPinterestImageUrl = this.setPinterestImageUrl.bind(this);
-  }
-
-  componentDidMount() {
-    const { setAlert, productId } = this.props;
-    axios.get(`/productOverview/${productId}`)
-      .then(({ data }) => this.setState(
-        {
-          ...data,
-          selectedStyle: data.styles[0],
-          loading: false,
-        },
-      ))
-      .catch(() => setAlert('There was an error loading from the API', 'danger'));
   }
 
   handleStyleSelectClick(selectedStyleId) {
@@ -91,23 +62,26 @@ class ProductOverview extends React.Component {
       loading,
       features,
       pinterestImageUrl,
-    } = this.state;
+    } = this.props.productInfo;
     return (
 
       <div>
         <div className="container-vert">
           <div className="container-horz">
-            <ImageGallery
-              images={selectedStyle.photos}
-              handleImageContainerExpandClick={this.handleImageContainerExpandClick}
-              setPinterestImageUrl={this.setPinterestImageUrl}
-            />
+            {selectedStyle.photos
+              && (
+                <ImageGallery
+                  images={selectedStyle.photos}
+                  handleImageContainerExpandClick={this.handleImageContainerExpandClick}
+                  setPinterestImageUrl={this.setPinterestImageUrl}
+                />
+              )}
             {
               !isImageGalleryExpand
               && (
                 <div className="container-vert infos">
                   <ProductInformation
-                    productData={this.state}
+                    productData={this.props.productInfo}
                     price={selectedStyle.original_price || default_price}
                     salePrice={selectedStyle.sale_price}
                   />

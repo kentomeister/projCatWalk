@@ -27,13 +27,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getCart()
-      .then(() => this.setState({ loading: false }));
+    Promise.all([
+      this.getCart(),
+      this.getProductData(),
+    ])
+      .then(() => this.setState({ loading: false }))
+      .catch(() => this.setAlert('There was an error loading from the API', 'danger'));
   }
 
   setAlert(message, type) {
     this.setState({
-      ...this.state,
       alert: {
         message,
         type,
@@ -42,7 +45,6 @@ class App extends React.Component {
 
     setTimeout(() => {
       this.setState({
-        ...this.state,
         alert: {},
       });
     }, 2000);
@@ -53,6 +55,17 @@ class App extends React.Component {
       .then(({ data: cartContents }) => this.setState({ cart: cartContents }))
       .then(() => this.calculateNumOfItemsInCart())
       .catch(() => this.setAlert('There was an error getting the cart', 'danger'));
+  }
+
+  getProductData() {
+    const { productId } = this.state;
+    return axios.get(`/productOverview/${productId}`)
+      .then(({ data }) => this.setState(
+        {
+          ...data,
+          selectedStyle: data.styles[0],
+        },
+      ));
   }
 
   calculateNumOfItemsInCart() {
@@ -67,6 +80,7 @@ class App extends React.Component {
       productId,
       loading,
       cartNumOfItems,
+      name,
     } = this.state;
 
     if (loading) {
@@ -90,6 +104,7 @@ class App extends React.Component {
             setAlert={this.setAlert}
             productId={productId}
             updateCart={this.getCart}
+            productInfo={this.state}
           />
         </ClickTracker>
         <ClickTracker>
@@ -99,11 +114,13 @@ class App extends React.Component {
           <ProductQuestionManager
             productId={productId}
             setAlert={this.setAlert}
+            productName={name}
           />
         </ClickTracker>
         <ClickTracker>
           <RatingsReviews
             productId={productId}
+            productName={name}
           />
         </ClickTracker>
         <div className="footer">
