@@ -79,6 +79,12 @@ table {
 	justify-content: flex-start;
 	flex-basis: 50%;
 }
+.star {
+	color: yellowgreen;
+}
+.dark {
+	color: black;
+}
 .review-username{
 	display: inline-flex;
 	flex-basis: 20%;
@@ -595,9 +601,9 @@ background-color: floralwhite;
 	margin-top: 5px;
 }
 .style-thumbnail:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	transition-timing-function: ease;
-	transition: 0.2s;
+	transition: 0.1s;
 }
 
 .style-gallery {
@@ -624,6 +630,17 @@ background-color: floralwhite;
 	margin-left: 10px;
 	margin-top: 80px;
 }
+.image-gallery-arrow-icon {
+	width: 100px;
+	height: 78px;
+	padding-left: 10px;
+
+}
+.image-gallery-arrow-icon:hover {
+	transform: scale(1.1);
+	transition-timing-function: ease;
+	transition: 0.1s;
+}
 .image-thumbnail {
 	width: 100px;
 	height: 100px;
@@ -632,6 +649,11 @@ background-color: floralwhite;
 	cursor: pointer;
 	margin: 10px 0;
 	box-sizing: border-box;
+}
+.image-thumbnail:hover {
+	transform: scale(1.1);
+	transition-timing-function: ease;
+	transition: 0.1s;
 }
 .image-gallery-left-arrow {
 	position: relative;
@@ -649,6 +671,17 @@ background-color: floralwhite;
 	left: 94%;
 	/* border: 1px solid black; */
 }
+.portal-image {
+	margin: auto;
+	height: 100%;
+	width: 100%;
+}
+.portal-image > img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
 select {
 	display: inline;
 	width: 100%;
@@ -918,9 +951,9 @@ th, td {
 	size: 1rem;
 }
 .share-on-socials > button:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	transition-timing-function: ease;
-	transition: 0.2s;
+	transition: 0.1s;
 }
 
  h3 {
@@ -941,4 +974,10 @@ th, td {
 }
 .bold {
 	font-weight: bold;
+}
+
+.bubble:hover {
+	transform: scale(1.15);
+	transition-timing-function: ease;
+	transition: 0.1s;
 }
