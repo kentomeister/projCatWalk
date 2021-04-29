@@ -57,7 +57,8 @@ class ProductOverview extends React.Component {
     this.setState({ selectedStyle });
   }
 
-  handleImageContainerExpandClick() {
+  handleImageContainerExpandClick(e) {
+    e.stopPropagation();
     this.setState({
       isImageGalleryExpand: !this.state.isImageGalleryExpand,
     });

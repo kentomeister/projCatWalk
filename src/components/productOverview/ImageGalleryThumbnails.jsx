@@ -7,12 +7,14 @@ import ImageThumbnail from './ImageThumbnail.jsx';
 const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclick }) => {
   const [startPointer, setStartPointer] = useState(0);
   const imagesToDisplay = images.slice(startPointer, startPointer + 4);
-  const handleArrowDownClick = () => {
+  const handleArrowDownClick = (e) => {
+    e.stopPropagation();
     if (startPointer < images.length - 4) {
       setStartPointer((prevStartPointer) => prevStartPointer + 1);
     }
   };
-  const handleArrowUpClick = () => {
+  const handleArrowUpClick = (e) => {
+    e.stopPropagation();
     if (startPointer > 0) {
       setStartPointer((prevStartPointer) => prevStartPointer - 1);
     }
@@ -22,18 +24,19 @@ const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclic
   const showDownArrow = startPointer < images.length - 4;
   return (
     <div className="image-gallery-thumbnail-container">
-
-      {
-        showUpArrow
-        && (
-          <AiOutlineArrowUp
-            size="75"
-            color="white"
-            cursor="pointer"
-            onClick={handleArrowUpClick}
-          />
-        )
-      }
+      <div className="image-gallery-arrow-icon">
+        {
+          showUpArrow
+          && (
+            <AiOutlineArrowUp
+              size="75"
+              color="white"
+              cursor="pointer"
+              onClick={handleArrowUpClick}
+            />
+          )
+        }
+      </div>
       {imagesToDisplay.map((image) => (
         <ImageThumbnail
           imageUrl={image.url}
@@ -42,17 +45,19 @@ const ImageGalleryThumbnails = ({ images, currentImage, handleImageThumbnailclic
           handleImageThumbnailclick={handleImageThumbnailclick}
         />
       ))}
-      {
-        showDownArrow
-        && (
-          <AiOutlineArrowDown
-            size="75"
-            color="white"
-            cursor="pointer"
-            onClick={handleArrowDownClick}
-          />
-        )
-      }
+      <div className="image-gallery-arrow-icon">
+        {
+          showDownArrow
+          && (
+            <AiOutlineArrowDown
+              size="75"
+              color="white"
+              cursor="pointer"
+              onClick={handleArrowDownClick}
+            />
+          )
+        }
+      </div>
     </div>
   );
 };

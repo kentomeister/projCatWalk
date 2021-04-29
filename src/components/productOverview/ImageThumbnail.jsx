@@ -5,7 +5,10 @@ const ImageThumbnail = ({ imageUrl, selected, handleImageThumbnailclick }) => (
     className={selected ? 'image-thumbnail selected' : 'image-thumbnail'}
     style={{ backgroundImage: `url(${imageUrl})` }}
     data-image-url={imageUrl}
-    onClick={(e) => handleImageThumbnailclick(e.target.getAttribute('data-image-url'))}
+    onClick={(e) => {
+      e.stopPropagation();
+      handleImageThumbnailclick(e.target.getAttribute('data-image-url'))
+    }}
   />
 );
 export default ImageThumbnail;
