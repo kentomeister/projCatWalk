@@ -16,6 +16,10 @@ import ShareOnSocials from './ShareOnSocials.jsx';
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isImageGalleryExpand: false,
+    };
+
     this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
     this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
     this.handleAddToBagSubmit = this.handleAddToBagSubmit.bind(this);
@@ -30,6 +34,7 @@ class ProductOverview extends React.Component {
 
   handleImageContainerExpandClick(e) {
     e.stopPropagation();
+    console.log('clicked');
     this.setState({
       isImageGalleryExpand: !this.state.isImageGalleryExpand,
     });
