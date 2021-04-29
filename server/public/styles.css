@@ -601,9 +601,9 @@ background-color: floralwhite;
 	margin-top: 5px;
 }
 .style-thumbnail:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	transition-timing-function: ease;
-	transition: 0.2s;
+	transition: 0.1s;
 }
 
 .style-gallery {
@@ -634,6 +634,12 @@ background-color: floralwhite;
 	width: 100px;
 	height: 78px;
 	padding-left: 10px;
+
+}
+.image-gallery-arrow-icon:hover {
+	transform: scale(1.1);
+	transition-timing-function: ease;
+	transition: 0.1s;
 }
 .image-thumbnail {
 	width: 100px;
@@ -643,6 +649,11 @@ background-color: floralwhite;
 	cursor: pointer;
 	margin: 10px 0;
 	box-sizing: border-box;
+}
+.image-thumbnail:hover {
+	transform: scale(1.1);
+	transition-timing-function: ease;
+	transition: 0.1s;
 }
 .image-gallery-left-arrow {
 	position: relative;
@@ -940,9 +951,9 @@ th, td {
 	size: 1rem;
 }
 .share-on-socials > button:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	transition-timing-function: ease;
-	transition: 0.2s;
+	transition: 0.1s;
 }
 
  h3 {
@@ -965,3 +976,8 @@ th, td {
 	font-weight: bold;
 }
 
+.bubble:hover {
+	transform: scale(1.15);
+	transition-timing-function: ease;
+	transition: 0.1s;
+}

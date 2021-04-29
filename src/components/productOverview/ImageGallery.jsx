@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineClose } from 'react-icons/ai';
 import { IoIosExpand } from 'react-icons/io';
 import ImageGalleryThumbnails from './ImageGalleryThumbnails.jsx';
-import ImagePortal from './ImagePortal.jsx';
+import Portal from './Portal.jsx';
 
 const ImageGallery = ({
   images,
@@ -11,6 +11,11 @@ const ImageGallery = ({
   setPinterestImageUrl
 }) => {
   if (images === undefined) return '';
+  const MODAL_CLOSE_ICON_STYLE = {
+    position: 'fixed',
+    top: '60px',
+    left: '94%',
+  };
   const [imageIndex, setImageIndex] = useState(0);
   const [currentImageUrl, setCurrentImageUrl] = useState(images[imageIndex].url);
   const [isImagePortalOpen, setIsImagePortalOpen] = useState(false);
@@ -48,7 +53,7 @@ const ImageGallery = ({
           size="35"
           color="white"
           cursor="pointer"
-          className="image-gallery-expand"
+          className="image-gallery-expand bubble"
           onClick={handleImageContainerExpandClick}
         />
         {
@@ -57,7 +62,7 @@ const ImageGallery = ({
               <AiOutlineArrowLeft
                 color="white"
                 size="40"
-                className="image-gallery-left-arrow"
+                className="image-gallery-left-arrow bubble"
                 cursor="pointer"
                 onClick={handleLeftArrowClick}
               />
@@ -74,19 +79,28 @@ const ImageGallery = ({
               <AiOutlineArrowRight
                 color="white"
                 size="40"
-                className="image-gallery-right-arrow"
+                className="image-gallery-right-arrow bubble"
                 cursor="pointer"
                 onClick={handleRightArrowClick}
               />
             ) : null
         }
       </div>
-      <ImagePortal
+      <Portal
         open={isImagePortalOpen}
-        onClose={() => setIsImagePortalOpen(false)}
       >
-        <img src={currentImageUrl} alt="Enlarged Main Product" />
-      </ImagePortal>
+        <AiOutlineClose
+          size="50"
+          color="white"
+          cursor="pointer"
+          style={MODAL_CLOSE_ICON_STYLE}
+          onClick={() => setIsImagePortalOpen(false)}
+          className="bubble"
+        />
+        <div className="portal-image">
+          <img src={currentImageUrl} alt="Enlarged Main Product" />
+        </div>
+      </Portal>
     </>
   );
 };

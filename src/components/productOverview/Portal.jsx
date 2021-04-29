@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AiOutlineClose } from 'react-icons/ai';
+
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -22,26 +22,16 @@ const OVERLAY_STYLES = {
   zIndex: 3,
 };
 
-const MODAL_CLOSE_ICON_STYLE = {
-  position: 'fixed',
-  top: '60px',
-  left: '94%',
-};
 
-const ImagePortal = ({ open, children, onClose }) => {
+
+const Portal = ({ open, children, onClose }) => {
   if (!open) return null;
 
   return ReactDOM.createPortal(
     <>
       <div style={OVERLAY_STYLES}>
         <div style={MODAL_STYLES}>
-          <AiOutlineClose
-            size="50"
-            color="white"
-            cursor="pointer"
-            style={MODAL_CLOSE_ICON_STYLE}
-            onClick={onClose}
-          />
+
           <div className="portal-image">
             {children}
           </div>
@@ -52,4 +42,4 @@ const ImagePortal = ({ open, children, onClose }) => {
   );
 };
 
-export default ImagePortal;
+export default Portal;
