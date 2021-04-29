@@ -4,7 +4,6 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import ProductInformation from './ProductInformation.jsx';
 import ProductDetails from './ProductDetails.jsx';
@@ -20,23 +19,15 @@ class ProductOverview extends React.Component {
       isImageGalleryExpand: false,
     };
 
-    this.handleStyleSelectClick = this.handleStyleSelectClick.bind(this);
     this.handleImageContainerExpandClick = this.handleImageContainerExpandClick.bind(this);
     this.handleAddToBagSubmit = this.handleAddToBagSubmit.bind(this);
-    this.setPinterestImageUrl = this.setPinterestImageUrl.bind(this);
-  }
-
-  handleStyleSelectClick(selectedStyleId) {
-    const { styles } = this.state;
-    const [selectedStyle] = _.filter(styles, { style_id: Number(selectedStyleId) });
-    this.setState({ selectedStyle });
   }
 
   handleImageContainerExpandClick(e) {
     e.stopPropagation();
-    console.log('clicked');
+    const { isImageGalleryExpand } = this.state;
     this.setState({
-      isImageGalleryExpand: !this.state.isImageGalleryExpand,
+      isImageGalleryExpand: !isImageGalleryExpand,
     });
   }
 
@@ -53,9 +44,6 @@ class ProductOverview extends React.Component {
       .catch(() => setAlert('There was an error adding items to your card', 'danger'));
   }
 
-  setPinterestImageUrl(url) {
-    this.setState({ pinterestImageUrl: url });
-  }
 
   render() {
     const {
@@ -64,11 +52,14 @@ class ProductOverview extends React.Component {
       styles,
       selectedStyle,
       default_price,
-      isImageGalleryExpand,
       loading,
       features,
       pinterestImageUrl,
     } = this.props.productInfo;
+
+    const { handleStyleSelectClick, setPinterestImageUrl } = this.props;
+
+    const { isImageGalleryExpand } = this.state;
     return (
 
       <div>
@@ -79,7 +70,7 @@ class ProductOverview extends React.Component {
                 <ImageGallery
                   images={selectedStyle.photos}
                   handleImageContainerExpandClick={this.handleImageContainerExpandClick}
-                  setPinterestImageUrl={this.setPinterestImageUrl}
+                  setPinterestImageUrl={setPinterestImageUrl}
                 />
               )}
             {
@@ -97,7 +88,7 @@ class ProductOverview extends React.Component {
                   <StyleSelect
                     styles={styles}
                     selectedStyle={selectedStyle}
-                    handleStyleSelectClick={this.handleStyleSelectClick}
+                    handleStyleSelectClick={handleStyleSelectClick}
                   />
                   {
                     !loading
