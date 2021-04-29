@@ -117,7 +117,6 @@ class ProductOverview extends React.Component {
 
 ProductOverview.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  productId: PropTypes.string.isRequired,
   updateCart: PropTypes.func.isRequired,
 };
 

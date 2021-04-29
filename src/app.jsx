@@ -115,7 +115,6 @@ class App extends React.Component {
         <ClickTracker>
           <ProductOverview
             setAlert={this.setAlert}
-            productId={productId}
             updateCart={this.getCart}
             productInfo={this.state}
             handleStyleSelectClick={this.handleStyleSelectClick}
