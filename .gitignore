@@ -3,4 +3,5 @@
 node_modules
 server/public/bundle.js
 __test__/coverage/
+Raju-key-pair
 coverage/

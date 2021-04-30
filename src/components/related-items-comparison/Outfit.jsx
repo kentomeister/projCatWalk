@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 import StarRating from '../shared/StarRating.jsx';
 
 
