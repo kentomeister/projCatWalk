@@ -1,5 +1,5 @@
 import React from 'react';
-import starRating from '../shared/starRating.jsx';
+import StarRating from '../shared/StarRating.jsx';
 
 function Average(props) {
   const { average } = props;

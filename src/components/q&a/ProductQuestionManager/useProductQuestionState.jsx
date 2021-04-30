@@ -1,32 +1,24 @@
-import { useEffect, useState } from 'react';
-// import { getQuestionsByProductId } from './sampleData.jsx';
-import regeneratorRuntime from "regenerator-runtime";
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
+// eslint-disable-next-line import/prefer-default-export
 export function useProductQuestionState(productId) {
   const [questionData, setQuestionData] = useState({ results: [] });
 
-  // useEffect(() => {
-  //   const handleQuestionsFetch = async () => {
-  //     const response = await getQuestionsByProductId(productId);
-  //     setQuestionData(response);
-  //   };
-    useEffect(() => {
-      const handleQuestionsFetch = async () => {
-        // const response = await getQuestionsByProductId(productId);
-        axios.get(`/qa/${productId}`)
-        .then((response) => setQuestionData(response.data));
-      };
+  const handleQuestionsFetch = useCallback(async () => {
+    const response = await axios.get(`/qa/${productId}`)
+    .then((results) => setQuestionData(results.data));
+  }, [setQuestionData, productId]);
 
+  useEffect(() => {
     handleQuestionsFetch();
-  }, [productId]);
+  }, [handleQuestionsFetch]);
 
   return {
     ...questionData,
+    handleQuestionsFetch,
     results: [...questionData.results].sort(
       (a, b) => b.question_helpfulness - a.question_helpfulness,
     ),
   };
 }
-
-

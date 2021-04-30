@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import RelatedProductCard from './RelatedProductCard.jsx';
 import ProductInformation from './ProductInformation.jsx';
-import { data } from './exampleData.jsx';
+
 
 class RelatedItem extends React.Component {
   constructor() {
@@ -10,47 +10,62 @@ class RelatedItem extends React.Component {
     this.state = {
       showFullInformation: false,
       relatedProducts: [],
-      relatedProductIds: [],
       productInformation: [],
 
     };
 
     this.changeView = this.changeView.bind(this);
     this.getData = this.getData.bind(this);
+    this.makeArrayOfFourProducts = this.makeArrayOfFourProducts.bind(this);
   }
 
+  makeArrayOfFourProducts(products) {
+    let arrayOfProducts = [];
+    let arrayOffourProducts = [];
+    products.forEach(product => {
+      arrayOffourProducts.push(product);
+      if (arrayOffourProducts.length === 4) {
+        arrayOfProducts.push(arrayOffourProducts);
+        arrayOffourProducts = [];
+      }
+    });
+
+    this.setState({
+      relatedProducts: arrayOfProducts
+    });
+  }
 
   getData() {
-    const arrayOfProducts = [];
-    axios.get('/relatedProductId/19097')
-      .then(res => {
-        this.setState({
-          relatedProductId: res.data
-        });
-      }).then(() => {
-        const productIds = this.state.relatedProductId;
-        productIds.map(productId => {
-          axios.get(`/productOverview/${productId}`)
-            .then(resData => {
-              if (arrayOfProducts.length === 4) {
-                this.state.relatedProducts.push(arrayOfProducts);
-                arrayOfProducts.splice(0, 4);
-              } else {
-                arrayOfProducts.push(resData.data);
-              }
+    let relateditemIds = [
+      19089,
+      19098,
+      19091,
+      19092,
+      19094,
+      19095,
+      19093,
+      19096,
+      19097,
+      19098,
+      19094,
+      19091
+    ];
 
-            });
+    Promise.all(relateditemIds.map(productId => {
+      return axios.get(`/productOverview/${productId}`)
+        .then(product => {
+          return product.data;
         });
-        return arrayOfProducts;
-      })
+    })).then((products) => {
+      this.makeArrayOfFourProducts(products);
+    })
       .catch(err => {
         console.log(err);
       });
   }
 
   changeView(bool, option) {
-
-    data.forEach(products => {
+    this.state.relatedProducts.forEach(products => {
       products.forEach(product => {
         if (option === product.id) {
           this.setState({
@@ -70,18 +85,24 @@ class RelatedItem extends React.Component {
   }
 
   render() {
+    if (this.state.relatedProducts.length === 0) {
+      return null;
+    } else {
 
-    return (
-      <div>
-        {this.state.showFullInformation ? <ProductInformation
-          product={this.state.productInformation} />
-          : <RelatedProductCard
-            products={data}
+      return (
+        <div className="main" data-testid="relateditem">
+          {this.state.showFullInformation ? <ProductInformation
+            product={this.state.productInformation}
             changeView={this.changeView}
-          />}
+          />
+            : <RelatedProductCard
+              products={this.state.relatedProducts}
+              changeView={this.changeView}
+            />}
 
-      </div>
-    );
+        </div>
+      );
+    }
 
   }
 

@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import moment from 'moment';
-import starRating from '../shared/starRating.jsx';
+import StarRating from '../shared/StarRating.jsx';
 
 function Topbar(props) {
   const { stars, name, date } = props;

@@ -57,27 +57,30 @@ const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
           handleSelect={() => setIsQuantitySelected(true)}
         />
         <br />
-        <button
-          className="btn"
-          type="submit"
-          disabled={!isQuantitySelected}
-        >
-          Add To Bag
-          <FaPlus />
-        </button>
-        <button
-          className="btn"
-          type="button"
-        >
-          <AiOutlineStar />
-        </button>
+        <div className="container-horz">
+          <button
+            id="add-to-bag-btn"
+            className="btn"
+            type="submit"
+            disabled={!isQuantitySelected}
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            Add To Bag
+            <FaPlus />
+          </button>
+          {/* <button
+            className="btn"
+            type="button"
+          >
+            <AiOutlineStar />
+          </button> */}
+        </div>
       </form>
     </div>
   );
 };
 
 AddToBag.propTypes = {
-  skus: PropTypes.object.isRequired,
   selectedStyle: PropTypes.object.isRequired,
   handleAddToBagSubmit: PropTypes.func.isRequired,
 };
