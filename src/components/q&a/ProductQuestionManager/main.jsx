@@ -21,15 +21,9 @@ export function searchQuestions(questions = [], pattern = '') {
   return fuse.search(pattern);
 }
 
-<<<<<<< Updated upstream
 export default function ProductQuestionManager({ productId, productName }) {
   const questionsData = useProductQuestionState(productId);
   const questionResults = questionsData?.results;
-=======
-export default function ProductQuestionManager({ productId }) {
-  const productQuestionState = useProductQuestionState(productId);
-  const questionResults = productQuestionState?.results;
->>>>>>> Stashed changes
   const [results, setResults] = useState(null);
 
   const onSearchChange = useCallback(
@@ -42,7 +36,6 @@ export default function ProductQuestionManager({ productId }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-<<<<<<< Updated upstream
     <div className="q-a-div">
       <h1 className="q-a-header">Questions &amp; Answers</h1>
       <QuestionSearch onChange={onSearchChange} />
@@ -61,26 +54,6 @@ export default function ProductQuestionManager({ productId }) {
         productName={productName}
       />
     </div>
-=======
-    <ProductQuestionContext.Provider value={productQuestionState}>
-      <div className="q-a-div">
-        <h1 className="q-a-header">Questions &amp; Answers</h1>
-        <QuestionSearch onChange={onSearchChange} />
-        <QuestionList
-          productId={productId}
-          questions={
-          results?.length > 0 ? results.map((r) => r.item) : questionResults
-        }
-        />
-        <span className="two-buttons" onClick={() => setIsOpen(true)}>Add a Question +</span>
-        <Modal
-          productId={productId}
-          open={isOpen}
-          onClose={() => setIsOpen(false)}
-        />
-      </div>
-    </ProductQuestionContext.Provider>
->>>>>>> Stashed changes
   );
 }
 ProductQuestionManager.propTypes = {
