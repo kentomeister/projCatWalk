@@ -1,10 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {
+  useState, useCallback, useEffect, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
 import QuestionSearch from './QuestionsSearch.jsx';
 import QuestionList from './QuestionList.jsx';
 import { useProductQuestionState } from './useProductQuestionState.jsx';
 import Modal from '../Modals/modal.jsx';
+import { ProductQuestionContext } from './ProductQuestionContext.jsx';
 
 export function searchQuestions(questions = [], pattern = '') {
   const options = {
@@ -54,7 +57,7 @@ export default function ProductQuestionManager({ productId, productName }) {
   );
 }
 ProductQuestionManager.propTypes = {
-  productId: PropTypes.number,
+  productId: PropTypes.string,
 };
 ProductQuestionManager.defaultProps = {
   productId: '',

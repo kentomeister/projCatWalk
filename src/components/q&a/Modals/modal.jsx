@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import ReactDom from 'react-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useProductQuestionState } from '../ProductQuestionManager/useProductQuestionState.jsx';
+import { ProductQuestionContext } from '../ProductQuestionManager/ProductQuestionContext.jsx';
 
 export default function Modal({
   open, children, onClose, productId, productName,
@@ -10,6 +11,8 @@ export default function Modal({
   if (!open) return null;
 
   const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const productQuestionState = useContext(ProductQuestionContext);
 
   const onSubmit = (data) => {
     onClose();
@@ -20,11 +23,13 @@ export default function Modal({
       product_id: parseInt(productId, 10),
     };
     axios.post(`/qa/${productId}`, qObj)
-      .then((data) => console.log(data.data))
-      .catch((err) => {
-        if (err) {
-          throw err;
+      .then((response) => {
+        if (response.data === 'Created') {
+          productQuestionState.handleQuestionsFetch();
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -64,14 +69,14 @@ export default function Modal({
               message: 'error message',
             })}
           />
-
+          <div>
           {errors.body && errors.body.type === 'required' && (
           <span className="error" role="alert">You must enter a question</span>
           )}
           {errors.body && errors.body.type === 'maxLength' && (
           <span className="error" role="alert">Max length exceeded</span>
           )}
-
+          </div>
           <label
             className="form-label"
             type="text"
@@ -90,13 +95,14 @@ export default function Modal({
               message: 'error message',
             })}
           />
-
+        <div>
           {errors.name && errors.name.type === 'required' && (
           <span className="error" role="alert">You must enter a name</span>
           )}
           {errors.name && errors.name.type === 'maxLength' && (
           <span className="error" role="alert">Max length exceeded</span>
           )}
+        </div>
 
           <div
             className="privacy"
@@ -125,7 +131,7 @@ export default function Modal({
               },
             })}
           />
-
+        <div>
           {errors.email && errors.email.type === 'required' && (
           <span className="error" role="alert">You must enter an email address</span>
           )}
@@ -135,7 +141,7 @@ export default function Modal({
           {errors.email && errors.email.type === 'pattern' && (
           <span className="error" role="alert">This is not a valid email</span>
           )}
-
+        </div>
           <div
             className="privacy"
           >
