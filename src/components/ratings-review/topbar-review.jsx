@@ -6,8 +6,8 @@ import StarRating from '../shared/StarRating.jsx';
 function Topbar(props) {
   const { stars, name, date } = props;
   const formattedDate = moment(date).format('LL');
-  const starsRating = StarRating({
-    rating: stars.toString(), size: '15', isClickable: false, handleRatingClick: () => 'starrating',
+  const starsRating = starRating({
+    rating: stars.toString(), size: '18', isClickable: false, handleRatingClick: () => 'starrating',
   });
   return (
     <div className="topbar-cont">

@@ -11,9 +11,11 @@ class WriteReview extends React.Component {
     return (
       <div className="write-review-background">
         <div className="write-review-form">
-          <div onClick={this.props.closeModal} className="btn-close-x">x</div>
-          <div className="input-field-cont">
-            {this.props.children}
+          <div className="form-content-cont">
+            <div onClick={this.props.closeModal} className="btn-close-x">x</div>
+            <div className="input-field-cont">
+              {this.props.children}
+            </div>
           </div>
         </div>
       </div>

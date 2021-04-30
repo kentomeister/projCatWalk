@@ -87,13 +87,6 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     });
 });
 
-
-//   api.getProductQA(body.product_id)
-//     .then(() => api.submitQuestion(body)
-//       .then((results) => res.send(results.data).end())
-//       .catch((err) => res.status(500).send(err)));
-// });
-
 app.post('/productOverview/cart', (req, res) => {
   const { sku } = req.body;
   api.addToCart(sku)
@@ -119,6 +112,28 @@ app.get('/reviews/:productId', (req, res) => {
     .then((results) => res.send(results.data).end())
     .catch((err) => res.status(500).send(err));
 });
+
+
+app.get('/reviews/meta/:productId', (req, res) => {
+  const { productId } = req.params;
+  api.getProductReviewMeta(productId)
+    .then((results) => res.send(results.data).end())
+    .catch((err) => res.status(500).send(err));
+});
+
+app.post('/submitReviews', (req, res) => {
+  const { body } = req;
+  api.submitReview(body)
+    .then(() => res.send(201).end())
+    .catch((err) => res.status(500).send(err));
+});
+
+app.put('/updateHelpfulCounter/:reviewId', (req, res) => {
+  console.log('params: ', req.params);
+  const { reviewId } = req.params;
+  console.log('params: ', reviewId);
+  api.IncrementHelpfulCounter(reviewId)
+    .then(() => res.send(204).end())
 
 app.get('/cart', (req, res) => {
   api.getCart()

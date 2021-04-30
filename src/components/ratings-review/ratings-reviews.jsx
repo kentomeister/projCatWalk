@@ -9,60 +9,85 @@ class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewsBackup: [],
       productReviews: [],
-      selectedSort: null,
-      isSortedByRating: false,
+      displayReviews: [],
+      clickedRatings: [],
+      productReviewsMeta: {},
+      productRatingsMeta: {},
     };
-    this.handleClickClear = this.handleClickClear.bind(this);
     this.handleSortSelection = this.handleSortSelection.bind(this);
+    this.handleRatingSort = this.handleRatingSort.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
     this.sortByHelpfulness = this.sortByHelpfulness.bind(this);
     this.sortByRelevance = this.sortByRelevance.bind(this);
-    this.change = this.change.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
   }
 
   componentDidMount() {
     const { productId } = this.props;
-    axios.get(`/reviews/${productId}`)
-      .then((res) => this.setState(
-        {
-          productReviews: res.data.results,
-          reviewsBackup: res.data.results,
-        },
-      ))
-      .catch((err) => console.log('err: ', err));
+    Promise.all([
+      axios.get(`/reviews/${productId}`),
+      axios.get(`/reviews/meta/${productId}`),
+    ]).then(([res1, res2]) => {
+      this.setState({
+        productReviews: res1.data.results,
+        displayReviews: res1.data.results,
+        productReviewsMeta: res2.data,
+        productRatingsMeta: res2.data.ratings,
+      });
+    });
   }
-
-  // handleClickSortRating(e) {
-  //   let rating = e.target.value;
-  //   let clickedRatings = this.reviewRating.current.focus();
-  //   this.setState({
-  //     productReviews: _.filter(productReviews, (rating) => (rating === clickedRatings.length)),
-  //     isSortedByRating: true,
-  //   });
-  //   // gets rating from 'ratings-breakdown' - value={5}
-  //   // update the state of productReviews:
-  //     // this.setState({ productReviews: _.filter(productReviews, (rating (5)), sortedByRating: true )}
-  // }
 
   // // if (this.state.isSortedByRating) { render the clicked filter options (5 stars, 3 stars) and 'clear' button }
 
-  handleClickClear() {
-    const { reviewsBackup } = this.state;
-    this.setState({ productReviews: reviewsBackup });
+  handleRatingSort(rating) {
+    this.sortByRating(rating);
   }
 
   handleSortSelection(e) {
-    this.setState({ selectedSort: e.target.value });
+    this.changeFilter(e.target.value);
+  }
+
+  sortByRating(rating) {
+    let { clickedRatings } = this.state;
+    const { productReviews } = this.state;
+    let clickedRatingsArray = clickedRatings;
+
+    if (!clickedRatings.includes(rating)) {
+      clickedRatingsArray.push(rating);
+      this.setState({
+        clickedRatings: clickedRatingsArray,
+      }, () => {
+        let { clickedRatings } = this.state;
+        console.log('day 2:', clickedRatings);
+        let filtered = [];
+        clickedRatings.forEach(function(rating) {
+          productReviews.forEach(function(review) {
+            if (review.rating === rating) {
+              filtered.push(review)
+            }
+          })
+        }),
+        console.log('filtered:', filtered);
+        this.setState({
+          displayReviews: filtered,
+        });
+        console.log('displayReviews: ', this.state.displayReviews);
+      });
+
+      // should I use a for loop with _.filter instead?
+      // maybe that way return the filtered arrays
+      // and concat them together?
+    }
+    // else - we remove (toggle off) that rating as a filter
   }
 
   sortByDate(a, b) {
     let sort = 0;
     if (a.date > b.date) {
-      sort = 1;
-    } else if (a.date < b.date) {
       sort = -1;
+    } else if (a.date < b.date) {
+      sort = 1;
     }
     return sort;
   }
@@ -87,10 +112,8 @@ class RatingsReviews extends React.Component {
     return sort;
   }
 
-  change() {
+  changeFilter(selectedSort) {
     const { productReviews } = this.state;
-    const { selectedSort } = this.state;
-    console.log(productReviews);
 
     if (selectedSort === 'Newest') {
       this.setState({
@@ -109,14 +132,27 @@ class RatingsReviews extends React.Component {
 
   render() {
     const { productReviews } = this.state;
-
+    const { displayReviews } = this.state;
+    const { productReviewsMeta } = this.state;
+    const { productRatingsMeta } = this.state;
+    const { productId } = this.props;
     return (
       <div id="reviews">
         <div className="ratings-reviews">
           <div className="widget-title">RATINGS & REVIEWS</div>
           <div className="ratings-reviews-cont">
-            <RatingsSummary reviews={productReviews} />
-            <ReviewList reviews={productReviews} sortSelect={this.handleSortSelection} />
+            <RatingsSummary
+              reviews={productReviews}
+              reviewsMeta={productRatingsMeta}
+              productRatings={productReviewsMeta}
+              sortRatings={this.handleRatingSort}
+            />
+            <ReviewList
+              reviews={displayReviews}
+              reviewsMeta={productReviewsMeta}
+              productId={productId}
+              sortSelect={this.handleSortSelection}
+            />
           </div>
         </div>
       </div>

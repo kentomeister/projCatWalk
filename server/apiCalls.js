@@ -100,6 +100,31 @@ const getRelatedProductId = (id) => axios.get(`/products/${id}/related`,
     headers: { Authorization: process.env.GITHUB_TOKEN },
   });
 
+
+const submitReview = (body) => axios({
+  url: '/reviews',
+  method: 'post',
+  baseURL: process.env.API_URL,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+  data: {
+    product_id: Number(body.product_id),
+    rating: Number(body.rating),
+    summary: body.summary,
+    recommend: body.recommend,
+    name: body.name,
+    email: body.email,
+    photos: body.photos,
+    characteristics: body.characteristics,
+  },
+});
+
+const IncrementHelpfulCounter = (reviewId) => axios({
+  method: 'put',
+  url: `/reviews/${reviewId}/helpful`,
+  baseURL: process.env.API_URL,
+  headers: { Authorization: process.env.GITHUB_TOKEN },
+});
+
 const trackClick = (payload) => axios({
   method: 'post',
   baseURL: process.env.API_URL,
@@ -124,4 +149,6 @@ module.exports.getProductReviewMeta = getProductReviewMeta;
 module.exports.getProductReviews = getProductReviews;
 module.exports.getCart = getCart;
 module.exports.addToCart = addToCart;
+module.exports.submitReview = submitReview;
+module.exports.IncrementHelpfulCounter = IncrementHelpfulCounter;
 module.exports.trackClick = trackClick;
