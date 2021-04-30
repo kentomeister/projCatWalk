@@ -1,6 +1,7 @@
 import React from 'react';
 import Average from './rating-average.jsx';
 import RatingsBreakdown from './ratings-breakdown.jsx';
+import ProductBreakdown from './product-breakdown.jsx';
 
 const { calcAvgRating } = require('../../../server/productOverviewHelpers.js');
 
@@ -8,20 +9,12 @@ class RatingsSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.parseRatings = this.parseRatings.bind(this);
-  }
-
-  parseRatings(reviewObj) {
-    let reviews = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
-    reviewObj.forEach((singleReview) => (
-      reviews[singleReview.rating]++
-    ))
-    return reviews;
   }
 
   render() {
-    const reviewObj = this.parseRatings(this.props.reviews);
-    const rating = calcAvgRating(reviewObj);
+    const { sortRatings } = this.props;
+    const { reviewsMeta } = this.props;
+    const rating = calcAvgRating(reviewsMeta);
     return (
       <div className="ratings-breakdown-col">
         <div className="ratings-avg">
@@ -30,9 +23,11 @@ class RatingsSummary extends React.Component {
             : <div>{}</div>}
         </div>
         <div className="ratings-breakdown">
-          <RatingsBreakdown reviewObj={reviewObj} />
+          <RatingsBreakdown reviewObj={reviewsMeta} sortRatings={sortRatings} />
         </div>
-        <div className="product-breakdown">product breakdown</div>
+        <div className="product-breakdown">
+          <ProductBreakdown />
+        </div>
       </div>
     );
   }
