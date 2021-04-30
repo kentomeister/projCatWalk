@@ -14,6 +14,7 @@ class RatingsSummary extends React.Component {
   render() {
     const { sortRatings } = this.props;
     const { reviewsMeta } = this.props;
+    const { productRatings } = this.props;
     const rating = calcAvgRating(reviewsMeta);
     return (
       <div className="ratings-breakdown-col">
@@ -26,7 +27,7 @@ class RatingsSummary extends React.Component {
           <RatingsBreakdown reviewObj={reviewsMeta} sortRatings={sortRatings} />
         </div>
         <div className="product-breakdown">
-          <ProductBreakdown />
+          <ProductBreakdown productRatings={productRatings} />
         </div>
       </div>
     );
