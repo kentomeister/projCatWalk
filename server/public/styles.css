@@ -79,6 +79,12 @@ table {
 	justify-content: flex-start;
 	flex-basis: 50%;
 }
+.star {
+	color: yellowgreen;
+}
+.dark {
+	color: black;
+}
 .review-username{
 	display: inline-flex;
 	flex-basis: 20%;
@@ -238,7 +244,9 @@ table {
 .q-a-header{
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 padding-bottom: 5px;
+font-size: 20px;
 }
+
 .q-a-div{
   border-style: solid;
   border-width: 2px;
@@ -328,6 +336,13 @@ padding-bottom: 20px;
 .helpful-count:hover{
   text-decoration: underline;
 }
+.clicked{
+	font-size: 10px;
+  color: rgb(96,96,96);
+  margin-left: auto;
+  flex: 1;
+  padding-right: 5px;
+}
 .report{
   font-size: 10px;
   color: rgb(96,96,96);
@@ -349,22 +364,40 @@ padding-bottom: 20px;
   font-weight: bold;
 }
 .answer-user-line{
-  display:flex;
-  padding-bottom: 20px;
-  padding-left: 23px;
+	display:flex;
+	padding-top: 10px;
+  margin-bottom: 20px;
+	padding-left: 23px;
+	align-items: flex-end;
 }
 .answer-user{
   font-size: 13px;
   color: rgb(96,96,96);
-  padding-right: 15px;
+  padding-right: 5px;
+}
+.answer-user-by{
+	font-size: 13px;
+	color: rgb(96,96,96);
+	padding-right:5px;
+}
+.answer-user-seller{
+	font-size: 13px;
+  color: rgb(96,96,96);
+	padding-right: 5px;
+	font-weight: bold;
 }
 .answer-helpful{
   font-size: 10px;
   color: rgb(96,96,96);
-  cursor: pointer;
+	cursor: pointer;
+
 }
 .answer-helpful:hover{
   text-decoration: underline;
+}
+.a-h-clicked{
+	font-size: 10px;
+  color: rgb(96,96,96);
 }
 .load-more{
   margin-left: 10px;
@@ -378,14 +411,16 @@ padding-bottom: 20px;
 }
 .answer-body{
   padding-bottom: 10px;
-  color: rgb(96,96,96);
+	color: rgb(96,96,96);
+	margin-top:10px;
 }
 
 .two-buttons{
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    display: flex;
    flex-direction: row;
-   font-weight: 100;
+	 font-weight: 100;
+	 justify-content: center;
    padding: .35em 1.2em;
    border:0.1em solid lightgrey;
    margin:0 0.3em 0.3em 0;
@@ -595,9 +630,9 @@ background-color: floralwhite;
 	margin-top: 5px;
 }
 .style-thumbnail:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	transition-timing-function: ease;
-	transition: 0.2s;
+	transition: 0.1s;
 }
 
 .style-gallery {
@@ -624,6 +659,17 @@ background-color: floralwhite;
 	margin-left: 10px;
 	margin-top: 80px;
 }
+.image-gallery-arrow-icon {
+	width: 100px;
+	height: 78px;
+	padding-left: 10px;
+
+}
+.image-gallery-arrow-icon:hover {
+	transform: scale(1.1);
+	transition-timing-function: ease;
+	transition: 0.1s;
+}
 .image-thumbnail {
 	width: 100px;
 	height: 100px;
@@ -632,6 +678,11 @@ background-color: floralwhite;
 	cursor: pointer;
 	margin: 10px 0;
 	box-sizing: border-box;
+}
+.image-thumbnail:hover {
+	transform: scale(1.1);
+	transition-timing-function: ease;
+	transition: 0.1s;
 }
 .image-gallery-left-arrow {
 	position: relative;
@@ -649,6 +700,17 @@ background-color: floralwhite;
 	left: 94%;
 	/* border: 1px solid black; */
 }
+.portal-image {
+	margin: auto;
+	height: 100%;
+	width: 100%;
+}
+.portal-image > img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
 select {
 	display: inline;
 	width: 100%;
@@ -804,14 +866,30 @@ th, td {
   font-size: 12px;
 }
 .form-headings{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: black;
+	font-size: 15px;
+	text-align: center;
+	margin: 20px;
+	display: block;
+
+	text-align: center;
+	margin: 20px;
+}
+.form-headings-question{
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: black;
   font-size: 15px;
-  padding: 10px;
+	padding: 10px;
+	font-weight: bold;
 }
 .form-headings-all{
   padding: 15px;
 }
+.addQuestionForm {
+	margin-top:15px;
+}
+
 .addQInputs{
   display: block;
   padding: 10px;
@@ -849,10 +927,14 @@ th, td {
   z-index: 1000;
 }
 .thumbnail {
+	padding-top: 10px;
+	padding-left: 25px;
+	padding-bottom: 5px;
   width: 105px;
   height: 75px;
-  display: inline-block; /* makes it fit in like an <img> */
+	display:inline-block;/* makes it fit in like an <img> */
 }
+
 .privacy{
   font-size: 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -886,7 +968,7 @@ th, td {
 .error {
   color: red;
   font-size: 0.7rem;
-  margin-top: 5px;
+	margin: 10px, 0px, 15px, 0px
 }
 
 #num-items-cart {
@@ -919,9 +1001,9 @@ th, td {
 	size: 1rem;
 }
 .share-on-socials > button:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	transition-timing-function: ease;
-	transition: 0.2s;
+	transition: 0.1s;
 }
 
  h3 {
@@ -942,4 +1024,10 @@ th, td {
 }
 .bold {
 	font-weight: bold;
+}
+
+.bubble:hover {
+	transform: scale(1.15);
+	transition-timing-function: ease;
+	transition: 0.1s;
 }

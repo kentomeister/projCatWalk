@@ -1,10 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {
+  useState, useCallback, useEffect, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
 import QuestionSearch from './QuestionsSearch.jsx';
 import QuestionList from './QuestionList.jsx';
 import { useProductQuestionState } from './useProductQuestionState.jsx';
 import Modal from '../Modals/modal.jsx';
+import { ProductQuestionContext } from './ProductQuestionContext.jsx';
 
 export function searchQuestions(questions = [], pattern = '') {
   const options = {
@@ -18,9 +21,9 @@ export function searchQuestions(questions = [], pattern = '') {
   return fuse.search(pattern);
 }
 
-export default function ProductQuestionManager({ productId }) {
-  const questionsData = useProductQuestionState(productId);
-  const questionResults = questionsData?.results;
+export default function ProductQuestionManager({ productId, productName }) {
+  const productQuestionState = useProductQuestionState(productId);
+  const questionResults = productQuestionState?.results;
   const [results, setResults] = useState(null);
 
   const onSearchChange = useCallback(
@@ -33,10 +36,12 @@ export default function ProductQuestionManager({ productId }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+    <ProductQuestionContext.Provider value={productQuestionState}>
     <div className="q-a-div">
       <h1 className="q-a-header">Questions &amp; Answers</h1>
       <QuestionSearch onChange={onSearchChange} />
       <QuestionList
+        productName={productName}
         productId={productId}
         questions={
           results?.length > 0 ? results.map((r) => r.item) : questionResults
@@ -47,12 +52,14 @@ export default function ProductQuestionManager({ productId }) {
         productId={productId}
         open={isOpen}
         onClose={() => setIsOpen(false)}
+        productName={productName}
       />
     </div>
+    </ProductQuestionContext.Provider>
   );
 }
 ProductQuestionManager.propTypes = {
-  productId: PropTypes.number,
+  productId: PropTypes.string,
 };
 ProductQuestionManager.defaultProps = {
   productId: '',

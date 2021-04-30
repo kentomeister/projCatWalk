@@ -59,6 +59,7 @@ const AddToBag = ({ selectedStyle, handleAddToBagSubmit }) => {
         <br />
         <div className="container-horz">
           <button
+            id="add-to-bag-btn"
             className="btn"
             type="submit"
             disabled={!isQuantitySelected}
