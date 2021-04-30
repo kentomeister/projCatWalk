@@ -6,7 +6,8 @@
   "scripts": {
     "dev-client": "webpack --watch --mode=development",
     "dev-server": "nodemon ./server/server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "build":"webpack --mode=production"
   },
   "repository": {
     "type": "git",

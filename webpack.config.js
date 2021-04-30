@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.jsx',
-  mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './public',
