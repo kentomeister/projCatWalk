@@ -134,9 +134,8 @@ class RatingsReviews extends React.Component {
     const { productReviews } = this.state;
     const { displayReviews } = this.state;
     const { productReviewsMeta } = this.state;
-    console.log('meta: ', productReviewsMeta);
-    const { productId } = this.props;
     const { productRatingsMeta } = this.state;
+    const { productId } = this.props;
     return (
       <div id="reviews">
         <div className="ratings-reviews">
@@ -145,6 +144,7 @@ class RatingsReviews extends React.Component {
             <RatingsSummary
               reviews={productReviews}
               reviewsMeta={productRatingsMeta}
+              productRatings={productReviewsMeta}
               sortRatings={this.handleRatingSort}
             />
             <ReviewList
