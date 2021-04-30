@@ -78,7 +78,6 @@ app.put('/qa/answers/report', (req, res) => {
 
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   const { body } = req;
-  console.log(body)
   api.addAnswer(body)
     .then((response) => res.json(response.data))
     .catch((err) => {
@@ -86,12 +85,6 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
         console.log(err);
       }
     });
-})
-
-  api.getProductQA(body.product_id)
-    .then(() => api.submitQuestion(body)
-      .then((results) => res.send(results.data).end())
-      .catch((err) => res.status(500).send(err)));
 });
 
 
@@ -105,8 +98,8 @@ app.post('/productOverview/cart', (req, res) => {
 app.get('/relatedProductId/:id', (req, res) => {
   const { id } = req.params;
   api.getRelatedProductId(id)
-    .then((products) => {
-      res.json(products.data);
+    .then((productIds) => {
+      res.json(productIds.data);
     })
     .catch((err) => {
       console.log(err);

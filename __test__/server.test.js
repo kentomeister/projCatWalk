@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require('../server/app');
 
+
 describe('Testing the server', () => {
 
   test('server should respond to get request to /test endpoint', () => {
@@ -48,3 +49,4 @@ describe('Testing the server', () => {
   });
 
 });
+
