@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useProductQuestionState } from '../ProductQuestionManager/useProductQuestionState.jsx';
 
 export default function Modal({
-  open, children, onClose, productId,
+  open, children, onClose, productId, productName,
 }) {
   if (!open) return null;
 
@@ -33,8 +33,10 @@ export default function Modal({
       <div className="overlay-styes" />
       <div className="add-question-modal">
         <div className="form-headings-all">
-          <h1 className="form-headings"> Ask Your Question</h1>
-          <h2 className="form-headings">About [Product Name]</h2>
+          <h1 className="form-headings"> Ask Your Question About</h1>
+          <h2 className="form-headings">
+            <span className="bold">{productName}</span>
+          </h2>
         </div>
         <span className="close" onClick={onClose} />
 
@@ -47,10 +49,7 @@ export default function Modal({
             className="form-label"
             type="text"
           >
-            Your Question about
-            {' '}
-            {productId}
-            *
+            Your Question*
           </label>
 
           <input

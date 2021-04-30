@@ -18,7 +18,7 @@ export function searchQuestions(questions = [], pattern = '') {
   return fuse.search(pattern);
 }
 
-export default function ProductQuestionManager({ productId }) {
+export default function ProductQuestionManager({ productId, productName }) {
   const questionsData = useProductQuestionState(productId);
   const questionResults = questionsData?.results;
   const [results, setResults] = useState(null);
@@ -37,6 +37,7 @@ export default function ProductQuestionManager({ productId }) {
       <h1 className="q-a-header">Questions &amp; Answers</h1>
       <QuestionSearch onChange={onSearchChange} />
       <QuestionList
+        productName={productName}
         productId={productId}
         questions={
           results?.length > 0 ? results.map((r) => r.item) : questionResults
@@ -47,6 +48,7 @@ export default function ProductQuestionManager({ productId }) {
         productId={productId}
         open={isOpen}
         onClose={() => setIsOpen(false)}
+        productName={productName}
       />
     </div>
   );
