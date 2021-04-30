@@ -7,7 +7,6 @@ class ProductBreakdown extends React.Component {
   }
   render() {
     const { productRatings } = this.props;
-    console.log('pr ',this.props);
     return (
       <div className="product-breakdown-cont">
         <div className="breakdown-bar-cont">
