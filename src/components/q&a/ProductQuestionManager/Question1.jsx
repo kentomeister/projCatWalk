@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
 import AddAnswerModal from '../Modals/addAnswerModal.jsx';
+import { ProductQuestionContext } from './ProductQuestionContext.jsx';
 
 // eslint-disable-next-line camelcase
 // eslint-disable-next-line max-len
@@ -12,21 +13,23 @@ export default function Question({
   question_body, question_date, asker_name, question_helpfulness, reported, answers, question_id, productId, productName,
 }) {
   const [isReported, setReported] = useState(false);
-  let r;
+  let questionReport;
   if (isReported) {
-    r = <p>Reported</p>;
+    questionReport = <p>Reported</p>;
   } else {
-    r = <p>Report</p>;
+    questionReport = <p>Report</p>;
   }
+  const [reportAnswerState, setReportAnswerState] = useState(false);
+  let answerReport;
+  if (reportAnswerState) {
+    answerReport = <p>Reported</p>;
+  } else {
+    answerReport = <p>Report</p>;
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(question_helpfulness);
   const [clicked, setClicked] = useState(false);
-  const helpClick = () => {
-    if (!clicked) {
-      setClicked(true);
-      setCount(count + 1);
-    }
-  };
   const [loadClick, setLoadClick] = useState(true);
   const [index, setIndex] = useState(2);
   const isEven = (i) => {
@@ -39,20 +42,46 @@ export default function Question({
       return <div className="two-buttons">Collapse answers</div>;
     }
   };
+  const productQuestionState = useContext(ProductQuestionContext);
+  const [helpfulOnce, setHelpfulOnce] = useState(true);
+  const [helpfulClass, setHelpfulClass] = useState('helpful-count');
   const sendHelpful = (id) => {
-    const idObj = {
-      question_id: id,
-    };
-    axios.put('/qa/helpful', idObj);
+    setHelpfulClass('clicked');
+    if (helpfulOnce) {
+      const idObj = {
+        question_id: id,
+      };
+      axios.put('/qa/helpful', idObj)
+        .then((response) => {
+          productQuestionState.handleQuestionsFetch();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    setHelpfulOnce(false);
   };
+
+  const [aHelpfulOnce, setAHelpfulOnce] = useState(true);
+
   const submitAnswerHelpful = (id) => {
-    const idObj = {
-      answer_id: id,
-    };
-    axios.put('/qa/answer/helpful', idObj);
+    if (aHelpfulOnce) {
+      const idObj = {
+        answer_id: id,
+      };
+      axios.put('/qa/answer/helpful', idObj)
+        .then((response) => {
+          productQuestionState.handleQuestionsFetch();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    setAHelpfulOnce(false);
   };
 
   const reportQuestion = (id) => {
+    setReported(true);
     const idObj = {
       question_id: id,
     };
@@ -60,40 +89,51 @@ export default function Question({
   };
 
   const reportAnswer = (id) => {
+    setReportAnswerState(true);
     const idObj = {
       answer_id: id,
     };
     axios.put('/qa/answers/report', idObj);
   };
 
+  const isSeller = (x) => {
+    if (x === 'Seller') {
+      return 'answer-user-seller';
+    }
+    return 'answer-user';
+  };
+
   return (
     <div className="question-single">
       <div className="question-line">
-        <p className="question-body">
+        <span
+          key={1}
+          className="question-body"
+        >
           Q:
           {'  '}
           {question_body}
-        </p>
-        <p
-          className="helpful-count"
+        </span>
+        <span
+          key={2}
+          className={helpfulClass}
           onClick={() => {
-            helpClick();
             sendHelpful(question_id);
           }}
         >
           Helpful? Yes (
-          {count}
+          {question_helpfulness}
           )
-        </p>
-        <p
+        </span>
+        <span
+          key={3}
           className="helpful-count"
           onClick={() => {
-            setReported(true);
             reportQuestion(question_id);
           }}
         >
-          {r}
-        </p>
+          {questionReport}
+        </span>
         <p className="add-answer" onClick={() => setIsOpen(true)}>Add Answer</p>
         <AddAnswerModal
           productId={productId}
@@ -104,48 +144,77 @@ export default function Question({
           productName={productName}
         />
 
+        <span
+          className="add-answer"
+          onClick={() => setIsOpen(true)}
+        >
+          Add Answer
+        </span>
+        <div>
+          <AddAnswerModal
+            productId={productId}
+            question={question_body}
+            id={question_id}
+            open={isOpen}
+            onClose={() => { setIsOpen(false); }}
+          />
+        </div>
       </div>
       {Object.values(answers).slice(0, index).map((item, i) => (
 
         <>
-          <p className="answer-body">
-            A:
-            {'  '}
-            {item.body}
-          </p>
-
-          {item.photos.map((pic) => (
-            <img
-              className="thumbnail"
-              src={pic}
-              alt=""
-            />
-          ))}
+          <div>
+            <span
+              key={4}
+              className="answer-body"
+            >
+              A:
+              {'  '}
+              {item.body}
+            </span>
+            <div>
+              {item.photos.map((pic) => (
+                <img
+                  key={pic}
+                  className="thumbnail"
+                  src={pic}
+                  alt=""
+                />
+              ))}
+            </div>
+          </div>
 
           <div className="answer-user-line">
-            <p className="answer-user">
-              by:
+            <span className="answer-user-by">by:</span>
+
+            <span
+              key={6}
+              className={isSeller(item.answerer_name)}
+            >
               {item.answerer_name}
               {' '}
-              {moment(item.date).format('LL')}
-            </p>
-            <p
+            </span>
+            <span className="answer-user">{moment(item.date).format('LL')}</span>
+            <span
+              id={item.id}
+              key={7}
               className="answer-helpful"
               onClick={() => { submitAnswerHelpful(item.id); }}
             >
               Helpful? Yes (
               {item.helpfulness}
               )
-            </p>
-            <p
+            </span>
+            <span
+
+              key={item.id}
               className="report"
               onClick={() => {
-                setReported(true);
                 reportAnswer(item.id);
               }}
             >
-              {r}
-            </p>
+              {answerReport}
+            </span>
 
             <span onClick={() => {
               setIndex(index + Object.values(answers).length);
@@ -155,6 +224,7 @@ export default function Question({
               {isEven(i + 1)}
             </span>
           </div>
+
           <div onClick={() => {
             setLoadClick(true);
             setIndex(2);
@@ -192,11 +262,11 @@ Question.defaultProps = {
   reported: false,
   answers: {
     0: {
-      id: PropTypes.number,
-      body: PropTypes.string,
-      date: PropTypes.string,
-      answerer_name: PropTypes.string,
-      helpfulness: PropTypes.number,
+      id: 0,
+      body: '',
+      date: '',
+      answerer_name: '',
+      helpfulness: 0,
     },
   },
 };
