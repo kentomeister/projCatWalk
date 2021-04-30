@@ -113,8 +113,6 @@ class ReviewList extends React.Component {
     // const starsRating = starRating({
     //   rating: '0', size: '18', isClickable: true, handleRatingClick: () => 'starrating',
     // });
-    console.log(reviews);
-
     return (
       <div className="review-list">
         <div className="sort-btn">
