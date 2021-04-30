@@ -6,11 +6,17 @@ class ProductBreakdown extends React.Component {
     this.state = {};
   }
   render() {
+    const { productRatings } = this.props;
+    console.log('pr ',this.props);
     return (
       <div className="product-breakdown-cont">
         <div className="breakdown-bar-cont">
           <div className="size-breakdown">Size</div>
+          <div>
+            <div className="marker"></div>
           <div className="product-breakdown-bar"></div>
+
+          </div>
           <div className="definition-cont">
             <div className="definition-text">Too big</div>
             <div className="definition-text">Perfect size</div>
