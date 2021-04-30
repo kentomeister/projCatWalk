@@ -134,6 +134,7 @@ export default function Question({
         >
           {questionReport}
         </span>
+<<<<<<< Updated upstream
         <p className="add-answer" onClick={() => setIsOpen(true)}>Add Answer</p>
         <AddAnswerModal
           productId={productId}
@@ -145,6 +146,10 @@ export default function Question({
         />
 
         {/* <span
+=======
+
+        <span
+>>>>>>> Stashed changes
           className="add-answer"
           onClick={() => setIsOpen(true)}
         >
@@ -158,7 +163,11 @@ export default function Question({
             open={isOpen}
             onClose={() => { setIsOpen(false); }}
           />
+<<<<<<< Updated upstream
         </div> */}
+=======
+        </div>
+>>>>>>> Stashed changes
       </div>
       {Object.values(answers).slice(0, index).map((item, i) => (
 
