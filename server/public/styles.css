@@ -841,6 +841,13 @@ th, td {
   font-size: 15px;
   padding: 10px;
 }
+.form-headings-question{
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
+  font-size: 15px;
+	padding: 10px;
+	font-weight: bold;
+}
 .form-headings-all{
   padding: 15px;
 }

@@ -9,7 +9,7 @@ import AddAnswerModal from '../Modals/addAnswerModal.jsx';
 // eslint-disable-next-line max-len
 export default function Question({
   // eslint-disable-next-line max-len
-  question_body, question_date, asker_name, question_helpfulness, reported, answers, question_id, productId,
+  question_body, question_date, asker_name, question_helpfulness, reported, answers, question_id, productId, productName,
 }) {
   const [isReported, setReported] = useState(false);
   let r;
@@ -101,6 +101,7 @@ export default function Question({
           id={question_id}
           open={isOpen}
           onClose={() => { setIsOpen(false); }}
+          productName={productName}
         />
 
       </div>

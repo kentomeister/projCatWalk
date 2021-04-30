@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useProductQuestionState } from '../ProductQuestionManager/useProductQuestionState.jsx';
 
 export default function AddAnswerModal({
-  open, children, onClose, question, id, productId,
+  open, children, onClose, question, id, productId, productName,
 }) {
   if (!open) return null;
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -42,10 +42,15 @@ export default function AddAnswerModal({
     <>
       <div className="overlay-styes" />
       <div className="add-question-modal">
-        <h1 className="form-headings"> Submit Your Answer</h1>
-        <h2 className="form-headings">About [Product Name]</h2>
+        <div className="form-headings"> Submit Your Answer</div>
+        <div className="form-headings">
+          {productName}
+          {' '}
+          :
+        </div>
+        <div className="form-headings-question">{question}</div>
         <span className="close" onClick={onClose} />
-        <h3 className="form-headings">{question}</h3>
+        {/* <h3 className="form-headings">{question}</h3> */}
         <form className="addQuestionForm" onSubmit={handleSubmit(onSubmit)}>
           <label className="form-label" type="text"> Your Answer</label>
 
