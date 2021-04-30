@@ -21,7 +21,7 @@ class Reviews extends React.Component {
     const { helpfulCount } = Number(this.state);
 
     if (!helpfulClicked) {
-      axios.put(`/updateHelpfulCounter/${review_id}`))
+      axios.put(`/updateHelpfulCounter/${review_id}`)
         .then((res) => console.log(res))
         .catch(() => console.log('error'));
     }
