@@ -134,6 +134,7 @@ app.put('/updateHelpfulCounter/:reviewId', (req, res) => {
   console.log('params: ', reviewId);
   api.IncrementHelpfulCounter(reviewId)
     .then(() => res.send(204).end())
+});
 
 app.get('/cart', (req, res) => {
   api.getCart()

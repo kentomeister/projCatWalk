@@ -3,7 +3,7 @@ import StarRating from '../shared/StarRating.jsx';
 
 function Average(props) {
   const { average } = props;
-  const starAvg = starRating({
+  const starAvg = StarRating({
     rating: average.toString(), size: '25', isClickable: false, handleRatingClick: () => 'starrating',
   });
 

@@ -3,8 +3,7 @@ import React from 'react';
 import Reviews from './review.jsx';
 import WriteReview from './write-review.jsx';
 import SortReviews from './sort-reviews.jsx';
-import starRating from '../shared/starRating.jsx';
-
+import StarRating from '../shared/StarRating.jsx';
 
 const axios = require('axios');
 
@@ -101,7 +100,7 @@ class ReviewList extends React.Component {
       .catch((err) => console.log(err));
   }
   getStarsFeature() {
-    return starRating({
+    return StarRating({
       rating: '0', size: '18', isClickable: true, handleRatingClick: () => 'starrating',
     });
   }

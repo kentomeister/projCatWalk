@@ -6,7 +6,7 @@ import StarRating from '../shared/StarRating.jsx';
 function Topbar(props) {
   const { stars, name, date } = props;
   const formattedDate = moment(date).format('LL');
-  const starsRating = starRating({
+  const starsRating = StarRating({
     rating: stars.toString(), size: '18', isClickable: false, handleRatingClick: () => 'starrating',
   });
   return (
