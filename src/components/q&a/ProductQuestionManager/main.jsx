@@ -22,8 +22,8 @@ export function searchQuestions(questions = [], pattern = '') {
 }
 
 export default function ProductQuestionManager({ productId, productName }) {
-  const questionsData = useProductQuestionState(productId);
-  const questionResults = questionsData?.results;
+  const productQuestionState = useProductQuestionState(productId);
+  const questionResults = productQuestionState?.results;
   const [results, setResults] = useState(null);
 
   const onSearchChange = useCallback(
@@ -36,6 +36,7 @@ export default function ProductQuestionManager({ productId, productName }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+    <ProductQuestionContext.Provider value={productQuestionState}>
     <div className="q-a-div">
       <h1 className="q-a-header">Questions &amp; Answers</h1>
       <QuestionSearch onChange={onSearchChange} />
@@ -54,6 +55,7 @@ export default function ProductQuestionManager({ productId, productName }) {
         productName={productName}
       />
     </div>
+    </ProductQuestionContext.Provider>
   );
 }
 ProductQuestionManager.propTypes = {
