@@ -10,8 +10,9 @@ class SortReviews extends React.Component {
     const { sortSelect } = this.props;
     return (
       <div>
+        Filter:
+        {' '}
         <select onChange={sortSelect}>
-          <option value="Sort">Sort</option>
           <option value="Relevant">Relevant</option>
           <option value="Newest">Newest</option>
           <option value="Helpful">Helpful</option>
