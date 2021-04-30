@@ -144,7 +144,7 @@ export default function Question({
           productName={productName}
         />
 
-        <span
+        {/* <span
           className="add-answer"
           onClick={() => setIsOpen(true)}
         >
@@ -158,7 +158,7 @@ export default function Question({
             open={isOpen}
             onClose={() => { setIsOpen(false); }}
           />
-        </div>
+        </div> */}
       </div>
       {Object.values(answers).slice(0, index).map((item, i) => (
 
