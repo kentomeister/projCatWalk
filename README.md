@@ -1,7 +1,16 @@
 # projCatWalk
-This is the repo for our Hackreactor FEC project 1.
+This repo contains a product overview project for an onkine e-commerce website. 
 
-Team Members:
+## Tech Stack
+
+This project uses a number of open source projects to work properly:
+
+- [node.js] - evented I/O for the backend
+- [Express] - HTML enhanced for web apps!
+- [React] - Frontend Framework
+- [markdown-it] - Markdown parser done right. Fast and easy to extend.
+
+## Team Members:
 - Alex Zinn
 - Raju Gharti
 - Ryan Pannone
