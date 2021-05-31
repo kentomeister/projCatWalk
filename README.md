@@ -10,11 +10,11 @@ This project uses a number of open source projects to work properly:
 - [React] - Frontend Framework
 - [markdown-it] - Markdown parser done right. Fast and easy to extend.
 
-## Team Members:
-- Alex Zinn
-- Raju Gharti
-- Ryan Pannone
-- Tomas Rodriguez
+## Team Members - Widget:
+- Alex Zinn - Product Details
+- Raju Gharti - Related Products
+- Ryan Pannone - Questions & Answers
+- Tomas Rodriguez - Ratings & Reviews
 
 ## SETUP
 Run the following command in the terminal:
