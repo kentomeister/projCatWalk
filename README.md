@@ -1,5 +1,5 @@
 # projCatWalk
-This repo contains a product overview project for an onkine e-commerce website. 
+This repo contains a product overview project for an online e-commerce website. 
 
 ## Tech Stack
 
@@ -32,3 +32,11 @@ Run the following command in the terminal:
     - terminal 2: npm run dev-client
 
 Navigate to http://localhost: **port specified in .env file** in chrome
+
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+   [markdown-it]: <https://github.com/markdown-it/markdown-it>
+   [node.js]: <http://nodejs.org>
+   [express]: <http://expressjs.com>
+   [React]: <https://reactjs.org/>
