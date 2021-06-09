@@ -22,7 +22,6 @@ class ProductBreakdown extends React.Component {
   componentDidUpdate(oldProps) {
     if (oldProps.productRatings !== this.props.productRatings) {
       const { productRatings } = this.props;
-      console.log(productRatings);
       this.setState({
         sizeRating: productRatings.characteristics.Size,
         widthRating: productRatings.characteristics.Width,
