@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import Helpful from './helpful-counter.jsx';
 import Topbar from './topbar-review.jsx';
+import { FcCheckmark } from 'react-icons/fc';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -50,9 +51,10 @@ class Reviews extends React.Component {
         <Topbar stars={rating} name={reviewer_name} date={date} />
         <div className="review-summary">{summary}</div>
         <div className="review-body">{body}</div>
+        {/* <div><reviews-thumbNails /></div> */}
         <div>
           {recommend
-            ? <div className="recommended-tag">**I recommend this product</div>
+            ? <div className="recommended-tag"> <FcCheckmark size="20" /> I recommend this product</div>
             : <div>{}</div>}
         </div>
         <div>
