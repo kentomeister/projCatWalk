@@ -29,6 +29,7 @@ class RatingsReviews extends React.Component {
       axios.get(`/reviews/${productId}`),
       axios.get(`/reviews/meta/${productId}`),
     ]).then(([res1, res2]) => {
+      // console.log('res ', res2);
       this.setState({
         productReviews: res1.data.results,
         displayReviews: res1.data.results,
@@ -136,6 +137,8 @@ class RatingsReviews extends React.Component {
     const { productReviewsMeta } = this.state;
     const { productRatingsMeta } = this.state;
     const { productId } = this.props;
+
+    console.log('prod-ratings-M ', productReviewsMeta);
     return (
       <div id="reviews">
         <div className="ratings-reviews">
