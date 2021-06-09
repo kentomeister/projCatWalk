@@ -35,7 +35,6 @@ class ProductBreakdown extends React.Component {
   }
 
   productRatingAvg(ratingsObj, charac) {
-    // const { characteristics } = ratingsObj;
     console.log('rObj ',ratingsObj);
     var characs = ratingsObj.characteristics;
     let rating = Number(characs[charac.value]);
@@ -50,22 +49,17 @@ class ProductBreakdown extends React.Component {
     }
   }
 
-
   render() {
-
-    console.log('comft-rating ', this.state.comfortRating);
-
     // const sizeRating = this.productRatingAvg(productRatings, 'Size');
     const { productRatings } = this.props;
     if (productRatings.characteristics !== undefined) {
       const {Size, Comfort, Length, Quality, Fit, Width} = this.props.productRatings.characteristics;
-      console.log(Comfort);
       let iconSize = 8;
       let iconOffset = {
         size: Size ? (parseInt(Size.value) / 5) * 100 : 0,
         comfort: Comfort ? (parseInt(Comfort.value) / 5) * 100 : 0,
         width: Width ? (parseInt(Width.value) / 5) * 100 : 0,
-        length: Length ? (parseInt(Length.value) / 5) * 100 : 0,
+        lengths: Length ? (parseInt(Length.value) / 5) * 100 : 0,
         fit: Fit ? (parseInt(Fit.value) / 5) * 100 : 0,
         quality: Quality ? (parseInt(Quality.value) / 5) * 100 : 0,
       };
@@ -76,7 +70,7 @@ class ProductBreakdown extends React.Component {
         width: (productRatings.characteristics.Width ? 'block' : 'none'),
         fit: (productRatings.characteristics.Fit ? 'block' : 'none'),
         quality: (productRatings.characteristics.Quality ? 'block' : 'none'),
-        length: (productRatings.characteristics.Length ? 'block' : 'none'),
+        lengths: (productRatings.characteristics.Length ? 'block' : 'none'),
       };
       return (
         <div className="product-breakdown-cont">
@@ -133,11 +127,11 @@ class ProductBreakdown extends React.Component {
               <div className="definition-text">High</div>
             </div>
           </div>
-          <div className="breakdown-bar-cont" style={{ display: display.length }}>
+          <div className="breakdown-bar-cont" style={{ display: display.lengths }}>
             <div className="length-breakdown">Length</div>
             <div className="product-breakdown-bar">
               <div className="marker-cont">
-                <FontAwesomeIcon style={{ marginLeft: `calc(${iconOffset.length}% - ${iconSize}px)` }} icon="caret-down" />
+                <FontAwesomeIcon style={{ marginLeft: `calc(${iconOffset.lengths}% - ${iconSize}px)` }} icon="caret-down" />
               </div>
             </div>
             <div className="definition-cont">
