@@ -108,6 +108,7 @@ class ReviewList extends React.Component {
   render() {
     const { reviews } = this.props;
     const { sortSelect } = this.props;
+    const { productName } = this.props;
     const { index } = this.state;
     // const starsRating = starRating({
     //   rating: '0', size: '18', isClickable: true, handleRatingClick: () => 'starrating',
@@ -123,7 +124,6 @@ class ReviewList extends React.Component {
 
         {/* Modal below */}
 
-
         <button type="button" className="load-reviews-btn" onClick={this.handleClickIncrement}>
           Load more reviews
         </button>
@@ -132,7 +132,7 @@ class ReviewList extends React.Component {
         </button>
         <WriteReview open={this.state.modalOpen} closeModal={() => this.setState({ modalOpen: false })}>
           <div className="write-review-title">Write Your Review</div>
-          <div className="write-review-productname">[Product Name Here]</div>
+          <div className="write-review-productname">{productName}</div>
           <div className="write-rev-star-cont">star rating {this.getStarsFeature}</div>
           <div className="write-rev-recommend">
             Do you recommend this product?
