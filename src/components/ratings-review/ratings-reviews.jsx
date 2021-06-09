@@ -29,7 +29,6 @@ class RatingsReviews extends React.Component {
       axios.get(`/reviews/${productId}`),
       axios.get(`/reviews/meta/${productId}`),
     ]).then(([res1, res2]) => {
-      // console.log('res ', res2);
       this.setState({
         productReviews: res1.data.results,
         displayReviews: res1.data.results,
@@ -39,7 +38,7 @@ class RatingsReviews extends React.Component {
     });
   }
 
-  // // if (this.state.isSortedByRating) { render the clicked filter options (5 stars, 3 stars) and 'clear' button }
+  // if (this.state.isSortedByRating) { render the clicked filter options (5 stars, 3 stars) and 'clear' button }
 
   handleRatingSort(rating) {
     this.sortByRating(rating);
@@ -138,7 +137,6 @@ class RatingsReviews extends React.Component {
     const { productRatingsMeta } = this.state;
     const { productId } = this.props;
 
-    console.log('prod-ratings-M ', productReviewsMeta);
     return (
       <div id="reviews">
         <div className="ratings-reviews">
