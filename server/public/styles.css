@@ -79,6 +79,10 @@ table {
 	padding-bottom: 10px;
 	margin-top: 25px;
 }
+.review-list-cont{
+	max-height: 600px;
+	overflow: scroll;
+}
 .topbar-cont{
 	display: flex;
 	justify-content: space-between;
@@ -148,7 +152,7 @@ table {
 .ratings-breakdown-col {
 	display: flex;
 	flex-direction: column;
-	width: 320px;
+	width: 350px;
 	height: auto;
 	margin-right: 70px;
 }
@@ -185,6 +189,35 @@ table {
 	display: flex;
 	flex-direction: column;
 }
+
+.marker-cont{
+	display: flex;
+	height: 100%;
+	align-content: center;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+.fa {
+	color: #333;
+	width: 10px;
+	height: auto;
+}
+.fa-caret-down {
+	color: #333;
+	font-size: 180%;
+	text-align: center;
+	padding-bottom: 1.8px;
+}
+.marker {
+	display: flex;
+}
+.test {
+	height: 100%;
+	width: 50%;
+	background-color: rgb(205, 205, 205);
+}
+
 .average-cont{
 	display: flex;
 	align-items: flex-start;
@@ -221,7 +254,7 @@ table {
 	text-decoration: underline;
 }
 .text-rating-count{
-	width: 68px;
+	width: 75px;
 	height: 15px;
 	font-size: 15px;
 	display: inline-block;
@@ -244,11 +277,6 @@ table {
 	background-color: rgb(205, 205, 205);
 	margin-top: 8px;
 }
-/* .marker{
-	height: 12px;
-	width: 6px;
-	background-color: rgb(75, 75, 75);
-} */
 .size-breakdown{
 	width: 60px;
 }
