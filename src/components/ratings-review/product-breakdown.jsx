@@ -35,13 +35,9 @@ class ProductBreakdown extends React.Component {
   }
 
   productRatingAvg(ratingsObj, charac) {
-    console.log('rObj ',ratingsObj);
     var characs = ratingsObj.characteristics;
     let rating = Number(characs[charac.value]);
-    console.log('ratings ', rating)
-
     let percentage = Math.floor((rating / 5) * 100);
-
     return {
       display: 'flex',
       position: 'relative',
@@ -52,7 +48,14 @@ class ProductBreakdown extends React.Component {
   render() {
     const { productRatings } = this.props;
     if (productRatings.characteristics !== undefined) {
-      const {Size, Comfort, Length, Quality, Fit, Width} = this.props.productRatings.characteristics;
+      const {
+        Size,
+        Comfort,
+        Length,
+        Quality,
+        Fit,
+        Width
+      } = this.props.productRatings.characteristics;
       let iconSize = 8;
       let iconOffset = {
         size: Size ? (parseInt(Size.value) / 5) * 100 : 0,
