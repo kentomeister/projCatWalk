@@ -92,7 +92,6 @@ class ProductBreakdown extends React.Component {
             <div className="width-breakdown">Width</div>
             <div className="product-breakdown-bar">
               <div className="marker-cont">
-                <div className="test"></div>
                 <FontAwesomeIcon style={{ marginLeft: `calc(${iconOffset.width}% - ${iconSize}px)` }} icon="caret-down" />
               </div>
             </div>
