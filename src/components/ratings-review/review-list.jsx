@@ -117,7 +117,7 @@ class ReviewList extends React.Component {
         <div className="sort-btn">
           <SortReviews reviews={reviews} sortSelect={sortSelect} />
         </div>
-        <ul>
+        <ul className="review-list-cont">
           {reviews.slice(0, index).map((review) => <Reviews review={review} />)}
         </ul>
 
@@ -150,19 +150,19 @@ class ReviewList extends React.Component {
               <div className="write-rev-charac-text">Size</div>
               <div className="radio-btn-cont">
                 <label className="prod-charac-score">1
-                  <input className="radio-btn" type="radio" id="1" name="score" value="1"></input>
+                  <input className="radio-btn" type="radio" id="1" name="size" value="1"></input>
                 </label>
                 <label className="prod-charac-score">2
-                  <input className="radio-btn" type="radio" id="2" name="score" value="2"></input>
+                  <input className="radio-btn" type="radio" id="2" name="size" value="2"></input>
                 </label>
                 <label className="prod-charac-score">3
-                  <input className="radio-btn" type="radio" id="3" name="score" value="3"></input>
+                  <input className="radio-btn" type="radio" id="3" name="size" value="3"></input>
                 </label>
                 <label className="prod-charac-score">4
-                  <input className="radio-btn" type="radio" id="4" name="score" value="4"></input>
+                  <input className="radio-btn" type="radio" id="4" name="size" value="4"></input>
                 </label>
                 <label className="prod-charac-score">5
-                  <input className="radio-btn" type="radio" id="5" name="score" value="5"></input>
+                  <input className="radio-btn" type="radio" id="5" name="size" value="5"></input>
                 </label>
               </div>
             </div>
@@ -170,19 +170,19 @@ class ReviewList extends React.Component {
               <div className="write-rev-charac-text">Width</div>
               <div className="radio-btn-cont">
                 <label className="prod-charac-score">1
-                  <input className="radio-btn" type="radio" id="1" name="score" value="1"></input>
+                  <input className="radio-btn" type="radio" id="1" name="width" value="1"></input>
                 </label>
                 <label className="prod-charac-score">2
-                  <input className="radio-btn" type="radio" id="2" name="score" value="2"></input>
+                  <input className="radio-btn" type="radio" id="2" name="width" value="2"></input>
                 </label>
                 <label className="prod-charac-score">3
-                  <input className="radio-btn" type="radio" id="3" name="score" value="3"></input>
+                  <input className="radio-btn" type="radio" id="3" name="width" value="3"></input>
                 </label>
                 <label className="prod-charac-score">4
-                  <input className="radio-btn" type="radio" id="4" name="score" value="4"></input>
+                  <input className="radio-btn" type="radio" id="4" name="width" value="4"></input>
                 </label>
                 <label className="prod-charac-score">5
-                  <input className="radio-btn" type="radio" id="5" name="score" value="5"></input>
+                  <input className="radio-btn" type="radio" id="5" name="width" value="5"></input>
                 </label>
               </div>
             </div>
@@ -190,19 +190,19 @@ class ReviewList extends React.Component {
               <div className="write-rev-charac-text">Comfort</div>
               <div className="radio-btn-cont">
                 <label className="prod-charac-score">1
-                  <input className="radio-btn" type="radio" id="1" name="score" value="1"></input>
+                  <input className="radio-btn" type="radio" id="1" name="comfort" value="1"></input>
                 </label>
                 <label className="prod-charac-score">2
-                  <input className="radio-btn" type="radio" id="2" name="score" value="2"></input>
+                  <input className="radio-btn" type="radio" id="2" name="comfort" value="2"></input>
                 </label>
                 <label className="prod-charac-score">3
-                  <input className="radio-btn" type="radio" id="3" name="score" value="3"></input>
+                  <input className="radio-btn" type="radio" id="3" name="comfort" value="3"></input>
                 </label>
                 <label className="prod-charac-score">4
-                  <input className="radio-btn" type="radio" id="4" name="score" value="4"></input>
+                  <input className="radio-btn" type="radio" id="4" name="comfort" value="4"></input>
                 </label>
                 <label className="prod-charac-score">5
-                  <input className="radio-btn" type="radio" id="5" name="score" value="5"></input>
+                  <input className="radio-btn" type="radio" id="5" name="comfort" value="5"></input>
                 </label>
               </div>
             </div>
@@ -210,19 +210,19 @@ class ReviewList extends React.Component {
               <div className="write-rev-charac-text">Quality</div>
               <div className="radio-btn-cont">
                 <label className="prod-charac-score">1
-                  <input className="radio-btn" type="radio" id="1" name="score" value="1"></input>
+                  <input className="radio-btn" type="radio" id="1" name="quality" value="1"></input>
                 </label>
                 <label className="prod-charac-score">2
-                  <input className="radio-btn" type="radio" id="2" name="score" value="2"></input>
+                  <input className="radio-btn" type="radio" id="2" name="quality" value="2"></input>
                 </label>
                 <label className="prod-charac-score">3
-                  <input className="radio-btn" type="radio" id="3" name="score" value="3"></input>
+                  <input className="radio-btn" type="radio" id="3" name="quality" value="3"></input>
                 </label>
                 <label className="prod-charac-score">4
-                  <input className="radio-btn" type="radio" id="4" name="score" value="4"></input>
+                  <input className="radio-btn" type="radio" id="4" name="quality" value="4"></input>
                 </label>
                 <label className="prod-charac-score">5
-                  <input className="radio-btn" type="radio" id="5" name="score" value="5"></input>
+                  <input className="radio-btn" type="radio" id="5" name="quality" value="5"></input>
                 </label>
               </div>
             </div>
@@ -230,19 +230,19 @@ class ReviewList extends React.Component {
               <div className="write-rev-charac-text">Length</div>
               <div className="radio-btn-cont">
                 <label className="prod-charac-score">1
-                  <input className="radio-btn" type="radio" id="1" name="score" value="1"></input>
+                  <input className="radio-btn" type="radio" id="1" name="length" value="1"></input>
                 </label>
                 <label className="prod-charac-score">2
-                  <input className="radio-btn" type="radio" id="2" name="score" value="2"></input>
+                  <input className="radio-btn" type="radio" id="2" name="length" value="2"></input>
                 </label>
                 <label className="prod-charac-score">3
-                  <input className="radio-btn" type="radio" id="3" name="score" value="3"></input>
+                  <input className="radio-btn" type="radio" id="3" name="length" value="3"></input>
                 </label>
                 <label className="prod-charac-score">4
-                  <input className="radio-btn" type="radio" id="4" name="score" value="4"></input>
+                  <input className="radio-btn" type="radio" id="4" name="length" value="4"></input>
                 </label>
                 <label className="prod-charac-score">5
-                  <input className="radio-btn" type="radio" id="5" name="score" value="5"></input>
+                  <input className="radio-btn" type="radio" id="5" name="length" value="5"></input>
                 </label>
               </div>
             </div>
@@ -250,19 +250,19 @@ class ReviewList extends React.Component {
               <div className="write-rev-charac-text">Fit</div>
               <div className="radio-btn-cont">
                 <label className="prod-charac-score">1
-                  <input className="radio-btn" type="radio" id="1" name="score" value="1"></input>
+                  <input className="radio-btn" type="radio" id="1" name="fit" value="1"></input>
                 </label>
                 <label className="prod-charac-score">2
-                  <input className="radio-btn" type="radio" id="2" name="score" value="2"></input>
+                  <input className="radio-btn" type="radio" id="2" name="fit" value="2"></input>
                 </label>
                 <label className="prod-charac-score">3
-                  <input className="radio-btn" type="radio" id="3" name="score" value="3"></input>
+                  <input className="radio-btn" type="radio" id="3" name="fit" value="3"></input>
                 </label>
                 <label className="prod-charac-score">4
-                  <input className="radio-btn" type="radio" id="4" name="score" value="4"></input>
+                  <input className="radio-btn" type="radio" id="4" name="fit" value="4"></input>
                 </label>
                 <label className="prod-charac-score">5
-                  <input className="radio-btn" type="radio" id="5" name="score" value="5"></input>
+                  <input className="radio-btn" type="radio" id="5" name="fit" value="5"></input>
                 </label>
               </div>
             </div>
