@@ -136,6 +136,7 @@ class RatingsReviews extends React.Component {
     const { productReviewsMeta } = this.state;
     const { productRatingsMeta } = this.state;
     const { productId } = this.props;
+    const { productName } = this.props;
 
     return (
       <div id="reviews">
@@ -153,6 +154,7 @@ class RatingsReviews extends React.Component {
               reviewsMeta={productReviewsMeta}
               productId={productId}
               sortSelect={this.handleSortSelection}
+              productName={productName}
             />
           </div>
         </div>
