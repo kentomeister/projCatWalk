@@ -50,7 +50,6 @@ class ProductBreakdown extends React.Component {
   }
 
   render() {
-    // const sizeRating = this.productRatingAvg(productRatings, 'Size');
     const { productRatings } = this.props;
     if (productRatings.characteristics !== undefined) {
       const {Size, Comfort, Length, Quality, Fit, Width} = this.props.productRatings.characteristics;
